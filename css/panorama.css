@@ -1,0 +1,144 @@
+html,
+body {
+    color: black;
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+body.section-context { 
+  background-color: pink; 
+}
+
+body.section-home, body.section-home .curve { 
+  background-color: rgb(179, 205, 50); 
+}
+
+h1 {
+  font-size: 4em;
+}
+
+.content {
+  max-width: 768px;
+  margin: auto;
+  padding: 25px 0;
+  background-color: inherit;
+  position: relative;
+}
+
+.curvy, .content-block {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.curvy {
+  position: relative;
+  border-top: 2px solid black;
+  padding: 25px;
+  background-color: inherit;
+  /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
+}
+
+.curvy.around-the-right {
+  border-top-right-radius: 25px;
+  border-right: 2px solid black;
+}
+
+.curvy.around-the-right.connect-below {
+  border-bottom-right-radius: 25px;
+}
+
+.curvy.connect-above {
+  position: relative;
+} 
+
+.curvy.around-the-left {
+  border-top-left-radius: 25px;
+  border-left: 2px solid black;
+}
+
+.curvy.around-the-right.connect-below::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  height: 26px;
+  width: 26px;
+  z-index: 1;
+  /* this should inherit the section's color and cover the botched rounded corner of the table */
+  background-color: inherit;
+  /* per https://nikitahl.com/using-svg-background-image-with-css-code-only */
+  /* and this tool: https://www.bayustudio.com/app/svg-encoder/ */
+  /*
+    <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+      <rect x="-25" y="-25" rx="25" ry="25" width="50" height="50" fill="none" stroke="black" stroke-width="2"/>
+    </svg>
+  */
+  background-image: url("data:image/svg+xml,%3csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='-25' y='-25' rx='25' ry='25' width='50' height='50' fill='none' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
+} 
+
+.curvy.around-the-left.connect-below::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  height: 26px;
+  width: 26px;
+  z-index: 1;
+  /* this should inherit the section's color and cover the botched rounded corner of the table */
+  background-color: inherit;
+  /* per https://nikitahl.com/using-svg-background-image-with-css-code-only */
+  /* and this tool: https://www.bayustudio.com/app/svg-encoder/ */
+  /*
+    <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="-25" rx="25" ry="25" width="50" height="50" fill="none" stroke="black" stroke-width="2"/>
+    </svg>
+  */
+  background-image: url("data:image/svg+xml,%3csvg width='52' height='52' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='-27' rx='25' ry='25' width='52' height='52' fill='none' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
+} 
+
+.curvy.end-with-arrow {
+  margin-bottom: 50px;
+}
+
+.curvy.around-the-right.end-with-arrow::after {
+  content: '';
+  position: absolute;
+  right: -22px;
+  bottom: -20px;
+  height: 20px;
+  width: 40px;
+  /* per https://nikitahl.com/using-svg-background-image-with-css-code-only */
+  /* and this tool: https://www.bayustudio.com/app/svg-encoder/ */
+  /*
+    <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <line stroke-width="2" y2="39" x2="19" y1="0" x1="19" stroke="#000000" fill="none"/>
+        <line stroke-width="2" y2="0" x2="39" y1="19" x1="19" stroke="#000000" fill="none"/>
+        <line stroke-width="2" y2="19" x2="19" y1="0" x1="0" stroke="#000000" fill="none"/>
+      </g>
+    </svg>
+  */
+  background-image: url("data:image/svg+xml,%3csvg width='40' height='20' xmlns='http://www.w3.org/2000/svg'%3e%3cg%3e%3cline stroke-width='2' y2='39' x2='19' y1='0' x1='19' stroke='black' fill='none'/%3e%3cline stroke-width='2' y2='0' x2='39' y1='19' x1='19' stroke='black' fill='none'/%3e%3cline stroke-width='2' y2='19' x2='19' y1='0' x1='0' stroke='black' fill='none'/%3e%3c/g%3e%3c/svg%3e");
+}
+
+
+.full-bleed  {
+  width: 100%;
+  max-width: 768px;
+}
+
+/* seems to work to make the image full bleed to the enture screen */
+/* .full-bleed {
+	left: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	max-width: 100vw;
+	position: relative;
+	right: 50%;
+	width: 100vw;
+} */
+
+
+
