@@ -22,7 +22,7 @@ class PanoramaNav extends LitElement {
   }
 
   render() {
-    return html`<div><a href="/">Home</a></div
+    return html`<div><a href="./">Home</a></div
                 <div>Recorded Text</div>
                 <div>Language</div>`;
   }
