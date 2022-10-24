@@ -1,22 +1,31 @@
-:
+# Queens Museum Panorama 
 
-Dependencies,
+## Hosted on GitHub pages
 
-None, except scripts use lit-element, via an external script
+Use the following links to view the prototype
+- [Main section](https://murraycox.github.io/queens-museum-panorama/), working on styling
+- [Participatory Map](https://murraycox.github.io/queens-museum-panorama/participatory-map), basis proof of concept
 
-Running
+## Running on your local machine
 
-Copy to a webserver, or install a local one:
+### Fork the respository
 
-http-server
+Fork the project via [GitHub](https://docs.github.com/en/get-started/quickstart/contributing-to-projects) or with Command Line Tools
 
-install http-server
+- Place in a folder where you've set up a webserver
 
+### Run with a webserver
+
+#### http-server
+
+install http-server with the following npm command (-g = global)
+
+```
 npm -i -g http-server?
+```
 
-cd to the directory and use:
+cd to the directory of the repository and use:
 
+```
 http-server
-
-Tests:
-??
+```
