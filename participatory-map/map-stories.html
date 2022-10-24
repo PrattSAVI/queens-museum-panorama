@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo: Local search with the Geocoding API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoibXVycmF5Y294IiwiYSI6InUySDBNdDQifQ.OHlYNOKGapiZUPInfxIz6g';
+      const map = new mapboxgl.Map({
+        container: 'map', // Container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // Map style to use
+        center: [-73.846707, 40.7458395], // Starting position [lng, lat]
+        zoom: 10 // Starting zoom level
+      });
+
+      const marker = new mapboxgl.Marker() // Initialize a new marker
+        .setLngLat([-73.846707, 40.7458395]) // Marker [lng, lat] coordinates
+        .addTo(map); // Add the marker to the map
+
+      // After the map style has loaded on the page,
+      // add a source layer and default styling for a single point
+      map.on('load', () => {
+        /*
+          The following URLs are from the "File" -> "Share" -> "Publish to the Web" the sheet "Published Stories" of the spreadsheet:
+          CSV version:
+          https://docs.google.com/spreadsheets/d/e/2PACX-1vSoE3LqrHKuJI4MFBPYR5OnlJrRFCTrHAZhQuHJUxPI8O7j1tK1lUNoMjCnUMMBjIjdJdMXvFxRaZyC/pub?gid=1228347493&single=true&output=csv
+          HTML version:
+          https://docs.google.com/spreadsheets/d/e/2PACX-1vSoE3LqrHKuJI4MFBPYR5OnlJrRFCTrHAZhQuHJUxPI8O7j1tK1lUNoMjCnUMMBjIjdJdMXvFxRaZyC/pubhtml?gid=1228347493&single=true
+          Note, it appears that Google caches these URLs or doesn't do a great version of publishing the most recent data, so we're going to try to bust their cache by appending a timestamp at the end of the URL
+        */
+
+        const PUBLISHED_STORIES_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoE3LqrHKuJI4MFBPYR5OnlJrRFCTrHAZhQuHJUxPI8O7j1tK1lUNoMjCnUMMBjIjdJdMXvFxRaZyC/pub?gid=1228347493&single=true&output=csv'
+        
+        d3.csv(PUBLISHED_STORIES_URL + '&cachebuster=' + Date.now()).then((stories) => {
+          //convert to GEOJson, first the features
+          const storiesFeatures = stories.map((story) => {
+            return { 
+              "type" : "Feature", 
+              "geometry" : { 
+                "type" : "Point", 
+                "coordinates" : [story.longitude, story.latitude] 
+              },
+              "properties": {
+                ...story
+              }
+            }
+		      })
+  
+          const storiesGeoJSON = 
+          {
+            "type" : "FeatureCollection",
+            "features" : storiesFeatures
+          }
+
+          map.addSource('stories', { type: 'geojson', data: storiesGeoJSON });
+
+          map.loadImage('https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',(error, image) => {
+				    if (error) throw error;
+				    map.addImage('custom-marker', image);
+
+            map.addLayer({
+              'id': 'shootings',
+              'type': 'symbol',
+              'source': 'stories',
+              'layout': {
+                'icon-image': 'custom-marker',
+                // get the title name from the source's "title" property
+                'text-field': ['get', 'location'],
+                'text-font': [
+                  'Open Sans Semibold',
+                  'Arial Unicode MS Bold'
+                ],
+                'text-offset': [0, 1.25],
+                'text-anchor': 'top'
+              }
+				    })
+          })
+        })
+      });
+    </script>
+  </body>
+</html>
