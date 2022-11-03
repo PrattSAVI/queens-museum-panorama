@@ -8,15 +8,23 @@ body {
 }
 
 body.section-context { 
-  background-color: pink; 
+  background-color: #F5CCE0; 
 }
 
 body.section-home, body.section-home .curve { 
-  background-color: rgb(179, 205, 50); 
+  background-color: #D3E864; 
+}
+
+h1, h2 {
+  font-family: Forma,Helvetica,sans-serif;
 }
 
 h1 {
   font-size: 4em;
+}
+
+h2 {
+  font-size: 2em;
 }
 
 .content {
