@@ -28,6 +28,13 @@ body.section-home, body.section-home .curve {
   background-color: #D3E864; 
 }
 
+.dark-background-block {
+  background-color: black;
+}
+
+.dark-background-block, .dark-background-block a, .dark-background-block a:visited, .dark-background-block a:active {
+  color: white;
+}
 
 
 body {
@@ -42,8 +49,9 @@ h2 {
   font-size: 2em;
 }
 
-body, a:visited, a:active {
+body, a, a:visited, a:active {
   color: black;
+  text-decoration: none;
 }
 
 .content {
@@ -67,9 +75,17 @@ body, a:visited, a:active {
   /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
 }
 
+.dark-background-block .conduit{
+  border-top: 2px solid white;
+}
+
 .conduit.around-the-right {
   border-top-right-radius: 25px;
   border-right: 2px solid black;
+}
+
+.dark-background-block .conduit.around-the-right {
+  border-right: 2px solid white;
 }
 
 .conduit.around-the-right.connect-below {
@@ -83,6 +99,10 @@ body, a:visited, a:active {
 .conduit.around-the-left {
   border-top-left-radius: 25px;
   border-left: 2px solid black;
+}
+
+.dark-background-block .conduit.around-the-left {
+  border-left: 2px solid white;
 }
 
 .conduit.around-the-right.connect-below::after {
@@ -167,29 +187,26 @@ body, a:visited, a:active {
 	width: 100vw;
 } */
 
-.intro-enter-the-panorama {
-  background-color: black;
-}
 
-.intro-enter-the-panorama, .intro-enter-the-panorama a, .intro-enter-the-panorama a:visited, .intro-enter-the-panorama a:active {
-  color: white;
-  text-decoration: none;
-}
 
 .intro-navigation {
-  display: flex;
-  flex-flow: row wrap;
   margin-top: 20px;
 }
 
+.intro-navigation-row {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+}
+
 .intro-navigation a {
-  display: block;
-  width: 49%;
+  width: 50%;
+  box-sizing: border-box;
   height: 200px;
   border: 1px solid black;
   text-align: center;
-  font-size: 2.2em;
-  padding: 10px 20px;
+  font-size: 1.75em;
+  padding: 30px 20px;
 }
 
 
