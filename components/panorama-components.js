@@ -55,7 +55,7 @@ class ExploreNav extends LitElement {
         <div><a href="./">Home</a></div>
         <div>How to use the maps</div>
         <div>3d Panorama</div>
-        <div>Add your story to the map</div>
+        <div><a href="./your-story.html">Add your story to the map</a></div>
         <div>Back</div>
       </div>`;          
   }

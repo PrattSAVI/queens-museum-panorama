@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Add your story to the map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="css/panorama.css">
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+  <link
+    href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
+    rel="stylesheet"
+  />
+  <style>
+    #map {
+      position: relative;
+      top: 0;
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="section-4-explore">
+  <div class="content">
+
+    <div class="content-block">
+      <explore-nav></explore-nav>
+    </div>
+    <h1>Add your story to the map</h1>
+    <div id="map"></div>
+  </div><!-- content-->
+
+  <script type="module" src="./components/panorama-components.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="../js/your-story.js"></script>
+</body>
+</html>
