@@ -1,0 +1,24 @@
+#map {
+  position: relative;
+}
+
+#add-story {
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  left: 25px;
+  width: 275px;
+  background-color: #A499D9;
+  opacity: .9; 
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.mapboxgl-ctrl-geocoder {
+  min-width: 100% !important;
+  }
+
+  /* .mapboxgl-ctrl-geocoder--input {
+    padding-right: 20px !important;
+  } */

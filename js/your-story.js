@@ -11,9 +11,36 @@ const map = new mapboxgl.Map({
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
+// Add geocoder to map, 
+// Here is the basic example
+// https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
+// but we're going to modiify it to put the geocoder in our div instead of in the default position
+// https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-outside-the-map/
+const geocoder = new MapboxGeocoder({
+  // Initialize the geocoder
+  accessToken: mapboxgl.accessToken, // Set the access token
+  mapboxgl: mapboxgl, // Set the mapbox-gl instance
+  marker: false, // Do not use the default marker style
+  placeholder: 'Search for a location', // Placeholder text for the search bar
+  bbox: [-74.27355, 40.48247, -73.68204, 40.92910], // Boundary for NYC
+  proximity: {
+    longitude: -73.846707,
+    latitude: 40.7458395
+  } // Coordinates of Queens Museum
+});
+
+// Instead of this:
+//    // Add the geocoder to the map
+//    map.addControl(geocoder);
+// do this:
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
 const marker = new mapboxgl.Marker() // Initialize a new marker for Queens Museum?
   .setLngLat([-73.846707, 40.7458395]) // Marker [lng, lat] coordinates
   .addTo(map); // Add the marker to the map
+
+
+
 
 // After the map style has loaded on the page,
 map.on('load', () => {
