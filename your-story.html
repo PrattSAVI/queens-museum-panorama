@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Add your story to the map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="css/panorama.css">
+  <link rel="stylesheet" type="text/css" href="css/your-story.css">
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+  <link
+    href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
+    rel="stylesheet"
+  />
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+    type="text/css"
+  />
+  <style>
+    #map {
+      position: relative;
+      top: 0;
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="section-4-explore">
+  <div class="content">
+
+    <div class="content-block">
+      <your-story-nav></your-story-nav>
+      <div id="map">
+        <div id="add-story">
+          <h2>Add your New York City memory to the map</h2>
+          <div id="geocoder" class="geocoder"></div>
+          <p>See other stories; click on the markers</p>
+        </div>
+      </div>
+    </div>
+  </div><!-- content-->
+
+  <script type="module" src="./components/panorama-components.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="../js/your-story.js"></script>
+</body>
+</html>
