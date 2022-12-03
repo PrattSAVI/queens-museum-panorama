@@ -1,5 +1,6 @@
-//Need to replace with a Pratt SAVI/QM access token - this is just from a MapBox sample
-mapboxgl.accessToken = 'pk.eyJ1IjoibXVycmF5Y294IiwiYSI6InUySDBNdDQifQ.OHlYNOKGapiZUPInfxIz6g';
+//Pratt SAVI/QM access token
+//TODO Change to QM access token
+mapboxgl.accessToken = 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9vam40MG40cXcifQ.YHBszyZW7pMQShx0GZISbw';
 
 const map = new mapboxgl.Map({
   container: 'map', // Container ID
@@ -48,11 +49,8 @@ map.on('load', () => {
   /* This is how we might add a georeferenced tiled image of the 2d scan, but until that's ready, we'll just add a sample layer */
   map.addSource('2d-scan', {
     'type': 'raster',
-    'tiles': [
-      'https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg'
-      ],
-      'tileSize': 256,
-      'attribution': 'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>' 
+    'url': 'mapbox://prattsavi.queens-museum-panorama-2d',
+    'attribution': 'TODO Attribution' 
   });
   
   map.addLayer({
@@ -63,8 +61,6 @@ map.on('load', () => {
     'raster-fade-duration': 0
     }
   });
-
-
 
   /*
     The following URLs are from the "File" -> "Share" -> "Publish to the Web" the sheet "Published Stories" of the spreadsheet:
@@ -118,7 +114,7 @@ map.on('load', () => {
 
 
 let lastZoom = map.getZoom();
-const zoomThreshold = 12;
+const zoomThreshold = 13;
 
 map.on('zoom', () => {
   const currentZoom = map.getZoom();
