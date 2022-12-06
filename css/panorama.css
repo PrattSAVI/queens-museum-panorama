@@ -15,7 +15,7 @@ body.section-2-panorama-at-world-fair, .intro-navigation a.section-2-panorama-at
   background-color: #C0A58B; 
 }
 
-body.section-3-nyc-pavilion, .intro-navigation a.section-3-nyc-pavilion {
+body.section-panorama {
   background-color: #80CEA3; 
 }
 
@@ -23,16 +23,15 @@ body.section-4-explore, .intro-navigation a.section-4-explore {
   background-color: #A499D9;   
 }
 
-        
 body.section-home, body.section-home .curve { 
-  background-color: #D3E864; 
+  background-color: black; 
 }
 
-.dark-background-block {
+.dark-background {
   background-color: black;
 }
 
-.dark-background-block, .dark-background-block a, .dark-background-block a:visited, .dark-background-block a:active {
+.dark-background, .dark-background a, .dark-background a:visited, .dark-background a:active {
   color: white;
 }
 
@@ -42,11 +41,24 @@ body {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 3em;
 }
 
 h2 {
   font-size: 2em;
+}
+
+.conduit h1, .conduit h2 {
+  text-align: center;
+}
+
+.h1-logo {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  background-color: lightgray;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 body, a, a:visited, a:active {
@@ -57,7 +69,7 @@ body, a, a:visited, a:active {
 .content {
   max-width: 768px;
   margin: auto;
-  padding: 25px 0;
+  padding: 25px 0 0 0;
   background-color: inherit;
   position: relative;
 }
@@ -75,7 +87,7 @@ body, a, a:visited, a:active {
   /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
 }
 
-.dark-background-block .conduit{
+.dark-background .conduit{
   border-top: 2px solid white;
 }
 
@@ -84,7 +96,7 @@ body, a, a:visited, a:active {
   border-right: 2px solid black;
 }
 
-.dark-background-block .conduit.around-the-right {
+.dark-background .conduit.around-the-right {
   border-right: 2px solid white;
 }
 
@@ -101,7 +113,13 @@ body, a, a:visited, a:active {
   border-left: 2px solid black;
 }
 
-.dark-background-block .conduit.around-the-left {
+.conduit.around-the-left.end-below {
+  border-bottom-left-radius: 25px;
+  border-bottom: 2px solid black;
+  margin-bottom: 25px;
+}
+
+.dark-background .conduit.around-the-left {
   border-left: 2px solid white;
 }
 
@@ -125,6 +143,9 @@ body, a, a:visited, a:active {
   background-image: url("data:image/svg+xml,%3csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='-25' y='-25' rx='25' ry='25' width='50' height='50' fill='none' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
 } 
 
+.dark-background .conduit.around-the-right.connect-below::after {
+  background-image: url("data:image/svg+xml,%3csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='-25' y='-25' rx='25' ry='25' width='50' height='50' fill='none' stroke='white' stroke-width='2'/%3e%3c/svg%3e");
+}
 .conduit.around-the-left.connect-below::after {
   content: '';
   position: absolute;
@@ -144,6 +165,10 @@ body, a, a:visited, a:active {
   */
   background-image: url("data:image/svg+xml,%3csvg width='52' height='52' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='-27' rx='25' ry='25' width='52' height='52' fill='none' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
 } 
+
+.dark-background .conduit.around-the-left.connect-below::after {
+  background-image: url("data:image/svg+xml,%3csvg width='52' height='52' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='-27' rx='25' ry='25' width='52' height='52' fill='none' stroke='white' stroke-width='2'/%3e%3c/svg%3e");
+}
 
 .conduit.end-with-arrow {
   margin-bottom: 50px;
@@ -222,6 +247,25 @@ body, a, a:visited, a:active {
 .header h1 {
   font-size: 2.25em; 
 }
+
+.video {
+  position: relative;
+  height: 600px;
+  background-color: lightgray;
+}
+
+.image-container {
+  padding-bottom: 25px;
+}
+.image-container .image{
+  position: relative;
+  height: 600px;
+  background-color: lightgray;
+}
+.image-container .caption {
+  text-align: right;
+}
+
 
 
 

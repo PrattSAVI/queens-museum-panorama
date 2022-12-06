@@ -3,6 +3,8 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core
 const navStyles = css`
   .nav {
     margin: 20px 0;
+    display:flex;
+    justify-content:flex-end;
   }
 
   .nav div {
@@ -10,12 +12,22 @@ const navStyles = css`
     border: 1px solid black;
     border-radius: 5px;
     padding: 4px;
+    margin: 4px;
+  }
+
+  .nav.dark-background div {
+    border-color: white;
   }
 
   .nav div:hover {
     background-color: black;
     color: white;
     cursor: pointer;
+  }
+
+  .nav.dark-background div:hover{
+    background-color: white;
+    color: black;
   }
 
   a {
@@ -27,17 +39,29 @@ const navStyles = css`
   }`
 
 class PanoramaNav extends LitElement {
+
+  static get properties() {
+    return {
+      backURL: {type: String},
+      forwardURL: {type: String},
+      darkBackground: {type: Boolean}
+    };
+  }  
   
   static get styles() {
     return navStyles;
   }
 
+
   render() {
+    
+    let backButton = (this.backURL) ? html`<div><a href="${this.backURL}">Back</a></div>` : null
+    let forwardButton = (this.forwardURL) ? html`<div><a href="${this.forwardURL}">Forward</a></div>` : null
+
     return html`
-      <div class="nav">
-        <div><a href="./">Home</a></div>
-        <div>Recorded Text</div>
-        <div>Language</div>
+      <div class="nav ${this.darkBackground?'dark-background':''}">
+        ${backButton}
+        ${forwardButton}   
       </div>`;
   }
   
@@ -52,8 +76,8 @@ class ExploreNav extends LitElement {
   render() {
     return html`
       <div class="nav">
-       <div>Back</div>
-       <div>Forward</div>
+       <div><a href="${this.greeting}">Back</a></div>
+       <div><a href="">Forward</a></div>
       </div>`;          
   }
   
