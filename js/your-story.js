@@ -22,7 +22,7 @@ const geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken, // Set the access token
   mapboxgl: mapboxgl, // Set the mapbox-gl instance
   marker: false, // Do not use the default marker style
-  placeholder: 'Search for a location', // Placeholder text for the search bar
+  placeholder: 'Enter Address', // Placeholder text for the search bar
   bbox: [-74.27355, 40.48247, -73.68204, 40.92910], // Boundary for NYC
   proximity: {
     longitude: -73.846707,

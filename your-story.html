@@ -27,20 +27,16 @@
   </style>
 </head>
 <body class="section-4-explore">
-  <div class="content">
-
-    <div class="content-block">
-      <your-story-nav></your-story-nav>
-      <div id="map">
-        <div id="add-story">
-          <h2>Add your New York City memory to the map</h2>
-          <div id="geocoder" class="geocoder"></div>
-          <p>See other stories; click on the markers</p>
-        </div>
-      </div>
-    </div>
-  </div><!-- content-->
-
+  <div class="header">
+    <explore-nav></explore-nav>
+    <h1>Become a Part of <i>the Panorama!</i></h1>
+  </div>
+  <div id="map">
+    <div id="add-story">
+      <h2>Pin Your Favorite NYC Memory to the Panorama</h2>
+      <div id="geocoder" class="geocoder"></div>
+    </div><!-- add-story-->
+  </div><!-- map-->
   <script type="module" src="./components/panorama-components.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="../js/your-story.js"></script>
