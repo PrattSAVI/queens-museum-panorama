@@ -49,7 +49,7 @@ map.on('load', () => {
   /* This is how we might add a georeferenced tiled image of the 2d scan, but until that's ready, we'll just add a sample layer */
   map.addSource('2d-scan', {
     'type': 'raster',
-    'url': 'mapbox://prattsavi.queens-museum-panorama-2d',
+    'url': 'mapbox://prattsavi.queens-museum-panorama-2d-v2',
     'attribution': 'TODO Attribution' 
   });
   
