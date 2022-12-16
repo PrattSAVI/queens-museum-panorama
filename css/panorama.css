@@ -1,7 +1,9 @@
 html,
 body {
     color: black;
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: forma-djr-text, sans-serif;
+    font-weight: 400;
+    font-style: normal;
     -webkit-font-smoothing: antialiased;
     margin: 0;
     padding: 0;
@@ -33,11 +35,6 @@ body.section-home, body.section-home .curve {
 
 .dark-background, .dark-background a, .dark-background a:visited, .dark-background a:active {
   color: white;
-}
-
-
-body {
-  font-family: Forma,Helvetica,sans-serif;
 }
 
 h1 {
@@ -264,6 +261,15 @@ body, a, a:visited, a:active {
 }
 .image-container .caption {
   text-align: left;
+  margin-top: 12px;
+}
+
+
+
+/* Section for styling various text elements */
+
+.text-italics {
+  font-style: italic;
 }
 
 

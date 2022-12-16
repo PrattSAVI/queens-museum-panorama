@@ -9,8 +9,7 @@ const navStyles = css`
 
   .nav div.button{
     display: inline;
-    margin: 4px;
-
+    margin: 8px;
   }
 
   .nav div.button.justify-left {
@@ -90,7 +89,7 @@ class PanoramaNav extends LitElement {
       html`
         <div class="button svg">
           <a href="${this.backURL}">
-          <svg id="back-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+            <svg id="back-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
               <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
               <path id="back-path" data-name="back" d="M353.774,26.165,345,34.212l8.97,7.775" transform="translate(-339.076 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
             </svg>          
