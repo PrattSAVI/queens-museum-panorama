@@ -7,31 +7,58 @@ const navStyles = css`
     justify-content:flex-end;
   }
 
-  .nav div {
+  .nav div.button{
     display: inline;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 4px;
     margin: 4px;
+
   }
 
-  .nav div.justify-left {
+  .nav div.button.justify-left {
     margin-right: auto;
   }
 
-  .nav.dark-background div {
+  .nav div.button.text  {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 4px;
+  }
+
+  .nav.dark-background div.button.text {
     border-color: white;
   }
 
-  .nav div:hover {
-    background-color: black;
-    color: white;
+  .nav.dark-background div.button.svg svg {
+    stroke: white;
+  }
+
+  .nav div.button:hover {
     cursor: pointer;
   }
 
-  .nav.dark-background div:hover{
+  .nav div.button.text:hover {
+    background-color: black;
+    color: white;
+  }
+
+  .nav div.button.svg:hover rect{
+    fill:black;
+  }
+
+  .nav div.button.svg:hover path{
+    stroke:white;
+  }
+
+  .nav.dark-background div.button.text:hover{
     background-color: white;
     color: black;
+  }
+
+  .nav.dark-background div.button.svg:hover path{
+    stroke:black
+  }
+
+  .nav.dark-background div.button.svg:hover rect{
+    fill: white;
   }
 
   a {
@@ -59,12 +86,47 @@ class PanoramaNav extends LitElement {
 
   render() {
     
-    let backButton = (this.backURL) ? html`<div><a href="${this.backURL}">Back</a></div>` : null
-    let forwardButton = (this.forwardURL) ? html`<div><a href="${this.forwardURL}">Forward</a></div>` : null
+    let backButton = (this.backURL) ? 
+      html`
+        <div class="button svg">
+          <a href="${this.backURL}">
+          <svg id="back-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+              <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
+              <path id="back-path" data-name="back" d="M353.774,26.165,345,34.212l8.97,7.775" transform="translate(-339.076 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            </svg>          
+          </a>
+        </div>` 
+      : null
+    
+    let forwardButton = (this.forwardURL) ? 
+      html`
+        <div class="button svg">
+          <a href="${this.forwardURL}">
+            <svg id="forward-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+              <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
+              <path id="forward-path" data-name="forward" d="M345.2,26.165l8.77,8.048L345,41.987" transform="translate(-335.902 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            </svg>
+          </a>
+        </div>` 
+    : null
+
+    let homeButton = 
+      html`
+        <div class="button svg justify-left">
+          <a href="/">
+            <svg id="home_white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+              <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
+              <g id="Group_682" data-name="Group 682" transform="translate(-577 -4156)">
+                <path id="Path_1238" data-name="Path 1238" d="M18.39,10.877,11.614,4.186,4.922,10.877" transform="translate(577.221 4156)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <path id="Path_1239" data-name="Path 1239" d="M16.978,9.706v8.608H6.3V9.706" transform="translate(577.221 4156)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              </g>
+            </svg>  
+          </a>
+        </div>` 
 
     return html`
       <div class="nav ${this.darkBackground?'dark-background':''}">
-        <div class="justify-left"><a href="/">Home</a></div>
+        ${homeButton}
         ${backButton}
         ${forwardButton}   
       </div>`;
