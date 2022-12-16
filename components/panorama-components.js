@@ -15,6 +15,10 @@ const navStyles = css`
     margin: 4px;
   }
 
+  .nav div.justify-left {
+    margin-right: auto;
+  }
+
   .nav.dark-background div {
     border-color: white;
   }
@@ -60,6 +64,7 @@ class PanoramaNav extends LitElement {
 
     return html`
       <div class="nav ${this.darkBackground?'dark-background':''}">
+        <div class="justify-left"><a href="/">Home</a></div>
         ${backButton}
         ${forwardButton}   
       </div>`;
