@@ -263,7 +263,7 @@ body, a, a:visited, a:active {
   background-color: lightgray;
 }
 .image-container .caption {
-  text-align: right;
+  text-align: left;
 }
 
 
