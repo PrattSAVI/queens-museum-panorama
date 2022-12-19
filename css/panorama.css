@@ -9,28 +9,32 @@ body {
     padding: 0;
 }
 
-body.section-1-context, .intro-navigation a.section-1-context {
-  background-color: #F5CCE0; 
-}
-
-body.section-2-panorama-at-world-fair, .intro-navigation a.section-2-panorama-at-world-fair {
-  background-color: #C0A58B; 
-}
-
-body.section-panorama {
-  background-color: #80CEA3; 
-}
-
-body.section-4-explore, .intro-navigation a.section-4-explore {
-  background-color: #A499D9;   
-}
-
-body.section-home, body.section-home .curve { 
+body.section-home { 
   background-color: black; 
 }
 
 .dark-background {
   background-color: black;
+}
+
+/* section-1: The New York World’s Fair */
+body.section-1 {
+  background-color: #F5CCE0; 
+}
+
+/* section-2: The Panorama at the 1964 –1965 New York World’s Fair */
+body.section-2 {
+  background-color: #35C775; 
+}
+
+/* section-3: The New York City Building, Then and Now */
+body.section-3 {
+  background-color: #FA8CA3; 
+}
+
+/* section-4: Explore the Panorama */
+body.section-4 {
+  background-color: #B9FA05;   
 }
 
 .dark-background, .dark-background a, .dark-background a:visited, .dark-background a:active {
