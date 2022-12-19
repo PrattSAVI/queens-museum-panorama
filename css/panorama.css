@@ -37,12 +37,14 @@ body.section-4 {
   background-color: #B9FA05;   
 }
 
+/* White font if we have a dar background */
 .dark-background, .dark-background a, .dark-background a:visited, .dark-background a:active {
   color: white;
 }
 
 h1 {
-  font-size: 3em;
+  /* font-size: 3em; */
+  font-size: 48px;
 }
 
 h2 {
@@ -51,15 +53,15 @@ h2 {
 
 .conduit h1, .conduit h2 {
   text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  margin-block-start: 12px;
+  margin-block-end: 12px;
 }
 
-.h1-logo {
-  position: relative;
-  height: 250px;
-  width: 250px;
-  background-color: lightgray;
-  margin-left: auto;
-  margin-right: auto;
+.image-container.h1-logo {
+  text-align: center;
+  margin: 24px auto;
 }
 
 body, a, a:visited, a:active {
@@ -70,20 +72,20 @@ body, a, a:visited, a:active {
 .content {
   max-width: 768px;
   margin: auto;
-  padding: 25px 0 0 0;
+  padding: 0;
   background-color: inherit;
   position: relative;
 }
 
 .conduit, .content-block {
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .conduit {
   position: relative;
   border-top: 2px solid black;
-  padding: 25px;
+  padding: 12px;
   background-color: inherit;
   /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
 }
