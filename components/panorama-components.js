@@ -2,14 +2,14 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core
 
 const navStyles = css`
   .nav {
-    margin: 20px 0;
+    margin: 0;
     display:flex;
     justify-content:flex-end;
   }
 
   .nav div.button{
     display: inline;
-    margin: 8px;
+    margin: 12px 8px;
   }
 
   .nav div.button.justify-left {
