@@ -61,7 +61,7 @@ h2 {
 
 .image-container.h1-logo {
   text-align: center;
-  margin: 24px auto;
+  margin: 48px auto;
 }
 
 body, a, a:visited, a:active {
@@ -236,24 +236,36 @@ body, a, a:visited, a:active {
   display: flex;
 }
 
+.explore-links .image-container {
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+.explore-links .image-container.h1-logo {
+  margin-bottom: 0;
+}
+
 .explore-links ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.explore-links li {
+.explore-links li a {
   display: block;
+  margin: 6px 12px;
   padding: 12px;
-  margin: 12px;
   border: 1px solid black;
   border-radius: 5px;
 }
 
-.explore-links li:hover {
+.explore-links li a:hover {
   background-color: black;
   color: white;
-  cursor: pointer;
 }
 
 
