@@ -33,7 +33,7 @@ body.section-3 {
 }
 
 /* section-4: Explore the Panorama */
-body.section-4 {
+body.section-4, body.section-4 #add-story {
   background-color: #B9FA05;   
 }
 
@@ -49,6 +49,11 @@ h1 {
 
 h2 {
   font-size: 2em;
+}
+
+h1, h2, h3 {
+  font-style: normal;
+  font-weight: 400;
 }
 
 .conduit h1, .conduit h2 {
@@ -208,7 +213,7 @@ body, a, a:visited, a:active {
 }
 
 .header h1 {
-  font-size: 2.25em; 
+  font-size: 24px; 
 }
 
 .video {

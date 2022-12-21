@@ -26,17 +26,23 @@
     }
   </style>
 </head>
-<body class="section-4-explore">
-  <div class="header">
-    <explore-nav></explore-nav>
-    <h1>Become a Part of <i>the Panorama!</i></h1>
-  </div>
-  <div id="map">
-    <div id="add-story">
-      <h2>Pin Your Favorite NYC Memory to the Panorama</h2>
-      <div id="geocoder" class="geocoder"></div>
-    </div><!-- add-story-->
-  </div><!-- map-->
+<body class="section-4">
+  <div class="content">
+    <div class="content-block">
+      <div class="header">
+        <h1>New York Stories on <span class="text-italics">the Panorama!</span></h1>
+        <panorama-nav
+          backURL="explore-the-panorama.html">
+        </panorama-nav>
+      </div><!-- header -->
+      <div id="map">
+        <div id="add-story">
+          <h2>Pin Your Favorite NYC Memory to the Panorama</h2>
+          <div id="geocoder" class="geocoder"></div>
+        </div><!-- add-story-->
+      </div><!-- map-->
+    <!-- content-block -->
+  <!-- content -->
   <script type="module" src="./components/panorama-components.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="../js/your-story.js"></script>
