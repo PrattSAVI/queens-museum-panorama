@@ -17,32 +17,26 @@
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
     type="text/css"
   />
-  <style>
-    #map {
-      position: relative;
-      top: 0;
-      height: 600px;
-      width: 100%;
-    }
-  </style>
 </head>
 <body class="section-4">
-  <div class="content">
-    <div class="content-block">
-      <div class="header">
-        <h1>New York Stories on <span class="text-italics">the Panorama!</span></h1>
-        <panorama-nav
-          backURL="explore-the-panorama.html">
-        </panorama-nav>
-      </div><!-- header -->
-      <div id="map">
-        <div id="add-story">
-          <h2>Pin Your Favorite NYC Memory to the Panorama</h2>
-          <div id="geocoder" class="geocoder"></div>
-        </div><!-- add-story-->
-      </div><!-- map-->
-    <!-- content-block -->
-  <!-- content -->
+  <div class="full-page">
+    <div class="content full-page-height">
+      <div class="content-block full-page-height">
+        <div class="header">
+          <h1>New York Stories on <span class="text-italics">the Panorama!</span></h1>
+          <panorama-nav
+            backURL="explore-the-panorama.html">
+          </panorama-nav>
+        </div><!-- header -->
+        <div id="map">
+          <div id="add-story">
+            <h2>Pin Your Favorite NYC Memory to the Panorama</h2>
+            <div id="geocoder" class="geocoder"></div>
+          </div><!-- add-story -->
+        </div><!-- map -->
+      </div><!-- content-block -->
+    </div><!-- content -->
+  </div><!-- full-page-height-container -->
   <script type="module" src="./components/panorama-components.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="../js/your-story.js"></script>

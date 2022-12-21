@@ -214,8 +214,13 @@ body, a, a:visited, a:active {
   border-radius: 3px;
 }
 
-.header explore-nav {
-  float: right;
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header panorama-nav {
+  margin-left: auto;
 }
 
 .header h1 {
