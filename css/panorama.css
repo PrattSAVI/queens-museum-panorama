@@ -69,6 +69,12 @@ h1, h2, h3 {
   margin: 48px auto;
 }
 
+.image-container.h1-logo img {
+  height: auto;
+  width: auto;
+}
+
+
 body, a, a:visited, a:active {
   color: black;
   text-decoration: none;
@@ -216,24 +222,22 @@ body, a, a:visited, a:active {
   font-size: 24px; 
 }
 
-.video {
-  position: relative;
-  height: 600px;
-  background-color: lightgray;
-}
-
 .image-container {
   padding-bottom: 25px;
 }
-.image-container .image{
-  position: relative;
+.image-container img{
   width:100%;
   height:auto;
-  background-color: lightgray;
 }
+
 .image-container .caption {
   text-align: left;
   margin-top: 12px;
+}
+
+.video-container video {
+  width: 100%    !important;
+  height: auto   !important;  
 }
 
 /* Explore section styles */

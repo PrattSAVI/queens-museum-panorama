@@ -149,23 +149,5 @@ class ExploreNav extends LitElement {
   
 }
 
-class YourStoryNav extends LitElement {
-  
-  static get styles() {
-    return navStyles;
-  }
-
-  render() {
-    return html`
-      <div class="nav">
-        <div><a href="./">Home</a></div>
-        <div><a href="./explore.html">Back</a></div>
-        <h1>New York City Stories</h1>
-      </div>`;          
-  }
-  
-}
-
 customElements.define('panorama-nav', PanoramaNav);
 customElements.define('explore-nav', ExploreNav);
-customElements.define('your-story-nav', YourStoryNav);
