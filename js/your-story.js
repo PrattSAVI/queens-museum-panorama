@@ -1,3 +1,40 @@
+/* Set when a result is set in the geocoder */
+var storyLatitude = null
+var storyLongitude = null
+var storyLocation = null
+
+function submitStory() {
+  console.log("Sumbitting story!)")
+
+  /*
+  The action for the form is the "web app URL" which you get when you "deploy" the app in Google Sheets/Apps Script
+  The web app basically takes the "name" of the form elements, and if it can match it to a column header in the google sheet, it will input it there, after the last row.
+  For example, the contents ot the following element will be put in the "Sender's Name" column
+  <input class="mdc-text-field__input" type="text" aria-labelledby="senders-name" name="Sender's Name" required>
+  */
+
+  let formData = new FormData();
+  formData.append('Location', storyLocation);
+  formData.append('Latitude', storyLatitude);
+  formData.append('Longitude', storyLongitude);
+  formData.append('Story', 'My story');
+
+  /* TODO Do we want to submit any other information about the geo referenced location, e.g. the full location
+      place_name : "Brooklyn Museum, 200 Eastern Pkwy, New York City, New York 11238, United States"
+      or just
+      text : "Brooklyn Museum"
+  */
+
+  // TODO show progress indicator and handle submitting twice
+  fetch('https://script.google.com/macros/s/AKfycbwZ4tkU-9je_waA46r59Q2IkiiZ4WDr_ojnfqLQkegqd1tkdZUldP8lBI2MmL2xHVT1/exec', {
+    method: 'post',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(response => console.log(JSON.stringify(response)))
+}
+
+
 //Pratt SAVI/QM access token
 //TODO Change to QM access token
 mapboxgl.accessToken = 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9vam40MG40cXcifQ.YHBszyZW7pMQShx0GZISbw';
@@ -30,23 +67,33 @@ const geocoder = new MapboxGeocoder({
   } // Coordinates of Queens Museum
 });
 
+geocoder.on('result', e => {
+  console.log(e);
+
+  // Initialize a new marker based on the results
+  // TODO customise the style of the marker 
+  const marker = new mapboxgl.Marker() 
+    .setLngLat(e.result.center) // Marker [lng, lat] coordinates
+    .addTo(map); // Add the marker to the map
+
+  document.getElementById("your-story-and-submit").style.display = "block"
+
+  //set global variables which are used when submitting the form
+  storyLatitude = e.result.center[1]
+  storyLongitude = e.result.center[0]
+  storyLocation = e.result.text
+
+});
+
 // Instead of this:
 //    // Add the geocoder to the map
 //    map.addControl(geocoder);
 // do this:
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
-const marker = new mapboxgl.Marker() // Initialize a new marker for Queens Museum?
-  .setLngLat([-73.846707, 40.7458395]) // Marker [lng, lat] coordinates
-  .addTo(map); // Add the marker to the map
-
-
-
-
 // After the map style has loaded on the page,
 map.on('load', () => {
 
-  /* This is how we might add a georeferenced tiled image of the 2d scan, but until that's ready, we'll just add a sample layer */
   map.addSource('2d-scan', {
     'type': 'raster',
     'url': 'mapbox://prattsavi.queens-museum-panorama-2d-v2',

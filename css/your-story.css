@@ -30,8 +30,12 @@
 
 .mapboxgl-ctrl-geocoder {
   min-width: 100% !important;
-  }
+}
 
-  /* .mapboxgl-ctrl-geocoder--input {
-    padding-right: 20px !important;
-  } */
+#your-story {
+  width: 100%;
+}
+
+#your-story-and-submit{
+  display: none;
+}
