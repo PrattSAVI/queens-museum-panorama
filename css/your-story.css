@@ -21,7 +21,7 @@
   z-index: 1;
   top: 25px;
   left: 25px;
-  width: 275px;
+  width: 40%;
   opacity: .9; 
   padding: 10px 15px;
   border: 1px solid black;
@@ -39,3 +39,23 @@
 #your-story-and-submit{
   display: none;
 }
+
+#selected-location {
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  width: 25%;
+  z-index: 1;
+  opacity: .9; 
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: none;
+}
+
+#selected-location div {
+  border-bottom: 1px dashed black;
+  padding-bottom: 10px;
+}
+
+

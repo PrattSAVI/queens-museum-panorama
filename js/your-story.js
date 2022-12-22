@@ -46,6 +46,8 @@ const map = new mapboxgl.Map({
   zoom: 10 // Starting zoom level
 });
 
+// TODO, setup the map so you can't zoom or pan away from NYC
+
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
@@ -155,6 +157,31 @@ map.on('load', () => {
           'icon-image': 'custom-marker'
         }
       })
+
+      map.on('click', 'stories', (e) => {
+        // Copy coordinates array.
+        // const coordinates = e.features[0].geometry.coordinates.slice();
+        const story = e.features[0].properties.story;
+        const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name
+         
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        // }
+        document.getElementById("selected-location-location").innerHTML = storyLocation
+        document.getElementById("selected-location-story").innerHTML = story
+        document.getElementById("selected-location").style.display = "block"
+
+        //TODO Add a close button and make it work for stories at the same location
+
+        // new mapboxgl.Popup()
+        //   // .setLngLat(coordinates)
+        //   .setHTML(story)
+        //   .addTo(map);
+
+      });
     })
   })
 });

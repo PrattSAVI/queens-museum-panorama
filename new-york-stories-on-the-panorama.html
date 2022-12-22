@@ -32,24 +32,16 @@
           <div id="add-story">
             <h2>Pin Your Favorite NYC Memory to the Panorama</h2>
             <div id="geocoder" class="geocoder"></div>
-            <div id="your-story-and-submit">
+            <div id="your-story-and-submit"><!-- Hidden until the user searches for and selects a location -->
               <textarea id="your-story" name="your-story" cols="40" rows="5">Share your story here</textarea>
               <input type="button" value="Submit" onclick="submitStory()"/>
               <p>Once submitted, your story will be reviewed by our team and posted within one week (subject to community guidelines).</p>
-            </div>
+            </div><!-- your-story-and-submit -->
           </div><!-- add-story -->
           <div id="selected-location">
-            <div>
-              Only one marker can be clicked at a time. 
+            <div id="selected-location-location">
             </div>
-            <div>
-              If different stories have been pinned to the same location, only have one marker appear. When user clicks on marker, long speech bubble should show up that contains all the different memories. 
-            </div>
-            <div>  
-              Scroll down to see more stories. Use an arrow to indicate the stories continue. 
-            </div>
-            <div>
-              Scroll down for more
+            <div id="selected-location-story">
             </div>
           </div> <!-- selected-location -->
         </div><!-- map -->

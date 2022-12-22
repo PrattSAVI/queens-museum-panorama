@@ -238,6 +238,7 @@ body, a, a:visited, a:active {
 .image-container .caption {
   text-align: left;
   margin-top: 12px;
+  font-size: .7em;
 }
 
 .video-container video {
