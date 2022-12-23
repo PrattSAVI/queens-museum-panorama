@@ -83,7 +83,7 @@ body, a, a:visited, a:active {
 }
 
 .content {
-  max-width: 768px;
+  max-width: 1200px;
   margin: auto;
   padding: 0;
   background-color: inherit;
