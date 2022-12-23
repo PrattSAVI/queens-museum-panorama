@@ -5,7 +5,8 @@ var storyLocation = null
 
 function submitStory() {
   console.log("Sumbitting story!)")
-
+  //TODO Don't allow the user to submit unless they have entered a story
+  const yourStory = document.getElementById("your-story").value
   /*
   The action for the form is the "web app URL" which you get when you "deploy" the app in Google Sheets/Apps Script
   The web app basically takes the "name" of the form elements, and if it can match it to a column header in the google sheet, it will input it there, after the last row.
@@ -17,7 +18,7 @@ function submitStory() {
   formData.append('Location', storyLocation);
   formData.append('Latitude', storyLatitude);
   formData.append('Longitude', storyLongitude);
-  formData.append('Story', 'My story');
+  formData.append('Story', yourStory);
 
   /* TODO Do we want to submit any other information about the geo referenced location, e.g. the full location
       place_name : "Brooklyn Museum, 200 Eastern Pkwy, New York City, New York 11238, United States"
