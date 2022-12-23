@@ -90,6 +90,7 @@ body, a, a:visited, a:active {
   position: relative;
 }
 
+/* Use the conduit or content block to contain content, it gives the content consistent margins */
 .conduit, .content-block {
   margin-left: 12px;
   margin-right: 12px;
