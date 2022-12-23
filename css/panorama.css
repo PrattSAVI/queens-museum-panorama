@@ -55,7 +55,9 @@ h1, h2, h3 {
   font-style: normal;
   font-weight: 400;
 }
-
+p {
+  line-height: 1.25rem;
+}
 .conduit h1, .conduit h2 {
   text-align: center;
   font-style: normal;
@@ -233,11 +235,13 @@ body, a, a:visited, a:active {
 .image-container .caption {
   text-align: left;
   margin-top: 12px;
+  font-size: .7em;
 }
 
 .video-container video {
   width: 100%    !important;
   height: auto   !important;  
+  padding-bottom: 12px;
 }
 
 /* Explore section styles */
