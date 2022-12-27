@@ -146,16 +146,16 @@ map.on('load', () => {
 
     map.addSource('stories', { type: 'geojson', data: storiesGeoJSON });
 
-    map.loadImage('https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',(error, image) => {
+    map.loadImage('./images/marker_black.png',(error, image) => {
       if (error) throw error;
-      map.addImage('custom-marker', image);
+      map.addImage('marker-black', image);
 
       map.addLayer({
         'id': 'stories',
         'type': 'symbol',
         'source': 'stories',
         'layout': {
-          'icon-image': 'custom-marker'
+          'icon-image': 'marker-black'
         }
       })
 
