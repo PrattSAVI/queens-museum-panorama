@@ -41,6 +41,7 @@
 }
 
 #selected-location {
+  background-color:#35C775;   
   position: absolute;
   top: 25px;
   right: 50px;

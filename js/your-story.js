@@ -3,6 +3,8 @@ var storyLatitude = null
 var storyLongitude = null
 var storyLocation = null
 
+let selectedLocationID = null;
+
 function submitStory() {
   console.log("Sumbitting story!)")
   //TODO Don't allow the user to submit unless they have entered a story
@@ -144,11 +146,17 @@ map.on('load', () => {
       "features" : storiesFeatures
     }
 
-    map.addSource('stories', { type: 'geojson', data: storiesGeoJSON });
+    map.addSource('stories', { 
+      type: 'geojson', 
+      data: storiesGeoJSON,
+      generateId: true // This ensures that all features have unique IDs 
+    });
 
     map.loadImage('./images/marker_black.png',(error, image) => {
       if (error) throw error;
-      map.addImage('marker-black', image);
+      // Apart from other hacks (loading an image into a font, or having separate layers, it's not possible to change the color of a marker dynamically, e.g. on hover etc., so we're going to use sdf images, see here: https://docs.mapbox.com/help/troubleshooting/using-recolorable-images-in-mapbox-maps/)
+      // As it turns out, we don't even need to convert the image to an sdf (e.g. by following this post: https://stackoverflow.com/questions/63299999/how-can-i-create-sdf-icons-used-in-mapbox-from-png), we can just set the sdf: true option on a regular png
+      map.addImage('marker-black', image, { sdf: true });
 
       map.addLayer({
         'id': 'stories',
@@ -156,32 +164,42 @@ map.on('load', () => {
         'source': 'stories',
         'layout': {
           'icon-image': 'marker-black'
+        },
+        'paint': {
+          'icon-color': [
+            'case', // Use the 'case' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/#case
+            ['boolean', ['feature-state', 'selected'], false],
+            '#35C775', // selected
+            'black' // not selected
+            ]
         }
       })
 
       map.on('click', 'stories', (e) => {
-        // Copy coordinates array.
-        // const coordinates = e.features[0].geometry.coordinates.slice();
-        const story = e.features[0].properties.story;
-        const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name
-         
-        // Ensure that if the map is zoomed out such that multiple
-        // copies of the feature are visible, the popup appears
-        // over the copy being pointed to.
-        // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        // }
-        document.getElementById("selected-location-location").innerHTML = storyLocation
-        document.getElementById("selected-location-story").innerHTML = story
-        document.getElementById("selected-location").style.display = "block"
 
-        //TODO Add a close button and make it work for stories at the same location
+        if (e.features.length > 0) {
+          if (selectedLocationID !== null) {
+            map.setFeatureState(
+              { source: 'stories', id: selectedLocationID },
+              { selected: false }
+            );
+          }
+          selectedLocationID = e.features[0].id;
+          map.setFeatureState(
+            { source: 'stories', id: selectedLocationID },
+            { selected: true }
+          )
 
-        // new mapboxgl.Popup()
-        //   // .setLngLat(coordinates)
-        //   .setHTML(story)
-        //   .addTo(map);
+          const story = e.features[0].properties.story;
+          const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name
+           
+          document.getElementById("selected-location-location").innerHTML = storyLocation
+          document.getElementById("selected-location-story").innerHTML = story
+          document.getElementById("selected-location").style.display = "block"
 
+          //TODO Add a close button and make it work for stories at the same location
+
+        }
       });
     })
   })
