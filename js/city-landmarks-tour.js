@@ -15,12 +15,17 @@ const tileset = viewer.scene.primitives.add(
 var queensMuseumMarker = viewer.entities.add({
   name : 'Queens Museum',
   position : Cesium.Cartesian3.fromDegrees(-73.846707, 40.7458395, 100),
-  point : {
-      pixelSize : 50,
-      color : Cesium.Color.RED,
-      outlineColor : Cesium.Color.WHITE,
-      outlineWidth : 2
+  billboard : {
+    image : 'images/marker_ltgreen.svg',
+    width : 64,
+    height : 64
   },
+  // point : {
+  //     pixelSize : 50,
+  //     color : Cesium.Color.RED,
+  //     outlineColor : Cesium.Color.WHITE,
+  //     outlineWidth : 2
+  // },
   label : {
       text : 'Queens Museum',
       font : '14pt monospace',
