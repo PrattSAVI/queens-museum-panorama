@@ -26,7 +26,22 @@ let viewer = null
 
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZDAyZDcyNy00NGQwLTRkODItYjYzZS0xODk1ZDEyZGVjZWIiLCJpZCI6MTA3ODg2LCJpYXQiOjE2NjMwODM2MTV9.nT8QVqASAbBjcvuHZyFKIjhB6r1ncT-hFgL8XXkXFnA';
 // Initialize the Cesium Viewer in the HTML element with the `cesium-container` ID.
-viewer = new Cesium.Viewer('cesium-container');
+viewer = new Cesium.Viewer(
+  'cesium-container',
+  {
+    //https://cesium.com/learn/cesiumjs/ref-doc/Viewer.html#.ConstructorOptions
+    baseLayerPicker: false,
+    fullscreenButton: false,
+    geocoder: false,
+    homeButton: false,
+    infoBox: false,
+    sceneModePicker: false,
+    selectionIndicator: false,
+    timeline: false,
+    navigationHelpButton: true, //we might need to reposition this, or recreate it?
+    navigationInstructionsInitiallyVisible: true //default    
+  }
+);
  
 let tileset = null
 //TODO we might want to order these in the order we want them to render?
