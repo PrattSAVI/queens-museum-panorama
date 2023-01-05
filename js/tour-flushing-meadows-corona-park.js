@@ -87,7 +87,34 @@ function onStepEnter(response) {
             ]
             updateCamera(position, target); 
             break
+        case "scene-3":
+            var position = [
+                5.234873032669884,
+                0.6783852795753871,
+                -0.11722169181213456
+            ]
 
+            var target = [
+                4.9048423994836625,
+                0.8958428437560108,
+                -0.1571824438428475
+            ]
+            updateCamera(position, target); 
+            break
+        case "scene-4":
+            var position = [
+                5.598123335156016,
+                1.2167965156173548,
+                -0.03016527139268138
+            ]
+
+            var target = [
+                4.9406551302023605,
+                0.8706317103949578,
+                -0.2081056675592846
+            ]
+            updateCamera(position, target); 
+            break
         default:
     }
 

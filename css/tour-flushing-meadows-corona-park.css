@@ -16,7 +16,8 @@
 }
 
 #scrolling-story{
-  z-index: 1;
+  z-index: 1;  
+  transition: z-index 0.3s;
   position: relative;
   opacity: 0.75;
   transition: opacity 0.3s;
@@ -24,4 +25,5 @@
 
 #scrolling-story.invisible {
   opacity: 0;
+  z-index: -1;
 }
