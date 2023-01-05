@@ -6,25 +6,39 @@
 </head>
 <body class="section-4">
   <div class="content">
-    <div class="content-block">
-      <div class="header">
-        <h1>Flushing Meadows Corona Park</h1>
-        <panorama-nav
-          backURL="explore-the-panorama.html"
-          forwardURL="city-landmarks-tour.html"
-        >
-        </panorama-nav>
-      </div><!-- header -->
-      <div id="scrolling-story">
+    <div class="content-block sticky-container">
+      <div class="sticky">
+        <div class="header">
+          <h1>Flushing Meadows Corona Park</h1>
+          <panorama-nav
+            backURL="explore-the-panorama.html"
+            forwardURL="city-landmarks-tour.html"
+          >
+          </panorama-nav>
+        </div><!-- header -->
         <div id="explore">
           <iframe src="" id="api-frame" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" width="640" height="480"></iframe>
         </div>
-        <p id="essay">
-          Guided content, scrolling story Content and information is interspersed as pauses between scrolling tours through the 3d scan. User has control to move forward and backward in narrative, and to pause at a location, but not to move freely about the model
-        </p>
-        <p>
-          User will scroll and screen view will take user through Flushing Meadows Park There will be an essay which should be viewed with a black background (scrolled through) separate from the 3d scan The screen shots here are only meant to demonstrate places the guided tour might move to and around — there will not be separately framed views of the model — the viewer will be moved through the 3d model by the tour (and by scrolling) QM is to create an outline to show where they want the tour to go and what it should show.
-        </p>
+      </div>
+      <div id="scrolling-story">
+        <div class="dark-background">
+          <div class="content-block" id="story">
+            <div class="step browser-height show-story" id="introduction">
+              <h2>Welcome to Flushing Meadows Corona Park!</h2>
+              <p>In Flushing Meadows Corona Park, numerous structures remain from the 1964-1965 New York World's Fair including: the Unisphere, the New York State Pavilion, the Port Authority Heliport (now the Terrace on the Park restaurant), the New York Hall of Science, and the New York City Building (now the Queens Museum). The New York State Marine Amphitheater, demolished in 1996, remains on the map at the edge of Meadow Lake. The Queens Zoo, opposite the Queens Museum over the Grand Central Parkway, was erected in 1968 to occupy the central lawns of the former Transportation Zone. Citi Field and the USTA Billie Jean King National Tennis Center are also depicted nearby the Mets-Willets Point MTA subway station.</p>
+              <p>Scroll down to get a closer look at Flushing Meadows Corona Park on The Panorama of the City of New York.</p>
+            </div>
+            <div class="step browser-height hide-story" id="scene-2">
+              <p>Scene 2</p>
+            </div>
+            <div class="step browser-height hide-story" id="scene-3">
+              <p>Scene 3</p>
+            </div>
+            <div class="step browser-height hide-story" id="scene-4">
+              <p>Scene 4</p>
+            </div>
+          </div>
+        </div>
       </div><!-- scrolling-story -->
     </div><!-- content-block -->
   </div><!-- content -->
@@ -32,7 +46,8 @@
   <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.2.1.js"></script>
   <script type="text/javascript" src="js/gl-vec3.1.1.3.js"></script>
   <script type="text/javascript" src="js/viewer.js"></script>
-  <script type="text/javascript" src="js/scrollwindow.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
   <script type="text/javascript" src="js/tour-flushing-meadows-corona-park.js"></script>
 </body>
 </html>

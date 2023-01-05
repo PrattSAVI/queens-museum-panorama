@@ -1,20 +1,6 @@
 #explore {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  /*height: auto;*/
-  bottom: 0;
-  width: 100%;
-  opacity: 1;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  cursor: crosshair;
+  height: 800px;
   z-index: 0;
-}
-
-.viewer.visible {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 #explore iframe {
@@ -23,8 +9,19 @@
   height: 100%;
 }
 
-#scrolling-story {
-  position: relative;
-  margin-top: 500px;
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+#scrolling-story{
   z-index: 1;
+  position: relative;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+
+#scrolling-story.invisible {
+  opacity: 0;
 }
