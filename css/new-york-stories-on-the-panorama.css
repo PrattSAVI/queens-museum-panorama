@@ -21,11 +21,28 @@
   z-index: 1;
   top: 25px;
   left: 25px;
-  width: 40%;
+  width: 30%;
   opacity: .9; 
-  padding: 10px 15px;
+  padding: 12px;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+#add-story p {
+  line-height: 20px;
+}
+
+#add-story h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+#add-story h3 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+
 }
 
 .mapboxgl-ctrl-geocoder {
@@ -62,4 +79,6 @@
 #selected-location-location {
   font-weight: bold;
 }
+
+#your-story
 
