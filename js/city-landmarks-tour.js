@@ -25,11 +25,22 @@ let viewer = null
 // This is the default access token from your ion account
 
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZDAyZDcyNy00NGQwLTRkODItYjYzZS0xODk1ZDEyZGVjZWIiLCJpZCI6MTA3ODg2LCJpYXQiOjE2NjMwODM2MTV9.nT8QVqASAbBjcvuHZyFKIjhB6r1ncT-hFgL8XXkXFnA';
+
+// Mapbox style provider
+// https://cesium.com/learn/cesiumjs/ref-doc/MapboxStyleImageryProvider.html#.ConstructorOptions
+const mapbox = new Cesium.MapboxStyleImageryProvider({
+  //styleId: 'streets-v11',
+  username: 'prattsavi',
+  styleId: 'clbqn0k2t001g14rt5d4dqm6h',
+  accessToken: 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9vam40MG40cXcifQ.YHBszyZW7pMQShx0GZISbw' //Pratt SAVI token
+});
+
 // Initialize the Cesium Viewer in the HTML element with the `cesium-container` ID.
 viewer = new Cesium.Viewer(
   'cesium-container',
   {
     //https://cesium.com/learn/cesiumjs/ref-doc/Viewer.html#.ConstructorOptions
+    animation: false,
     baseLayerPicker: false,
     fullscreenButton: false,
     geocoder: false,
@@ -38,8 +49,9 @@ viewer = new Cesium.Viewer(
     sceneModePicker: false,
     selectionIndicator: false,
     timeline: false,
-    navigationHelpButton: true, //we might need to reposition this, or recreate it?
-    navigationInstructionsInitiallyVisible: true //default    
+    navigationHelpButton: false, //we might need to reposition this, or recreate it?
+    navigationInstructionsInitiallyVisible: false, //default true 
+    imageryProvider: mapbox     
   }
 );
  
