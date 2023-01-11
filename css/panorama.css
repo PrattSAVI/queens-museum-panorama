@@ -49,22 +49,27 @@ h1 {
 
 h2 {
   font-size: 2em;
+  margin-bottom: 32px; /* added margin to put space between title and copy -- there may be better ways to control spacing but where margin and padding was added, the intent is to fine tune the spacing between conduit, text, captions, photos, etc */
 }
 
 h1, h2, h3 {
   font-style: normal;
   font-weight: 400;
+  margin-top: 12px;
+  margin-bottom: 32px;
 }
 p {
-  line-height: 1.6rem;
+  line-height: 1.7rem;
   font-size: 1.3em;
+  margin-top: 48px;
+  margin-bottom: 18px;  /* changed this to 18 px from 12*/
 }
 .conduit h1, .conduit h2 {
   text-align: center;
   font-style: normal;
   font-weight: 400;
-  margin-block-start: 12px;
-  margin-block-end: 12px;
+  margin-block-start: 18px;
+  margin-block-end: 18px;
 }
 
 .image-container.h1-logo {
@@ -76,7 +81,6 @@ p {
   height: auto;
   width: auto;
 }
-
 
 body, a, a:visited, a:active {
   color: black;
@@ -93,14 +97,14 @@ body, a, a:visited, a:active {
 
 /* Use the conduit or content block to contain content, it gives the content consistent margins */
 .conduit, .content-block {
-  margin-left: 12px;
-  margin-right: 12px;
+  margin-left: 18px;
+  margin-right: 18px;
 }
 
 .conduit {
   position: relative;
   border-top: 2px solid black;
-  padding: 12px;
+  padding: 18px; /* changed this to 18 px from 12*/
   background-color: inherit;
   /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
 }
@@ -230,9 +234,11 @@ body, a, a:visited, a:active {
 .header h1 {
   font-size: 24px; 
 }
-
+.image_spaceabove {
+  padding-top:48px;
+}
 .image-container {
-  padding-bottom: 25px;
+  padding-bottom: 0px;
 }
 .image-container img{
   width:100%;
@@ -241,14 +247,14 @@ body, a, a:visited, a:active {
 
 .image-container .caption {
   text-align: left;
-  margin-top: 12px;
-  font-size: 1em;
+  margin-top: 18px;
+  font-size: .85em;
 }
 
 .video-container video {
   width: 100%    !important;
   height: auto   !important;  
-  padding-bottom: 24px;
+  padding-bottom: 32px;
 }
 
 /* Explore section styles */
@@ -280,6 +286,7 @@ body, a, a:visited, a:active {
   display: block;
   margin: 6px 12px;
   padding: 12px;
+  padding-top:18px;
   border: 1px solid black;
   border-radius: 5px;
 }
