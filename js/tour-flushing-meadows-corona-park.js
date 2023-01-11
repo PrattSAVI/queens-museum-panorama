@@ -60,6 +60,7 @@ function onStepEnter(response) {
         scrollingStory.classList.add("invisible")
     }
 
+    //TODO document how to get these coordinates
     switch(response.element.id) {
         case "introduction":
             var position = [
