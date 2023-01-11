@@ -61,6 +61,7 @@ function onStepEnter(response) {
     }
 
     //TODO document how to get these coordinates
+    //ping change #2
     switch(response.element.id) {
         case "introduction":
             var position = [
