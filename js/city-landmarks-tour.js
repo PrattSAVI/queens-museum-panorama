@@ -18,8 +18,6 @@ const locations = [
   }
 ]
 
-document.getElementById("side-panel-locations").innerHTML = `${locations.map(location => `<li><a href="#" onclick="javascript:flyTo(${location.longitude}, ${location.latitude})">${location.label}</a></li>`).join("")}`
-
 let viewer = null
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token from your ion account
@@ -71,7 +69,7 @@ tileAssets.forEach((tileAsset, i) => {
 
 let marker = null
 locations.forEach((location, i) => {
-  var marker = viewer.entities.add({
+  var entity = viewer.entities.add({
     name : location.label,
     position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
     billboard : {
@@ -94,9 +92,21 @@ locations.forEach((location, i) => {
         pixelOffset : new Cesium.Cartesian2(0, -30)
     }
   });
+  //store the marker entity
+  location.entity = entity
 })
+d3.select("#side-panel-locations")
+  .selectAll("li")
+  .data(locations)
+  .enter().append("li")
+    .append("a")
+      .on("click", function(event, d) {
+        flyTo(d)
+      })
+      .text(function(d) { return d.label; })
 
 
+//document.getElementById("side-panel-locations").innerHTML = `${locations.map(location => `<li><a href="#" onclick="javascript:flyTo(${location.entity})">${location.label}</a></li>`).join("")}`
 
 
 // Add Cesium OSM Buildings, a global 3D buildings layer.
@@ -142,18 +152,19 @@ function onToggleSidePanel(){
     document.getElementById("toggle-side-panel-label").textContent = "Close"
 }
 
-function flyTo(longitude, latitude){
+function flyTo(location){
   
-  viewer.camera.lookAt(
-    Cesium.Cartesian3.fromDegrees(longitude, latitude, 200),  //center
-    new Cesium.HeadingPitchRange(Cesium.Math.toRadians(0), Cesium.Math.toRadians(-45), 2900) 
-  );
+  // viewer.camera.lookAt(
+  //   Cesium.Cartesian3.fromDegrees(longitude, latitude, 200),  //center
+  //   new Cesium.HeadingPitchRange(Cesium.Math.toRadians(0), Cesium.Math.toRadians(-45), 2900) 
+  // );
+  viewer.flyTo(location.entity)
 
   //Lock camera to a point
-  var center = Cesium.Cartesian3.fromDegrees(longitude, latitude, 800);
-  var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
-  viewer.scene.camera.lookAtTransform(
-    transform, 
-    new Cesium.HeadingPitchRange(0, Cesium.Math.toRadians(-45), 2900)
-  );
+  // var center = Cesium.Cartesian3.fromDegrees(longitude, latitude, 800);
+  // var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+  // viewer.scene.camera.lookAtTransform(
+  //   transform, 
+  //   new Cesium.HeadingPitchRange(0, Cesium.Math.toRadians(-45), 2900)
+  // );
 }
