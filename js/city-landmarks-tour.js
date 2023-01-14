@@ -1,3 +1,4 @@
+let lookAtTransformTimeoutID
 
 const locations = [
   { 
@@ -14,7 +15,7 @@ const locations = [
     label:"Empire State Building",
     longitude: -73.9856554,
     latitude: 40.7484356,
-    height: 700
+    height: 700 //With the spire, it's 443m tall, however the scan amplified the height by a factor of 2. 700 seems to work
   }
 ]
 
@@ -74,23 +75,24 @@ locations.forEach((location, i) => {
     position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
     billboard : {
       image : 'images/marker_ltgreen.svg',
-      width : 64,
-      height : 64
-    },
+      sizeInMeters:true,
+      width : 200,
+      height : 200
+    }
     // point : {
     //     pixelSize : 50,
     //     color : Cesium.Color.RED,
     //     outlineColor : Cesium.Color.WHITE,
     //     outlineWidth : 2
     // },
-    label : {
-        text : location.label,
-        font : '14pt monospace',
-        style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-        outlineWidth : 2,
-        verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
-        pixelOffset : new Cesium.Cartesian2(0, -30)
-    }
+    // label : {
+    //     text : location.label,
+    //     font : '14pt monospace',
+    //     style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+    //     outlineWidth : 2,
+    //     verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+    //     pixelOffset : new Cesium.Cartesian2(0, -30)
+    // }
   });
   //store the marker entity
   location.entity = entity
@@ -151,20 +153,39 @@ function onToggleSidePanel(){
   else
     document.getElementById("toggle-side-panel-label").textContent = "Close"
 }
-
 function flyTo(location){
   
-  // viewer.camera.lookAt(
-  //   Cesium.Cartesian3.fromDegrees(longitude, latitude, 200),  //center
-  //   new Cesium.HeadingPitchRange(Cesium.Math.toRadians(0), Cesium.Math.toRadians(-45), 2900) 
-  // );
-  viewer.flyTo(location.entity)
+  viewer.flyTo(
+    location.entity,
+    {
+      duration: 3.0, //Take 3 seconds to fly to the location
+      offset: new Cesium.HeadingPitchRange(
+        Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
+        Cesium.Math.toRadians(-45), //Pitch
+        2000 //Range in metres
+      )
+    }
+  )
 
-  //Lock camera to a point
-  // var center = Cesium.Cartesian3.fromDegrees(longitude, latitude, 800);
-  // var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
-  // viewer.scene.camera.lookAtTransform(
-  //   transform, 
-  //   new Cesium.HeadingPitchRange(0, Cesium.Math.toRadians(-45), 2900)
-  // );
+  // Lock the camera so it looks at the location
+  // Per https://cesium.com/learn/cesiumjs-learn/cesiumjs-camera/#look-at-a-point and https://cesium.com/learn/cesiumjs/ref-doc/Camera.html#lookAtTransform
+  // We wait for the above flyTo to finish, which should take 3 seconds and therefore set a timeout of 3.5 seconds. 
+  // If there is already a timeout, cancel it in case the user navigates to a new location before the last one is finished
+  // There may be a few scenarios where this could get in the way of the user's own navigation of the map, e.g. if they navigate while a flyTo is in progress
+  if (lookAtTransformTimeoutID) {
+    clearTimeout(lookAtTransformTimeoutID)
+    lookAtTransformTimeoutID = null
+  }
+  lookAtTransformTimeoutID = setTimeout(
+    function(){
+      //Lock camera to a point
+      var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200);
+      var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+      viewer.scene.camera.lookAtTransform(
+        transform, 
+        new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-45), 2000)
+      );
+    }, 
+    3500 // milliseconds, = 3.5 seconds
+  )
 }
