@@ -89,3 +89,15 @@ ul.dashed > li:before {
   bottom: 20px;
 }
 
+#fly-out {
+  display: none;
+  position: absolute;
+  top: 20px;
+  width: 50px;
+  height: 200px;
+  z-index: 1;
+}
+
+#fly-out.visible {
+  display: block;
+}

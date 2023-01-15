@@ -4,7 +4,8 @@ const locations = [
   { 
     label:"Queens Museum",
     longitude: -73.846707,
-    latitude: 40.7458395
+    latitude: 40.7458395,
+    imageCaption: "image caption to go here"
   },
   { 
     label:"Manhattan grid system",
@@ -72,6 +73,7 @@ let marker = null
 locations.forEach((location, i) => {
   var entity = viewer.entities.add({
     name : location.label,
+    properties: location,
     position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
     billboard : {
       image : 'images/marker_ltgreen.svg',
@@ -97,6 +99,21 @@ locations.forEach((location, i) => {
   //store the marker entity
   location.entity = entity
 })
+
+viewer.selectedEntityChanged.addEventListener(function(selectedEntity) {
+  if (Cesium.defined(selectedEntity)) {
+      if (Cesium.defined(selectedEntity.name)) {
+        console.log('Selected ' + selectedEntity.name);
+        console.log('Image Caption ' + selectedEntity.properties.imageCaption);
+        document.getElementById("fly-out").classList.add("visible")
+      } else {
+        console.log('Unknown entity selected.');
+      }
+  } else {
+    console.log('Deselected.');
+  }
+});
+
 d3.select("#side-panel-locations")
   .selectAll("li")
   .data(locations)
