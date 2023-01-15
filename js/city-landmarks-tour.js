@@ -6,7 +6,8 @@ const locations = [
     longitude: -73.846707,
     latitude: 40.7458395,
     height: 125, 
-    imageCaption: "image caption to go here",
+    imageURL: null,
+    imageCaption: "image caption to go here"
   },
   { 
     label:"Manhattan grid system",
@@ -111,6 +112,7 @@ viewer.selectedEntityChanged.addEventListener(function(selectedEntity) {
         console.log('Image Caption ' + selectedEntity.properties.imageCaption);
         document.getElementById("fly-out").classList.add("visible")
         document.getElementById("fly-out-title").innerHTML = selectedEntity.name
+        document.getElementById("fly-out-image-caption").innerHTML = selectedEntity.properties.imageCaption
       } else {
         console.log('Unknown entity selected.');
       }
