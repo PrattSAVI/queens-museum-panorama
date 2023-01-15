@@ -5,7 +5,8 @@ const locations = [
     label:"Queens Museum",
     longitude: -73.846707,
     latitude: 40.7458395,
-    imageCaption: "image caption to go here"
+    height: 125, 
+    imageCaption: "image caption to go here",
   },
   { 
     label:"Manhattan grid system",
@@ -100,12 +101,16 @@ locations.forEach((location, i) => {
   location.entity = entity
 })
 
+// disable double click on a location
+viewer.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+
 viewer.selectedEntityChanged.addEventListener(function(selectedEntity) {
   if (Cesium.defined(selectedEntity)) {
       if (Cesium.defined(selectedEntity.name)) {
         console.log('Selected ' + selectedEntity.name);
         console.log('Image Caption ' + selectedEntity.properties.imageCaption);
         document.getElementById("fly-out").classList.add("visible")
+        document.getElementById("fly-out-title").innerHTML = selectedEntity.name
       } else {
         console.log('Unknown entity selected.');
       }
