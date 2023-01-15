@@ -171,7 +171,6 @@ function onToggleSidePanel(){
     document.getElementById("toggle-side-panel-label").textContent = "Close"
 }
 function flyTo(location){
-  
   viewer.flyTo(
     location.entity,
     {
@@ -182,27 +181,20 @@ function flyTo(location){
         2000 //Range in metres
       )
     }
-  )
-
-  // Lock the camera so it looks at the location
-  // Per https://cesium.com/learn/cesiumjs-learn/cesiumjs-camera/#look-at-a-point and https://cesium.com/learn/cesiumjs/ref-doc/Camera.html#lookAtTransform
-  // We wait for the above flyTo to finish, which should take 3 seconds and therefore set a timeout of 3.5 seconds. 
-  // If there is already a timeout, cancel it in case the user navigates to a new location before the last one is finished
-  // There may be a few scenarios where this could get in the way of the user's own navigation of the map, e.g. if they navigate while a flyTo is in progress
-  if (lookAtTransformTimeoutID) {
-    clearTimeout(lookAtTransformTimeoutID)
-    lookAtTransformTimeoutID = null
-  }
-  lookAtTransformTimeoutID = setTimeout(
-    function(){
-      //Lock camera to a point
+  ).then(
+    function(value) {
+      /* code if successful */ 
+      console.log("flyTo successful")
+      // Lock the camera so it looks at the location
       var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200);
       var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
       viewer.scene.camera.lookAtTransform(
         transform, 
         new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-45), 2000)
       );
-    }, 
-    3500 // milliseconds, = 3.5 seconds
+    },
+    function(error) {
+       /* code if some error */ 
+    }
   )
 }
