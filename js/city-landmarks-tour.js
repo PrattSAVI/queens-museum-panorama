@@ -22,6 +22,7 @@ const locations = [
 
 document.getElementById("fly-out-control-close").addEventListener("click", function(){ document.getElementById("fly-out").classList.remove("visible")});
 document.getElementById("fly-out-control-next").addEventListener("click", function(){ flyTo(selectedLocation.nextLocation)});
+document.getElementById("fly-out-control-previous").addEventListener("click", function(){ flyTo(selectedLocation.previousLocation)});
 
 
 
@@ -129,10 +130,6 @@ d3.select("#side-panel-locations")
       })
       .text(function(d) { return d.label; })
 
-
-//document.getElementById("side-panel-locations").innerHTML = `${locations.map(location => `<li><a href="#" onclick="javascript:flyTo(${location.entity})">${location.label}</a></li>`).join("")}`
-
-
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 //const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());   
 // Fly the camera to the Queens Museum at the given longitude, latitude, and height.
@@ -151,10 +148,6 @@ viewer.scene.camera.lookAtTransform(
   transform, 
   new Cesium.HeadingPitchRange(0, -Math.PI/8, 4000)
 );
-
-
-
-
 
 function onToggleSidePanel(){
   const sidePanel = document.getElementById("side-panel")
@@ -176,31 +169,33 @@ function onToggleSidePanel(){
     document.getElementById("toggle-side-panel-label").textContent = "Close"
 }
 function flyTo(location){
-  selectedLocation = location
-  viewer.flyTo(
-    location.entity,
-    {
-      duration: 3.0, //Take 3 seconds to fly to the location
-      offset: new Cesium.HeadingPitchRange(
-        Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
-        Cesium.Math.toRadians(-45), //Pitch
-        2000 //Range in metres
-      )
-    }
-  ).then(
-    function(value) {
-      /* code if successful */ 
-      console.log("flyTo successful")
-      // Lock the camera so it looks at the location
-      var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200);
-      var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
-      viewer.scene.camera.lookAtTransform(
-        transform, 
-        new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-45), 2000)
-      );
-    },
-    function(error) {
-       /* code if some error */ 
-    }
-  )
+  if (location){
+    selectedLocation = location
+    viewer.flyTo(
+      location.entity,
+      {
+        duration: 3.0, //Take 3 seconds to fly to the location
+        offset: new Cesium.HeadingPitchRange(
+          Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
+          Cesium.Math.toRadians(-45), //Pitch
+          2000 //Range in metres
+        )
+      }
+    ).then(
+      function(value) {
+        /* code if successful */ 
+        console.log("flyTo successful")
+        // Lock the camera so it looks at the location
+        var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200);
+        var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+        viewer.scene.camera.lookAtTransform(
+          transform, 
+          new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-45), 2000)
+        );
+      },
+      function(error) {
+        /* code if some error */ 
+      }
+    )
+  }
 }
