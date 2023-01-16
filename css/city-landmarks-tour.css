@@ -94,8 +94,8 @@ ul.dashed > li:before {
   position: absolute;
   top: 18px;
   left: 18px;
-  width: 200px;
-  height: 200px;
+  width: auto;
+  height: auto;
   z-index: 1;
   background-color: black;
   opacity: .9;

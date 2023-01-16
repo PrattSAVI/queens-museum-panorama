@@ -1,4 +1,5 @@
-let lookAtTransformTimeoutID
+let viewer = null;
+let selectedLocation = null;
 
 const locations = [
   { 
@@ -6,26 +7,26 @@ const locations = [
     longitude: -73.846707,
     latitude: 40.7458395,
     height: 125, 
-    imageURL: null,
-    imageCaption: "image caption to go here"
+    imageURL: "images/city-landmarks-tour/queens-museum.jpg",
+    imageCaption: "Queens Museum Caption"
   },
-  { 
-    label:"Manhattan grid system",
-    longitude: null,
-    latitude: null
-  }, 
   { 
     label:"Empire State Building",
     longitude: -73.9856554,
     latitude: 40.7484356,
-    height: 700 //With the spire, it's 443m tall, however the scan amplified the height by a factor of 2. 700 seems to work
+    height: 700, //With the spire, it's 443m tall, however the scan amplified the height by a factor of 2. 700 seems to work
+    imageURL: "images/city-landmarks-tour/empire-state-building.jpg",
+    imageCaption: "Empire State Building Caption"
   }
-]
+];
 
-let viewer = null
+document.getElementById("fly-out-control-close").addEventListener("click", function(){ document.getElementById("fly-out").classList.remove("visible")});
+document.getElementById("fly-out-control-next").addEventListener("click", function(){ flyTo(selectedLocation.nextLocation)});
+
+
+
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token from your ion account
-
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZDAyZDcyNy00NGQwLTRkODItYjYzZS0xODk1ZDEyZGVjZWIiLCJpZCI6MTA3ODg2LCJpYXQiOjE2NjMwODM2MTV9.nT8QVqASAbBjcvuHZyFKIjhB6r1ncT-hFgL8XXkXFnA';
 
 // Mapbox style provider
@@ -72,6 +73,7 @@ tileAssets.forEach((tileAsset, i) => {
 })
 
 let marker = null
+let previousLocation = null
 locations.forEach((location, i) => {
   var entity = viewer.entities.add({
     name : location.label,
@@ -83,23 +85,17 @@ locations.forEach((location, i) => {
       width : 200,
       height : 200
     }
-    // point : {
-    //     pixelSize : 50,
-    //     color : Cesium.Color.RED,
-    //     outlineColor : Cesium.Color.WHITE,
-    //     outlineWidth : 2
-    // },
-    // label : {
-    //     text : location.label,
-    //     font : '14pt monospace',
-    //     style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-    //     outlineWidth : 2,
-    //     verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
-    //     pixelOffset : new Cesium.Cartesian2(0, -30)
-    // }
   });
-  //store the marker entity
+  //store the marker entity in the location object
   location.entity = entity
+  
+  //also create pointers so we can navigate the array of locations (via previous/next pointers
+  location.previousLocation = previousLocation
+  if (previousLocation)
+    previousLocation.nextLocation = location
+
+  //remember this location for the next iteration
+  previousLocation = location
 })
 
 // disable double click on a location
@@ -108,10 +104,12 @@ viewer.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEF
 viewer.selectedEntityChanged.addEventListener(function(selectedEntity) {
   if (Cesium.defined(selectedEntity)) {
       if (Cesium.defined(selectedEntity.name)) {
-        console.log('Selected ' + selectedEntity.name);
-        console.log('Image Caption ' + selectedEntity.properties.imageCaption);
+        console.log('Selected ' + selectedEntity.name)
+        console.log('Image Caption ' + selectedEntity.properties.imageCaption)
         document.getElementById("fly-out").classList.add("visible")
         document.getElementById("fly-out-title").innerHTML = selectedEntity.name
+        document.getElementById("fly-out-image").src = selectedEntity.properties.imageURL
+
         document.getElementById("fly-out-image-caption").innerHTML = selectedEntity.properties.imageCaption
       } else {
         console.log('Unknown entity selected.');
@@ -178,6 +176,7 @@ function onToggleSidePanel(){
     document.getElementById("toggle-side-panel-label").textContent = "Close"
 }
 function flyTo(location){
+  selectedLocation = location
   viewer.flyTo(
     location.entity,
     {
