@@ -94,7 +94,7 @@ ul.dashed > li:before {
   position: absolute;
   top: 18px;
   left: 18px;
-  width: auto;
+  width: 200px;
   height: auto;
   z-index: 1;
   background-color: black;
@@ -105,4 +105,47 @@ ul.dashed > li:before {
 
 #fly-out.visible {
   display: block;
+}
+
+#fly-out h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+#fly-out-controls {
+  margin: 0;
+  display:flex;
+  justify-content:flex-start;
+}
+
+#fly-out-controls .fly-out-control{
+  display: inline;
+  margin: 2px 2px;
+}
+
+#fly-out-controls .fly-out-control.justify-right {
+  margin-left: auto;
+}
+
+/* Because there are more styles for the enabled state, we'll just use the class .enabled, and everything else is the absence of that state, i.e. disabled */
+#fly-out-controls .fly-out-control svg{
+  stroke: grey;
+}
+
+/* enabled states */
+#fly-out-controls .fly-out-control.enabled svg{
+  stroke: white;
+}
+
+#fly-out-controls .fly-out-control.enabled:hover {
+  cursor: pointer;
+}
+
+#fly-out-controls .fly-out-control.enabled:hover {
+  color: #B9FA05; /* section-4: Explore the Panorama */
+}
+
+#fly-out-controls .fly-out-control.enabled svg:hover rect{
+  fill: #B9FA05; /* section-4: Explore the Panorama */
 }

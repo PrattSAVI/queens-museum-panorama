@@ -26,8 +26,8 @@ const locations = [
 $(document).ready(function(){
 
   document.getElementById("fly-out-control-close").addEventListener("click", function(){ document.getElementById("fly-out").classList.remove("visible")});
-  document.getElementById("fly-out-control-next").addEventListener("click", function(){ flyTo(selectedLocation.nextLocation)});
-  document.getElementById("fly-out-control-previous").addEventListener("click", function(){ flyTo(selectedLocation.previousLocation)});
+  document.getElementById("fly-out-control-next").addEventListener("click", function(){ showFlyout(selectedLocation.nextLocation); flyTo(selectedLocation.nextLocation)});
+  document.getElementById("fly-out-control-previous").addEventListener("click", function(){ showFlyout(selectedLocation.previousLocation); flyTo(selectedLocation.previousLocation)});
   
   // Your access token can be found at: https://cesium.com/ion/tokens.
   // This is the default access token from your ion account
@@ -78,7 +78,7 @@ $(document).ready(function(){
   locations.forEach((location, i) => {
     var entity = viewer.entities.add({
       name : location.label,
-      properties: location,
+      properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
       position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
       billboard : {
         image : 'images/marker_ltgreen.svg',
@@ -105,12 +105,11 @@ $(document).ready(function(){
   viewer.selectedEntityChanged.addEventListener(function(selectedEntity) {
     if (Cesium.defined(selectedEntity)) {
         if (Cesium.defined(selectedEntity.name)) {
+          const location = locations[selectedEntity.properties.locationIndex]
           console.log('Selected ' + selectedEntity.name)
-          console.log('Image Caption ' + selectedEntity.properties.imageCaption)
-          document.getElementById("fly-out").classList.add("visible")
-          document.getElementById("fly-out-title").innerHTML = selectedEntity.name
-          document.getElementById("fly-out-image").src = selectedEntity.properties.imageURL
-          document.getElementById("fly-out-image-caption").innerHTML = selectedEntity.properties.imageCaption
+          console.log('Image Caption ' + location.imageCaption)
+          showFlyout(location)
+          flyTo(location)
         } else {
           console.log('Unknown entity selected.');
         }
@@ -126,15 +125,19 @@ $(document).ready(function(){
       .append("a")
         .on("click", function(event, d) {
           flyTo(d)
+          showFlyout(d)
         })
         .text(function(d) { return d.label; })  
   
   // Lock camera to a point looking down on NYC
-  var center = Cesium.Cartesian3.fromDegrees(-73.9330226, 40.708081, 2000);
+  var center = Cesium.Cartesian3.fromDegrees(-73.9330226, 40.708081, 0);
   var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
   viewer.scene.camera.lookAtTransform(
     transform, 
-    new Cesium.HeadingPitchRange(Cesium.Math.toRadians(0), Cesium.Math.toRadians(-90), 2000)
+    new Cesium.HeadingPitchRange(
+      Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
+      Cesium.Math.toRadians(-90), //Look straight down
+      50000)
   );
 });
 
@@ -157,8 +160,9 @@ function onToggleSidePanel(){
   else
     document.getElementById("toggle-side-panel-label").textContent = "Close"
 }
+
 function flyTo(location){
-  if (location){
+  if (location && (selectedLocation == null || selectedLocation.label != location.label)){ //only fly to a new location
     selectedLocation = location
     viewer.flyTo(
       location.entity,
@@ -188,3 +192,21 @@ function flyTo(location){
     )
   }
 }
+
+function showFlyout(location) {
+  document.getElementById("fly-out").classList.add("visible");
+  document.getElementById("fly-out-title").innerHTML = location.label;
+  document.getElementById("fly-out-image").src = location.imageURL;
+  document.getElementById("fly-out-image-caption").innerHTML = location.imageCaption;
+  
+  if (location.previousLocation == null)
+    document.getElementById("fly-out-control-previous").classList.remove("enabled")
+  else
+    document.getElementById("fly-out-control-previous").classList.add("enabled")
+
+  if (location.nextLocation == null)
+    document.getElementById("fly-out-control-next").classList.remove("enabled")
+  else
+    document.getElementById("fly-out-control-next").classList.add("enabled")
+
+};
