@@ -4,6 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Queens Museum Panorama - City Landmarks Tour</title>
+  <script
+    src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+    integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="
+    crossorigin="anonymous">
+  </script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <!-- Include the CesiumJS JavaScript and CSS files -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
@@ -32,6 +38,28 @@
               <a onclick="onToggleSidePanel()" href="#" id="toggle-side-panel-label">Close</a>
             </div>
           </div><!-- side-panel -->
+          <div id="fly-out">
+            <div id="fly-out-controls">
+              <div id="fly-out-control-previous" class="fly-out-control">
+                <svg id="back-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" stroke-width="1">
+                  <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
+                  <path id="back-path" data-name="back" d="M353.774,26.165,345,34.212l8.97,7.775" transform="translate(-339.076 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                </svg>  
+              </div>
+              <div id="fly-out-control-next" class="fly-out-control enabled">
+                <svg id="forward-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="white" stroke-width="1">
+                  <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
+                  <path id="forward-path" data-name="forward" d="M345.2,26.165l8.77,8.048L345,41.987" transform="translate(-335.902 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                </svg>
+              </div>
+              <div id="fly-out-control-close" class="fly-out-control justify-right enabled">Close</div>
+            </div>
+            <h2 id="fly-out-title">Flyout!</h2>
+            <div id="fly-out-image-container">
+              <img id="fly-out-image" width="400px" />
+            </div>
+            <div id="fly-out-image-caption"></div>
+          </div>
         </div><!-- cesium-container -->
         <div id="loading-overlay">
           <h1>Loading...</h1>
