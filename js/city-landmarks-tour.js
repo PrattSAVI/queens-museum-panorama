@@ -123,6 +123,20 @@ $(document).ready(function(){
       console.log('Deselected.');
     }
   });
+
+  // If the mouse is over the billboard, change its scale and color
+  var element = document.getElementById('cesium-container');
+  handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  handler.setInputAction(function(movement) {
+    var pickedObject = viewer.scene.pick(movement.endPosition);
+    if (Cesium.defined(pickedObject)) {
+      element.style.cursor = 'pointer';
+    } else {
+      element.style.cursor = 'default';
+    }
+  }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+
   
   d3.select("#side-panel-locations")
     .selectAll("li")
