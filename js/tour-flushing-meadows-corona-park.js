@@ -52,16 +52,8 @@ var viewer = new Viewer(urlid, iframe, function() {
 function onStepEnter(response) {
     console.log(response);
     // response = { element, direction, index }
-    if (response.element.classList.contains("show-story")){
-        console.log("show-story")
-        scrollingStory.classList.remove("invisible")
-    } else {
-        console.log("hide-story")
-        scrollingStory.classList.add("invisible")
-    }
 
     //TODO document how to get these coordinates
-    //ping change #2
     switch(response.element.id) {
         case "introduction":
             var position = [

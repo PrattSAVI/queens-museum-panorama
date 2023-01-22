@@ -17,13 +17,48 @@
 
 #scrolling-story{
   z-index: 1;  
-  transition: z-index 0.3s;
   position: relative;
-  opacity: 0.75;
-  transition: opacity 0.3s;
 }
 
 #scrolling-story.invisible {
   opacity: 0;
   z-index: -1;
 }
+
+.step-content {
+  position: relative;
+  opacity: 0.95;
+  background-color: black;
+  color: white;
+  width: 325px;
+  left: 50px;
+  padding: 27px;
+  border-radius: 25px;
+}
+
+.step-content h2 {
+  margin-top: 0;
+}
+
+.step-content p {
+  font-size: 18px;
+}
+
+
+/* scrollbar */
+/* Track
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+*/
+
+/* Handle */
+#scrolling-story::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+/* Handle on hover
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+*/

@@ -109,6 +109,10 @@ body, a, a:visited, a:active {
   /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
 }
 
+.conduit.end-below {
+  border-bottom: 2px solid black;
+}
+
 .dark-background .conduit{
   border-top: 2px solid white;
 }
@@ -273,7 +277,7 @@ body, a, a:visited, a:active {
 }
 
 .explore-links .image-container.h1-logo {
-  margin-bottom: 0;
+  margin-bottom: -20px;
 }
 
 .explore-links ul {
@@ -286,6 +290,7 @@ body, a, a:visited, a:active {
 }
 
 .explore-links li a {
+  font-size: 18px;
   display: block;
   margin: 6px 12px;
   padding: 12px;
