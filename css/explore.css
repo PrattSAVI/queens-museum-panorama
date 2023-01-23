@@ -1,0 +1,17 @@
+.full-page {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .full-page-height {
+    position: relative;
+    height: 100%;
+  }
+
+  .full-page-below-header {
+    position: absolute !important;
+    top: 48px;
+    bottom: 0;
+    width: 100%;
+  }

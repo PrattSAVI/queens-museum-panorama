@@ -228,7 +228,6 @@ body, a, a:visited, a:active {
 
 .header {
   display: flex;
-  align-items: center;
 }
 
 .header panorama-nav {
