@@ -58,7 +58,8 @@ h1, h2, h3 {
   margin-top: 12px;
   margin-bottom: 32px;
 }
-p {
+
+.conduit p {
   line-height: 1.7rem;
   font-size: 1.3em;
   margin-top: 48px;
