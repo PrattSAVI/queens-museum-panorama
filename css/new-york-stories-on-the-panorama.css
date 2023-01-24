@@ -67,3 +67,23 @@
 #selected-location-location {
   font-weight: bold;
 }
+
+#your-story-and-submit input[type=text], #your-story-and-submit textarea{
+  font: inherit;
+  width: 100%;
+  margin: 5px 0;
+  color: #404040;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+  box-sizing: border-box;
+}
+
+#your-story-and-submit textarea{
+  resize: vertical;
+}
