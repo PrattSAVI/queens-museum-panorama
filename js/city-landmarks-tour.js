@@ -4,7 +4,9 @@ let selectedLocation = null;
 let marker = null;
 let previousLocation = null;
 
-let locations = null; //[
+let locations = null; 
+// we load this dynamically from /data/city-landmarks-tour-locations.csv, and it is in the basic form of:
+// [
 //   { 
 //     name:"Queens Museum",
 //     longitude: -73.846707,
@@ -62,9 +64,9 @@ $(document).ready(function(){
     }
   );
 
-  //TODO we might want to order these in the order we want them to render?
+  // TODO we might want to order these in the order we want them to render?
   // 1409363 is the QM asset
-  tileAssets = [ 1409363, 1409427,1409426,1409424,1409420,1409417,1409405,1409402,1409397,1409393,1409386,1409380,1409375,1409369,1409359,1409353,1409338,1409337,1409329,1409327,1409322,1409317,1409313,1409300,1409252,1409251,1409209,1409206,1409170,1409165,1409137,1409123,1409122,1409102,1409101,1409087,1408942,1408936,1408935,1408930,1408929,1408927 ];
+  tileAssets = [ 1409363, 1410856, 1409427,1409426,1409424,1409420,1409417,1409405,1409402,1409397,1409393,1409386,1409380,1409375,1409369,1409359,1409353,1409338,1409337,1409329,1409327,1409322,1409317,1409313,1409300,1409252,1409251,1409209,1409206,1409170,1409165,1409137,1409123,1409122,1409102,1409101,1409087,1408942,1408936,1408935,1408930,1408929,1408927 ];
   tileAssets.forEach((tileAsset, i) => {
     viewer.scene.primitives.add(
       new Cesium.Cesium3DTileset({
@@ -74,6 +76,13 @@ $(document).ready(function(){
       })
     )
   })
+
+  // how far away can we zoom out
+  viewer.scene.screenSpaceCameraController.maximumZoomDistance = 50000;
+  // how close can we zoom in
+  viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1000;
+
+  viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
 
   // load the locations from ./data/data/city-landmarks-tour-locations.csv
   d3.csv("./data/city-landmarks-tour-locations.csv").then((_locations) => {
@@ -126,6 +135,8 @@ $(document).ready(function(){
           showFlyout(d)
         })
         .text(function(d) { return d.name; })  
+    
+    flyTo(locations[0])
 
   });
   
@@ -160,16 +171,16 @@ $(document).ready(function(){
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
   
-  // Lock camera to a point looking down on NYC
-  var center = Cesium.Cartesian3.fromDegrees(-73.9330226, 40.708081, 0);
-  var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
-  viewer.scene.camera.lookAtTransform(
-    transform, 
-    new Cesium.HeadingPitchRange(
-      Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
-      Cesium.Math.toRadians(-90), //Look straight down
-      50000)
-  );
+  // // Lock camera to a point looking down on NYC
+  // var center = Cesium.Cartesian3.fromDegrees(-73.9330226, 40.708081, 0);
+  // var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+  // viewer.scene.camera.lookAtTransform(
+  //   transform, 
+  //   new Cesium.HeadingPitchRange(
+  //     Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
+  //     Cesium.Math.toRadians(-90), //Look straight down
+  //     50000)
+  // );
 });
 
 function onToggleSidePanel(){
@@ -201,8 +212,8 @@ function flyTo(location){
         duration: 3.0, //Take 3 seconds to fly to the location
         offset: new Cesium.HeadingPitchRange(
           Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
-          Cesium.Math.toRadians(-45), //Pitch
-          2000 //Range in metres
+          Cesium.Math.toRadians(-30), //Pitch
+          2500 //Range in metres
         )
       }
     ).then(
@@ -214,7 +225,7 @@ function flyTo(location){
         var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
         viewer.scene.camera.lookAtTransform(
           transform, 
-          new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-45), 2000)
+          new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-30), 2500)
         );
       },
       function(error) {
