@@ -58,7 +58,8 @@ h1, h2, h3 {
   margin-top: 12px;
   margin-bottom: 32px;
 }
-p {
+
+.conduit p {
   line-height: 1.7rem;
   font-size: 1.3em;
   margin-top: 48px;
@@ -107,6 +108,10 @@ body, a, a:visited, a:active {
   padding: 18px; /* changed this to 18 px from 12*/
   background-color: inherit;
   /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
+}
+
+.conduit.end-below {
+  border-bottom: 2px solid black;
 }
 
 .dark-background .conduit{
@@ -224,7 +229,6 @@ body, a, a:visited, a:active {
 
 .header {
   display: flex;
-  align-items: center;
 }
 
 .header panorama-nav {
@@ -273,7 +277,7 @@ body, a, a:visited, a:active {
 }
 
 .explore-links .image-container.h1-logo {
-  margin-bottom: 0;
+  margin-bottom: -20px;
 }
 
 .explore-links ul {
@@ -286,6 +290,7 @@ body, a, a:visited, a:active {
 }
 
 .explore-links li a {
+  font-size: 18px;
   display: block;
   margin: 6px 12px;
   padding: 12px;

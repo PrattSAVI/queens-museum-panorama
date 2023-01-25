@@ -1,20 +1,40 @@
+const tour = {
+    initial: {
+        cameraPosition: [
+            5.195940932233644,
+            1.6780199301379457,
+            3.9918165338647533
+        ],
+        targetLocation: [
+            4.7004569374068055,
+            0.6458094397407731,
+            -0.2227992369431553
+        ]
+    },
+    stops: [
+        {
+
+        }
+    ]
+}
 //URL ID for the Pratt SAVI Sketchfab Model of the Queens Museum Panorama
 //TODO: Change this to a model in a Queens Museum SketchFab account?
 const urlid = '4bf5a7686e5847efb2b38f69621875ac'
 
-const scrollingStory = document.querySelector('#scrolling-story');
-const essay = document.querySelector('#essay'); // Floating window over the iframe
-const iframe = document.querySelector('#api-frame');
+const scrollingStoryViewport = document.getElementById('scrolling-story-viewport');
+const scrollingStory = document.getElementById('scrolling-story');
+const iframe = document.getElementById('api-frame');
 
 // generic window resize listener event
 function handleResize() {
-  // 1. update marginTop of scrolling story so it is just below the fold.
-  //scrollingStory.style.marginTop = (window.innerHeight) + "px";
-  var stepBrowserHeight = d3.selectAll(".step.browser-height")
-
   // 1. update height of step elements
-  var stepH = Math.floor(window.innerHeight * 1);
-  stepBrowserHeight.style("height", stepH + "px");
+    const stepHeight = Math.floor(window.innerHeight * 1);
+    d3.selectAll(".step.browser-height").style("margin-top", stepHeight + "px");
+
+    const justAboveTheFoldTop = d3.select(scrollingStoryViewport).node().getBoundingClientRect().height - 250;
+    d3.selectAll(".step.just-above-the-fold").style("margin-top", justAboveTheFoldTop + "px");
+    //let's make it visible now so that we can't see the shift
+    scrollingStory.classList.remove("hidden")
 
 }
 
@@ -41,10 +61,7 @@ function printCameraLookAt(){
 // This uses the first iframe
 var viewer = new Viewer(urlid, iframe, function() {
 
-//   // Camera Set Up, position and target values
-//   let campos = viewer.camera.position
-//   const cameraPosition = vec3.fromValues(campos[0], campos[1], campos[2])
-//   const targetLocation = [50828, 9609, 480]; // Look at QM
+    updateCamera(tour.initial.cameraPosition, tour.initial.targetLocation); 
 
 });
 
@@ -52,18 +69,10 @@ var viewer = new Viewer(urlid, iframe, function() {
 function onStepEnter(response) {
     console.log(response);
     // response = { element, direction, index }
-    if (response.element.classList.contains("show-story")){
-        console.log("show-story")
-        scrollingStory.classList.remove("invisible")
-    } else {
-        console.log("hide-story")
-        scrollingStory.classList.add("invisible")
-    }
 
     //TODO document how to get these coordinates
-    //ping change #2
     switch(response.element.id) {
-        case "introduction":
+        case "scene-2":
             var position = [
                 4.8127636935173115,
                 0.6855157632821853,
@@ -76,7 +85,7 @@ function onStepEnter(response) {
             ]
             updateCamera(position, target); 
             break
-        case "scene-2":
+        case "scene-3":
             var position = [
                 4.151882071706647,
                 0.6811372498971952,
@@ -89,7 +98,7 @@ function onStepEnter(response) {
             ]
             updateCamera(position, target); 
             break
-        case "scene-3":
+        case "scene-4":
             var position = [
                 5.234873032669884,
                 0.6783852795753871,
@@ -103,7 +112,7 @@ function onStepEnter(response) {
             ]
             updateCamera(position, target); 
             break
-        case "scene-4":
+        case "scene-5":
             var position = [
                 5.598123335156016,
                 1.2167965156173548,
@@ -129,7 +138,8 @@ var scroller = scrollama();
 
 scroller
     .setup({
-        step: "#scrolling-story #story .step",
+        step: "#scrolling-story .step",
+        root: scrollingStoryViewport,
         offset: 1,
         debug: false
     })

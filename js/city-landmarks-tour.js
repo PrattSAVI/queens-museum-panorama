@@ -1,27 +1,27 @@
 let viewer = null;
 let selectedLocation = null;
 
-let marker = null
-let previousLocation = null
+let marker = null;
+let previousLocation = null;
 
-const locations = [
-  { 
-    label:"Queens Museum",
-    longitude: -73.846707,
-    latitude: 40.7458395,
-    height: 150, 
-    imageURL: "images/city-landmarks-tour/queens-museum.jpg",
-    imageCaption: "Queens Museum Caption"
-  },
-  { 
-    label:"Empire State Building",
-    longitude: -73.9856554,
-    latitude: 40.7484356,
-    height: 700, //With the spire, it's 443m tall, however the scan amplified the height by a factor of 2. 700 seems to work
-    imageURL: "images/city-landmarks-tour/empire-state-building.jpg",
-    imageCaption: "Empire State Building Caption"
-  }
-];
+let locations = null; //[
+//   { 
+//     name:"Queens Museum",
+//     longitude: -73.846707,
+//     latitude: 40.7458395,
+//     height: 150, 
+//     image_url: "images/city-landmarks-tour/queens-museum.jpg",
+//     image_caption: "Queens Museum Caption"
+//   },
+//   { 
+//     name:"Empire State Building",
+//     longitude: -73.9856554,
+//     latitude: 40.7484356,
+//     height: 700, //With the spire, it's 443m tall, however the scan amplified the height by a factor of 2. 700 seems to work
+//     image_url: "images/city-landmarks-tour/empire-state-building.jpg",
+//     image_caption: "Empire State Building Caption"
+//   }
+// ];
 
 $(document).ready(function(){
 
@@ -75,35 +75,59 @@ $(document).ready(function(){
     )
   })
 
-  locations.forEach((location, i) => {
-    var entity = viewer.entities.add({
-      name : location.label,
-      properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
-      position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
-      model: {
-        uri: "./3d/map_pointer/scene.gltf",
-        minimumPixelSize: 25,
-        scale: 50,
-        maximumScale: 2000,
-      }
-      // billboard : {
-      //   image : 'images/marker_ltgreen.svg',
-      //   sizeInMeters:true,
-      //   width : 200,
-      //   height : 200
-      // }
+  // load the locations from ./data/data/city-landmarks-tour-locations.csv
+  d3.csv("./data/city-landmarks-tour-locations.csv").then((_locations) => {
+
+    _locations.forEach(location => {
+      location.longitude = +location.longitude;
+      location.latitude = +location.latitude;
+      location.height = +location.height;
     });
-    //store the marker entity in the location object
-    location.entity = entity
+
+    locations = _locations
+
+    locations.forEach((location, i) => {
+      var entity = viewer.entities.add({
+        name : location.name,
+        properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
+        position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
+        model: {
+          uri: "./3d/map_pointer/scene.gltf",
+          minimumPixelSize: 25,
+          scale: 50,
+          maximumScale: 2000,
+        }
+        // billboard : {
+        //   image : 'images/marker_ltgreen.svg',
+        //   sizeInMeters:true,
+        //   width : 200,
+        //   height : 200
+        // }
+      });
+      //store the marker entity in the location object
+      location.entity = entity
+      
+      //also create pointers so we can navigate the array of locations (via previous/next pointers
+      location.previousLocation = previousLocation
+      if (previousLocation)
+        previousLocation.nextLocation = location
     
-    //also create pointers so we can navigate the array of locations (via previous/next pointers
-    location.previousLocation = previousLocation
-    if (previousLocation)
-      previousLocation.nextLocation = location
-  
-    //remember this location for the next iteration
-    previousLocation = location
-  })
+      //remember this location for the next iteration
+      previousLocation = location
+    })
+
+    d3.select("#side-panel-locations")
+    .selectAll("li")
+    .data(locations)
+    .enter().append("li")
+      .append("a")
+        .on("click", function(event, d) {
+          flyTo(d)
+          showFlyout(d)
+        })
+        .text(function(d) { return d.name; })  
+
+  });
   
   // disable double click on a location
   viewer.screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
@@ -113,7 +137,7 @@ $(document).ready(function(){
         if (Cesium.defined(selectedEntity.name)) {
           const location = locations[selectedEntity.properties.locationIndex]
           console.log('Selected ' + selectedEntity.name)
-          console.log('Image Caption ' + location.imageCaption)
+          console.log('Image Caption ' + location.image_caption)
           showFlyout(location)
           flyTo(location)
         } else {
@@ -135,19 +159,6 @@ $(document).ready(function(){
       element.style.cursor = 'default';
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-
-
-  
-  d3.select("#side-panel-locations")
-    .selectAll("li")
-    .data(locations)
-    .enter().append("li")
-      .append("a")
-        .on("click", function(event, d) {
-          flyTo(d)
-          showFlyout(d)
-        })
-        .text(function(d) { return d.label; })  
   
   // Lock camera to a point looking down on NYC
   var center = Cesium.Cartesian3.fromDegrees(-73.9330226, 40.708081, 0);
@@ -182,7 +193,7 @@ function onToggleSidePanel(){
 }
 
 function flyTo(location){
-  if (location && (selectedLocation == null || selectedLocation.label != location.label)){ //only fly to a new location
+  if (location && (selectedLocation == null || selectedLocation.name != location.name)){ //only fly to a new location
     selectedLocation = location
     viewer.flyTo(
       location.entity,
@@ -215,9 +226,9 @@ function flyTo(location){
 
 function showFlyout(location) {
   document.getElementById("fly-out").classList.add("visible");
-  document.getElementById("fly-out-title").innerHTML = location.label;
-  document.getElementById("fly-out-image").src = location.imageURL;
-  document.getElementById("fly-out-image-caption").innerHTML = location.imageCaption;
+  document.getElementById("fly-out-title").innerHTML = location.name;
+  document.getElementById("fly-out-image").src = location.image_url;
+  document.getElementById("fly-out-image-caption").innerHTML = location.image_caption;
   
   if (location.previousLocation == null)
     document.getElementById("fly-out-control-previous").classList.remove("enabled")

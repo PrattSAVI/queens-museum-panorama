@@ -1,27 +1,9 @@
-.full-page {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-.full-page-height {
-  position: relative;
-  height: 100%;
-}
-
-#map {
-  position: absolute;
-  top: 50px;
-  bottom: 0;
-  width: 100%;
-}
-
 #add-story {
   position: absolute;
   z-index: 1;
   top: 25px;
   left: 25px;
-  width: 30%;
+  width: 22.5%;
   opacity: .9; 
   padding: 12px;
   border: 1px solid black;
@@ -29,12 +11,17 @@
 }
 
 #add-story p {
-  line-height: 20px;
+  font-size: 12px;
+
+}
+
+#add-story p#see-other-stories {
+  margin-bottom: 0;
 }
 
 #add-story h2 {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 18px;
   font-size: 18px;
 }
 
@@ -55,6 +42,7 @@
 
 #your-story-and-submit{
   display: none;
+  border-bottom: black 1px dashed;
 }
 
 #selected-location {
@@ -78,4 +66,24 @@
 
 #selected-location-location {
   font-weight: bold;
+}
+
+#your-story-and-submit input[type=text], #your-story-and-submit textarea{
+  font: inherit;
+  width: 100%;
+  margin: 5px 0;
+  color: #404040;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+  box-sizing: border-box;
+}
+
+#your-story-and-submit textarea{
+  resize: vertical;
 }
