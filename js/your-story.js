@@ -1,7 +1,23 @@
-/* Set when a result is set in the geocoder */
-var storyLatitude = null
-var storyLongitude = null
-var storyLocation = null
+// Bounds for geocoder and pan
+const NYC_BOUNDS = [-74.27355, 40.48247, -73.68204, 40.92910];
+
+//Starting and max zoom for the map
+const STARTING_ZOOM = 10;
+const MAX_ZOOM = 16;
+
+// Start the map here
+const NYC_CENTER = [-73.846707, 40.7458395];
+
+// We prioritize geocoding in proximity to the Queens Museum
+const QUEENS_MUSEUM_COORDINATES = {
+  longitude: -73.846707,
+  latitude: 40.7458395
+};
+
+/* To hold the result when the geocoder matchers a location */
+var storyLatitude = null;
+var storyLongitude = null;
+var storyLocation = null;
 
 let selectedLocationID = null;
 
@@ -45,8 +61,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9va
 const map = new mapboxgl.Map({
   container: 'map', // Container ID
   style: 'mapbox://styles/prattsavi/clbqt0kf2000d14pfxbpyxnnu', // Map style to use
-  center: [-73.846707, 40.7458395], // Starting position [lng, lat]
-  zoom: 10 // Starting zoom level
+  center: NYC_CENTER, // Starting position [lng, lat]
+  zoom: STARTING_ZOOM, // Starting zoom level
+  maxZoom: MAX_ZOOM,
+  maxBounds: NYC_BOUNDS //constrain so user can't zoom or pan off NYC
 });
 
 // TODO, setup the map so you can't zoom or pan away from NYC
@@ -65,11 +83,8 @@ const geocoder = new MapboxGeocoder({
   mapboxgl: mapboxgl, // Set the mapbox-gl instance
   marker: false, // Do not use the default marker style
   placeholder: 'Enter Address', // Placeholder text for the search bar
-  bbox: [-74.27355, 40.48247, -73.68204, 40.92910], // Boundary for NYC
-  proximity: {
-    longitude: -73.846707,
-    latitude: 40.7458395
-  } // Coordinates of Queens Museum
+  bbox: NYC_BOUNDS, // Boundary for NYC
+  proximity: QUEENS_MUSEUM_COORDINATES // Coordinates of Queens Museum
 });
 
 geocoder.on('result', e => {
