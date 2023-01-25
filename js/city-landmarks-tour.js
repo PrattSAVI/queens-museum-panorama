@@ -82,6 +82,8 @@ $(document).ready(function(){
   // how close can we zoom in
   viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1000;
 
+  viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
+
   // load the locations from ./data/data/city-landmarks-tour-locations.csv
   d3.csv("./data/city-landmarks-tour-locations.csv").then((_locations) => {
 
