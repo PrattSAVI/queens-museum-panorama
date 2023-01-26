@@ -100,29 +100,35 @@ $(document).ready(function(){
         name : location.name,
         properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
         position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
-        model: {
-          uri: "./3d/map_pointer/scene.gltf",
-          minimumPixelSize: 25,
-          scale: 50,
-          maximumScale: 2000,
-        }
-        // billboard : {
-        //   image : 'images/marker_ltgreen.svg',
-        //   sizeInMeters:true,
-        //   width : 200,
-        //   height : 200
+        // model: {
+        //   uri: "./3d/map_pointer/scene.gltf",
+        //   minimumPixelSize: 25,
+        //   scale: 50,
+        //   maximumScale: 2000,
         // }
+        billboard : {
+          image : 'images/marker_pink.svg',
+          sizeInMeters:true,
+          width : 200,
+          height : 200
+        }
       });
+      // https://cesium.com/learn/cesiumjs/ref-doc/Billboard.html#scaleByDistance
+      // Set a billboard's scaleByDistance to scale by 1 when the
+      // camera is 5000 meters from the billboard and 2 as
+      // the camera distance approaches 20000 meters.
+      entity.billboard.scaleByDistance = new Cesium.NearFarScalar(5000, 1, 20000, 2);
+
       //store the marker entity in the location object
-      location.entity = entity
+      location.entity = entity;
       
       //also create pointers so we can navigate the array of locations (via previous/next pointers
-      location.previousLocation = previousLocation
+      location.previousLocation = previousLocation;
       if (previousLocation)
-        previousLocation.nextLocation = location
+        previousLocation.nextLocation = location;
     
       //remember this location for the next iteration
-      previousLocation = location
+      previousLocation = location;
     })
 
     d3.select("#side-panel-locations")
