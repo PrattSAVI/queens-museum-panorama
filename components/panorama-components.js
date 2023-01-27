@@ -9,7 +9,7 @@ const navStyles = css`
 
   .nav div.button{
     display: inline;
-    margin: 12px 6px;
+    margin: 12px 4px;
   }
 
   .nav div.button.justify-left {
@@ -138,7 +138,7 @@ class PanoramaNav extends LitElement {
 
       let exploreButton = (this.exploreButton) ? 
         html`
-          <div class="button svg justify-left">
+          <div class="button svg">
             <a href="./explore-the-panorama.html">
               <svg id="explore_white" width="24" height="24" version="1.1" id="home_white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">

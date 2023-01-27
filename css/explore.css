@@ -14,4 +14,17 @@
     top: 48px;
     bottom: 0;
     width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .full-page-below-header {
+    position: absolute !important;
+    top: 48px;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 18px;
+  }
+
+  .full-page-below-header, .full-page-below-header .cesium-viewer, #sketchfab-container iframe {
+    border-radius: 25px;
   }
