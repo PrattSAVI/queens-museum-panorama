@@ -71,7 +71,11 @@ ul.dashed > li:before {
   text-indent: -5px;
 }
 
-#side-panel-locations li.selected, #side-panel-locations li.selected a {
+#side-panel-locations li:hover {
+  cursor: pointer;
+}
+
+#side-panel-locations li.selected, #side-panel-locations li.selected a, #side-panel-locations li:hover, #side-panel-locations li:hover a {
   color: #FA8CA3;
 }
 

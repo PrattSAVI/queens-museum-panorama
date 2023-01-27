@@ -139,11 +139,11 @@ $(document).ready(function(){
     .data(locations)
     .enter().append("li")
       .attr("id", function(d) { return `side-panel-location-${d.location_index}`; })
+      .on("click", function(event, d) {
+        flyTo(d)
+        showFlyout(d)
+      })
       .append("a")
-        .on("click", function(event, d) {
-          flyTo(d)
-          showFlyout(d)
-        })
         .text(function(d) { return d.name; }) 
     
     flyTo(locations[0])
@@ -215,7 +215,9 @@ function onToggleSidePanel(){
 
 function flyTo(location){
   if (location && (selectedLocation == null || selectedLocation.name != location.name)){ //only fly to a new location
-    //if (selectedLocation){}
+    if (selectedLocation){
+      document.getElementById("side-panel-location-" + selectedLocation.location_index).classList.remove("selected");
+    }
     document.getElementById("side-panel-location-" + location.location_index).classList.add("selected");
 
     selectedLocation = location
