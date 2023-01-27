@@ -96,9 +96,12 @@ $(document).ready(function(){
     locations = _locations
 
     locations.forEach((location, i) => {
+      //this might be handy to use as a key
+      location.location_index = i
       var entity = viewer.entities.add({
         name : location.name,
         properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
+        
         position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
         // model: {
         //   uri: "./3d/map_pointer/scene.gltf",
@@ -135,12 +138,13 @@ $(document).ready(function(){
     .selectAll("li")
     .data(locations)
     .enter().append("li")
+      .attr("id", function(d) { return `side-panel-location-${d.location_index}`; })
       .append("a")
         .on("click", function(event, d) {
           flyTo(d)
           showFlyout(d)
         })
-        .text(function(d) { return d.name; })  
+        .text(function(d) { return d.name; }) 
     
     flyTo(locations[0])
 
@@ -211,7 +215,11 @@ function onToggleSidePanel(){
 
 function flyTo(location){
   if (location && (selectedLocation == null || selectedLocation.name != location.name)){ //only fly to a new location
+    //if (selectedLocation){}
+    document.getElementById("side-panel-location-" + location.location_index).classList.add("selected");
+
     selectedLocation = location
+
     viewer.flyTo(
       location.entity,
       {

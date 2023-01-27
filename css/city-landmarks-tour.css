@@ -71,6 +71,10 @@ ul.dashed > li:before {
   text-indent: -5px;
 }
 
+#side-panel-locations li.selected, #side-panel-locations li.selected a {
+  color: #FA8CA3;
+}
+
 #toggle-side-panel{
   z-index: 4;
 }
