@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.typekit.net/oul8zgw.css">
+  <link rel="stylesheet" type="text/css" href="css/panorama.css">
+  <link rel="stylesheet" type="text/css" href="css/explore.css">
+  <meta charset=utf8 />
+</head>
+<body class="section-home dark-background">
+  <div class="full-page">
+    <div class="content full-page-height">
+      <div class="content-block full-page-height">
+        <div class="header">
+          <panorama-nav
+            back-url="index.html"
+            forward-url="the-panorama.html"
+            dark-background
+          >
+          </panorama-nav>
+        </div><!-- header -->
+        <div class="video-container full-page-below-header" id="panorama-introduction-video">
+          <!-- on chrome browsers, autoplay only works if muted -->
+          <video muted autoplay loop>
+            <source src= "video/panorama_film.mp4" type="video/mp4" />
+          </video>
+        </div><!-- panorama-introduction-video -->
+      </div><!-- content-block -->
+    </div><!-- content-->
+  </div><!-- full-page-->
+  <script type="module" src="./components/panorama-components.js"></script>
+
+</body>
+</html>

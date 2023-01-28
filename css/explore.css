@@ -25,6 +25,6 @@
     margin-bottom: 18px;
   }
 
-  .full-page-below-header, .full-page-below-header .cesium-viewer, #sketchfab-container iframe {
+  .full-page-below-header, .full-page-below-header .cesium-viewer, #sketchfab-container iframe, .full-page-below-header #panorama-introduction-video video{
     border-radius: 25px;
   }
