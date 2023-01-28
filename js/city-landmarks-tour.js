@@ -1,3 +1,17 @@
+// If the location has no height, what to use
+const DEFAULT_LOCATION_HEIGHT = 200;
+
+const BILLBOARD_IMAGE = 'images/marker_pink.svg';
+const BILLBOARD_HEIGHT = 200;
+const BILLBOARD_WIDTH = 200;
+
+const MAXIMUM_ZOOM_DISTANCE = 50000;
+const MINIMUM_ZOOM_DISTANCE = 1000;
+
+const FLYTO_OFFSET_HEADING = 29; // 29 degrees to the east of north, to line up with Manhattan's grid
+const FLYTO_OFFSET_PITCH = -30; // 30 degrees down
+const FLYTO_OFFSET_RANGE = 2500; // metres
+
 let viewer = null;
 let selectedLocation = null;
 
@@ -78,9 +92,9 @@ $(document).ready(function(){
   })
 
   // how far away can we zoom out
-  viewer.scene.screenSpaceCameraController.maximumZoomDistance = 50000;
+  viewer.scene.screenSpaceCameraController.maximumZoomDistance = MAXIMUM_ZOOM_DISTANCE;
   // how close can we zoom in
-  viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1000;
+  viewer.scene.screenSpaceCameraController.minimumZoomDistance = MINIMUM_ZOOM_DISTANCE;
 
   viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
 
@@ -102,7 +116,7 @@ $(document).ready(function(){
         name : location.name,
         properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
         
-        position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
+        position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : DEFAULT_LOCATION_HEIGHT),
         // model: {
         //   uri: "./3d/map_pointer/scene.gltf",
         //   minimumPixelSize: 25,
@@ -110,10 +124,10 @@ $(document).ready(function(){
         //   maximumScale: 2000,
         // }
         billboard : {
-          image : 'images/marker_pink.svg',
+          image : BILLBOARD_IMAGE,
           sizeInMeters:true,
-          width : 200,
-          height : 200
+          width : BILLBOARD_WIDTH,
+          height : BILLBOARD_HEIGHT
         }
       });
       // https://cesium.com/learn/cesiumjs/ref-doc/Billboard.html#scaleByDistance
@@ -227,9 +241,9 @@ function flyTo(location){
       {
         duration: 3.0, //Take 3 seconds to fly to the location
         offset: new Cesium.HeadingPitchRange(
-          Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
-          Cesium.Math.toRadians(-30), //Pitch
-          2500 //Range in metres
+          Cesium.Math.toRadians(FLYTO_OFFSET_HEADING), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
+          Cesium.Math.toRadians(FLYTO_OFFSET_PITCH), //Pitch
+          FLYTO_OFFSET_RANGE //Range in metres
         )
       }
     ).then(
@@ -237,11 +251,15 @@ function flyTo(location){
         /* code if successful */ 
         console.log("flyTo successful")
         // Lock the camera so it looks at the location
-        var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200);
+        var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : DEFAULT_LOCATION_HEIGHT);
         var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
         viewer.scene.camera.lookAtTransform(
           transform, 
-          new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-30), 2500)
+          new Cesium.HeadingPitchRange(
+            Cesium.Math.toRadians(FLYTO_OFFSET_HEADING), 
+            Cesium.Math.toRadians(FLYTO_OFFSET_PITCH), 
+            FLYTO_OFFSET_RANGE //Range in metres
+          )
         );
       },
       function(error) {
