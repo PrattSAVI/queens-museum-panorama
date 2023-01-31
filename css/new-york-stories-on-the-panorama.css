@@ -3,7 +3,7 @@
   z-index: 1;
   top: 25px;
   left: 25px;
-  width: 22.5%;
+  width: 27.5%;
   opacity: .9; 
   padding: 12px;
   border: 1px solid black;
@@ -86,4 +86,22 @@
 
 #your-story-and-submit textarea{
   resize: vertical;
+}
+
+#submit-container, #submit-error-container, #submit-success-container {
+  display: flex;
+  align-items: center;
+}
+
+#submit-success-container svg, #submit-success-container span, #submit-error-container svg, #submit-error-container span {
+  margin: 0 2px;
+}
+
+
+#submit-progress.hidden, #submit-success-container.hidden , #submit-error-container.hidden {
+  display: none;
+}
+
+#submit-error-icon svg {
+  fill: red;
 }
