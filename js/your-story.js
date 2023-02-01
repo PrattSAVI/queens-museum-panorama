@@ -21,36 +21,58 @@ var storyLocation = null;
 
 let selectedLocationID = null;
 
+let submittingStory = false;
+
 function submitStory() {
-  console.log("Sumbitting story!)")
-  //TODO Don't allow the user to submit unless they have entered a story
-  const yourStory = document.getElementById("your-story").value
-  /*
-  The action for the form is the "web app URL" which you get when you "deploy" the app in Google Sheets/Apps Script
-  The web app basically takes the "name" of the form elements, and if it can match it to a column header in the google sheet, it will input it there, after the last row.
-  For example, the contents ot the following element will be put in the "Sender's Name" column
-  <input class="mdc-text-field__input" type="text" aria-labelledby="senders-name" name="Sender's Name" required>
-  */
+  if (!submittingStory){ //don't submit story twice
+    submittingStory = true;
+    console.log("Sumbitting story!)");
+    //TODO Don't allow the user to submit unless they have entered a story
+    document.getElementById("submit-progress").classList.remove("hidden");
+    document.getElementById("submit-error-container").classList.add("hidden");
+    document.getElementById("submit-success-container").classList.add("hidden");
 
-  let formData = new FormData();
-  formData.append('Location', storyLocation);
-  formData.append('Latitude', storyLatitude);
-  formData.append('Longitude', storyLongitude);
-  formData.append('Story', yourStory);
+    const yourStory = document.getElementById("your-story").value
+    /*
+    The action for the form is the "web app URL" which you get when you "deploy" the app in Google Sheets/Apps Script
+    The web app basically takes the "name" of the form elements, and if it can match it to a column header in the google sheet, it will input it there, after the last row.
+    For example, the contents ot the following element will be put in the "Sender's Name" column
+    <input class="mdc-text-field__input" type="text" aria-labelledby="senders-name" name="Sender's Name" required>
+    */
 
-  /* TODO Do we want to submit any other information about the geo referenced location, e.g. the full location
-      place_name : "Brooklyn Museum, 200 Eastern Pkwy, New York City, New York 11238, United States"
-      or just
-      text : "Brooklyn Museum"
-  */
+    let formData = new FormData();
+    formData.append('Location', storyLocation);
+    formData.append('Latitude', storyLatitude);
+    formData.append('Longitude', storyLongitude);
+    formData.append('Story', yourStory);
 
-  // TODO show progress indicator and handle submitting twice
-  fetch('https://script.google.com/macros/s/AKfycbwZ4tkU-9je_waA46r59Q2IkiiZ4WDr_ojnfqLQkegqd1tkdZUldP8lBI2MmL2xHVT1/exec', {
-    method: 'post',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(response => console.log(JSON.stringify(response)))
+    /* TODO Do we want to submit any other information about the geo referenced location, e.g. the full location
+        place_name : "Brooklyn Museum, 200 Eastern Pkwy, New York City, New York 11238, United States"
+        or just
+        text : "Brooklyn Museum"
+    */
+
+    // TODO show progress indicator and handle submitting twice
+    fetch('https://script.google.com/macros/s/AKfycbwZ4tkU-9je_waA46r59Q2IkiiZ4WDr_ojnfqLQkegqd1tkdZUldP8lBI2MmL2xHVT1/exec', {
+      method: 'post',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(JSON.stringify(response));
+      document.getElementById("submit-progress").classList.add("hidden");
+      document.getElementById("submit-success-container").classList.remove("hidden");
+      document.getElementById("submit-success-message").innerHTML = "Submitted!";
+      submittingStory = false;
+    })
+    .catch((error) => {
+      console.log(error);
+      document.getElementById("submit-progress").classList.add("hidden");
+      document.getElementById("submit-error-container").classList.remove("hidden");
+      document.getElementById("submit-error-message").innerHTML = "Error: " + error.message + "?";
+      submittingStory = false
+    });
+  }
 }
 
 
@@ -178,17 +200,25 @@ map.on('load', () => {
         'type': 'symbol',
         'source': 'stories',
         'layout': {
-          'icon-image': 'marker-black'
+          'icon-image': 'marker-black',
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.5, 16, 0.75]
         },
         'paint': {
           'icon-color': [
             'case', // Use the 'case' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/#case
             ['boolean', ['feature-state', 'selected'], false],
             '#35C775', // selected
-            'black' // not selected
+            '#FA8CA3' // not selected
             ]
         }
       })
+
+      map.on('mouseenter', 'stories', () => {
+        map.getCanvas().style.cursor = 'pointer'
+      });
+      map.on('mouseleave', 'stories', () => {
+        map.getCanvas().style.cursor = ''
+      });
 
       map.on('click', 'stories', (e) => {
 

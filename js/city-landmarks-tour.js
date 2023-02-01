@@ -74,9 +74,13 @@ $(document).ready(function(){
       timeline: false,
       navigationHelpButton: false, //we might need to reposition this, or recreate it?
       navigationInstructionsInitiallyVisible: false, //default true 
-      imageryProvider: mapbox     
+      imageryProvider: mapbox, 
+      skyBox: false    
     }
   );
+  
+  // set the background color to white:
+  viewer.scene.backgroundColor = Cesium.Color.clone(Cesium.Color.GREY);
 
   // TODO we might want to order these in the order we want them to render?
   // 1409363 is the QM asset
