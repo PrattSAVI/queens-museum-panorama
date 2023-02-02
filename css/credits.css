@@ -1,0 +1,15 @@
+ul.credit-list {
+    list-style: none;
+}
+
+ul.credit-list li {
+    display: flex;
+}
+.credit-image, .credit-image img {
+    width: 125px;
+    margin-bottom: 25px;
+}
+
+.credit-text {
+    padding: 0 25px 0 25px;
+}

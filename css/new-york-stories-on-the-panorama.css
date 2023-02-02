@@ -7,7 +7,7 @@
   opacity: .9; 
   padding: 12px;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
 #add-story p {
@@ -59,12 +59,18 @@
   display: none;
 }
 
-#selected-location div {
+/* #selected-location div {
+  padding-bottom: 5px;
+} */
+
+.selected-location-story {
+  border-top: 1px dashed black;
   border-bottom: 1px dashed black;
-  padding-bottom: 10px;
+  margin-bottom: 5px;
+  padding: 3px 0;
 }
 
-#selected-location-location {
+.selected-location-story-location {
   font-weight: bold;
 }
 

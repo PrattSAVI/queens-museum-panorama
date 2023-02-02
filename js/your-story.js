@@ -1,8 +1,8 @@
 // Bounds for geocoder and pan
-const NYC_BOUNDS = [-74.27355, 40.48247, -73.68204, 40.92910];
+const NYC_BOUNDS = [-74.300, 40.400, -73.600, 41.000];
 
 //Starting and max zoom for the map
-const STARTING_ZOOM = 10;
+const STARTING_ZOOM = 9;
 const MAX_ZOOM = 16;
 
 // Start the map here
@@ -18,6 +18,7 @@ const QUEENS_MUSEUM_COORDINATES = {
 var storyLatitude = null;
 var storyLongitude = null;
 var storyLocation = null;
+var storyLocationDetail = null;
 
 let selectedLocationID = null;
 
@@ -33,18 +34,24 @@ function submitStory() {
     document.getElementById("submit-success-container").classList.add("hidden");
 
     const yourStory = document.getElementById("your-story").value
+    const publishYourName = document.getElementById("publish-your-name").checked ? "yes" : "no"
+    const yourName = document.getElementById("your-name").value
     /*
-    The action for the form is the "web app URL" which you get when you "deploy" the app in Google Sheets/Apps Script
+    The action for the form is the "web app URL" which you get when you "deploy" the app in the Google Sheets/Apps Script
     The web app basically takes the "name" of the form elements, and if it can match it to a column header in the google sheet, it will input it there, after the last row.
-    For example, the contents ot the following element will be put in the "Sender's Name" column
-    <input class="mdc-text-field__input" type="text" aria-labelledby="senders-name" name="Sender's Name" required>
+    For example, the contents ot the following element will be put in the "Story" column
+    <input type="text" name="Story">
     */
 
     let formData = new FormData();
     formData.append('Location', storyLocation);
+    formData.append("Location Detail", storyLocationDetail)
     formData.append('Latitude', storyLatitude);
     formData.append('Longitude', storyLongitude);
     formData.append('Story', yourStory);
+    formData.append('OK to publish name', publishYourName);
+    formData.append('Name', yourName);
+
 
     /* TODO Do we want to submit any other information about the geo referenced location, e.g. the full location
         place_name : "Brooklyn Museum, 200 Eastern Pkwy, New York City, New York 11238, United States"
@@ -118,12 +125,13 @@ geocoder.on('result', e => {
     .setLngLat(e.result.center) // Marker [lng, lat] coordinates
     .addTo(map); // Add the marker to the map
 
-  document.getElementById("your-story-and-submit").style.display = "block"
+  document.getElementById("your-story-and-submit").style.display = "block";
 
   //set global variables which are used when submitting the form
-  storyLatitude = e.result.center[1]
-  storyLongitude = e.result.center[0]
-  storyLocation = e.result.text
+  storyLatitude = e.result.center[1];
+  storyLongitude = e.result.center[0];
+  storyLocation = e.result.text;
+  storyLocationDetail = e.result.place_name;
 
 });
 
@@ -163,16 +171,73 @@ map.on('load', () => {
   const PUBLISHED_STORIES_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoE3LqrHKuJI4MFBPYR5OnlJrRFCTrHAZhQuHJUxPI8O7j1tK1lUNoMjCnUMMBjIjdJdMXvFxRaZyC/pub?gid=1228347493&single=true&output=csv'
   
   d3.csv(PUBLISHED_STORIES_URL + '&cachebuster=' + Date.now()).then((stories) => {
+    
+    //group the stories by lat/long. This will be a an array of all of the stories, with the first and second elements the latitude and longitdue, followed by the complete data:
+    //   [
+    //     [
+    //         "40.7458395",
+    //         "-73.846707",
+    //         [
+    //             {
+    //                 "date": "1/6/2023 11:00:03",
+    //                 "location": "Queens Museum of Art",
+    //                 "latitude": "40.7458395",
+    //                 "longitude": "-73.846707",
+    //                 "story": "Here's my story about the Queens Museum",
+    //                 "published_name": "",
+    //                 "status": "Published"
+    //             }
+    //         ]
+    //     ],
+    //     [
+    //         "40.780135",
+    //         "-73.96527",
+    //         [
+    //             {
+    //                 "date": "1/31/2023 23:29:55",
+    //                 "location": "Central Park",
+    //                 "latitude": "40.780135",
+    //                 "longitude": "-73.96527",
+    //                 "story": "My story about central park",
+    //                 "published_name": "a name",
+    //                 "status": "Published"
+    //             },
+    //             {
+    //                 "date": "2/1/2023 0:00:24",
+    //                 "location": "Central Park",
+    //                 "latitude": "40.780135",
+    //                 "longitude": "-73.96527",
+    //                 "story": "this is what happened to me in central park",
+    //                 "published_name": "",
+    //                 "status": "Published"
+    //             },
+    //             {
+    //                 "date": "2/1/2023 0:01:40",
+    //                 "location": "Central Park",
+    //                 "latitude": "40.780135",
+    //                 "longitude": "-73.96527",
+    //                 "story": "Another central park story",
+    //                 "published_name": "",
+    //                 "status": "Published"
+    //             }
+    //         ]
+    //     ]
+    // ]    
+
+
+
+    const storiesByLatLong = d3.flatGroup(stories, d => d.latitude, d => d.longitude)
+    
     //convert to GEOJson, first the features
-    const storiesFeatures = stories.map((story) => {
+    const storiesFeatures = storiesByLatLong.map((latLong) => {
       return { 
         "type" : "Feature", 
         "geometry" : { 
           "type" : "Point", 
-          "coordinates" : [story.longitude, story.latitude] 
+          "coordinates" : [latLong[1], latLong[0]] // expecting: longitude, latitude
         },
         "properties": {
-          ...story
+          "stories": latLong[2] 
         }
       }
     })
@@ -235,12 +300,57 @@ map.on('load', () => {
             { selected: true }
           )
 
-          const story = e.features[0].properties.story;
-          const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name
-           
-          document.getElementById("selected-location-location").innerHTML = storyLocation
-          document.getElementById("selected-location-story").innerHTML = story
-          document.getElementById("selected-location").style.display = "block"
+
+          // <div id="selected-location-location">
+          // </div>
+          // <div id="selected-location-story">
+          // </div>
+          // <div id="selected-location-name">
+          // </div>
+
+          // https://github.com/mapbox/mapbox-gl-js/issues/2434
+          // per ^ this apparent bug in mapbox-gl, even though the geojson spec support s
+          // objects in  properties, if we pass objects in, we get string-i-fied objects back in mapbox-gl
+          // so lets use JSON.parse...
+          const storiesAtLocation = JSON.parse(e.features[0].properties.stories);
+
+          d3.select("#selected-location")
+            .selectAll("div.selected-location-story")
+            .remove();
+
+          const selectedLocationStories = d3.select("#selected-location")
+            .selectAll("div.selected-location-story")
+            .data(storiesAtLocation)
+            .enter()
+            .append("div")
+            .classed("selected-location-story", true);
+
+            
+          selectedLocationStories
+            .append("div")
+            .classed("selected-location-story-location", true)
+            .text(function(d) { return d.location; });
+
+          selectedLocationStories
+            .append("div")
+            .classed("selected-location-story-story", true)
+            .text(function(d) { return d.story; });
+
+          selectedLocationStories
+            .append("div")
+            .classed("selected-location-story-name", true)
+            .text(function(d) { return `(${d.published_name != "" ? d.published_name : "anonymous"})`; });
+
+          // const story = e.features[0].properties.story;
+          // const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name
+          // const name =  e.features[0].properties.published_name != "" ? e.features[0].properties.published_name : "anonymous";
+
+          // document.getElementById("selected-location-location").innerHTML = storyLocation;
+          // document.getElementById("selected-location-story").innerHTML = story;
+          // document.getElementById("selected-location-name").innerHTML = `(${name})`;
+
+
+          document.getElementById("selected-location").style.display = "block";
 
           //TODO Add a close button and make it work for stories at the same location
 
