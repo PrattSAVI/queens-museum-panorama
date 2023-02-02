@@ -37,6 +37,10 @@ body.section-4, body.section-4 #add-story {
   background-color: #B9FA05;   
 }
 
+body.section-credits { 
+  background-color: #A499D9; 
+}
+
 /* White font if we have a dar background */
 .dark-background, .dark-background a, .dark-background a:visited, .dark-background a:active {
   color: white;
@@ -65,12 +69,24 @@ h1, h2, h3 {
   margin-top: 48px;
   margin-bottom: 18px;  /* changed this to 18 px from 12*/
 }
-.conduit h1, .conduit h2 {
+.conduit h1, .conduit h2, .section-home h3 {
   text-align: center;
   font-style: normal;
   font-weight: 400;
   margin-block-start: 18px;
   margin-block-end: 18px;
+}
+
+.section-home h1 {
+  margin-bottom: 150px;
+}
+
+.section-home h2 {
+  font-size: 36px;
+}
+
+.section-home h3 {
+  font-size: 28px;
 }
 
 .image-container.h1-logo {
@@ -121,6 +137,16 @@ body, a, a:visited, a:active {
 .conduit.around-the-right {
   border-top-right-radius: 25px;
   border-right: 2px solid black;
+}
+
+.conduit.around-the-right.end-below {
+  border-bottom-right-radius: 25px;
+  border-bottom: 2px solid black;
+  margin-bottom: 25px;
+}
+
+.dark-background .conduit.around-the-right.end-below {
+  border-bottom: 2px solid white;
 }
 
 .dark-background .conduit.around-the-right {

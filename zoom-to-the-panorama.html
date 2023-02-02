@@ -8,6 +8,7 @@
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./css/panorama.css">
+  <link rel="stylesheet" type="text/css" href="./css/explore.css">
   <link rel="stylesheet" type="text/css" href="./css/zoom-to-the-panorama.css">
 </head>
 <body class="section-4">
@@ -17,13 +18,13 @@
         <div class="header">
           <h1>Zoom to the Panorama</h1>
           <panorama-nav
-            backURL="city-landmarks-tour.html"
-            forwardURL="new-york-stories-on-the-panorama.html"
-            exploreButton="true"
+            back-url="city-landmarks-tour.html"
+            forward-url="new-york-stories-on-the-panorama.html"
+            explore-button
           >
           </panorama-nav>
         </div><!-- header -->
-        <div id="cesium-container" class="fullSize">
+        <div id="cesium-container" class="full-page-below-header">
         </div><!-- cesium-container -->
         <div id="loading-overlay">
           <h1>Loading...</h1>

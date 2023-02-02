@@ -26,8 +26,9 @@
         <div class="header">
           <h1>New York Stories on <span class="text-italics">the Panorama!</span></h1>
           <panorama-nav
-            backURL="zoom-to-the-panorama.html"
-            exploreButton="true"
+            back-url="zoom-to-the-panorama.html"
+            forward-url="credits.html"
+            explore-button
           >
           </panorama-nav>
         </div><!-- header -->
@@ -40,7 +41,25 @@
               <input type="checkbox" id="publish-name" name="publish-name" checked />
               <label for="publish-name">Ok to publish name?</label>
               <input type="text" id="name" name="name" required placeholder="Name (optional)" autocorrect="off" autocomplete="off"/>
-              <input type="button" value="Submit" onclick="submitStory()"/>
+              <div id="submit-container">
+                <input type="button" value="Submit" onclick="submitStory()"/>
+                <!-- Free icon from https://loading.io/ -->
+                <img id="submit-progress" class="hidden" src="images/dual-ring-0.7s-21px.gif"/>
+                <div id="submit-success-container" class="hidden">
+                  <!-- from https://icons.getbootstrap.com/icons -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                  </svg>
+                  <span id="submit-success-message"></span>
+                </div>
+                <div id="submit-error-container" class="hidden">
+                  <!-- from https://icons.getbootstrap.com/icons -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  </svg>
+                  <span id="submit-error-message"></span>
+                </div>
+              </div>
               <p>Once submitted, your story will be reviewed by our team and posted within one week (subject to community + privacy guidelines).</p>
             </div><!-- your-story-and-submit -->
             <p id="see-other-stories">See other stories; click on the markers</p>

@@ -14,6 +14,7 @@
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/panorama.css">
+  <link rel="stylesheet" type="text/css" href="css/explore.css">
   <link rel="stylesheet" type="text/css" href="css/city-landmarks-tour.css">
 </head>
 <body class="section-4">
@@ -23,13 +24,13 @@
         <div class="header">
           <h1>City Landmarks Tour</h1>
           <panorama-nav
-            backURL="tour-flushing-meadows-corona-park.html"
-            forwardURL="zoom-to-the-panorama.html"
-            exploreButton="true"
+            back-url="tour-flushing-meadows-corona-park.html"
+            forward-url="zoom-to-the-panorama.html"
+            explore-button
           >
           </panorama-nav>
         </div><!-- header -->
-        <div id="cesium-container" class="fullSize">
+        <div id="cesium-container" class="full-page-below-header">
           <div id="side-panel">
             <div id="side-panel-background">
             </div>
@@ -57,7 +58,7 @@
             </div>
             <h2 id="fly-out-title">Flyout!</h2>
             <div id="fly-out-image-container">
-              <img id="fly-out-image" width="400px" />
+              <img id="fly-out-image" width="100%" />
             </div>
             <div id="fly-out-image-caption"></div>
           </div>

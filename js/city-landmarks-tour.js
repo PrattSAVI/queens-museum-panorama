@@ -1,3 +1,17 @@
+// If the location has no height, what to use
+const DEFAULT_LOCATION_HEIGHT = 200;
+
+const BILLBOARD_IMAGE = 'images/marker_pink.svg';
+const BILLBOARD_HEIGHT = 200;
+const BILLBOARD_WIDTH = 200;
+
+const MAXIMUM_ZOOM_DISTANCE = 50000;
+const MINIMUM_ZOOM_DISTANCE = 1000;
+
+const FLYTO_OFFSET_HEADING = 29; // 29 degrees to the east of north, to line up with Manhattan's grid
+const FLYTO_OFFSET_PITCH = -30; // 30 degrees down
+const FLYTO_OFFSET_RANGE = 2500; // metres
+
 let viewer = null;
 let selectedLocation = null;
 
@@ -60,9 +74,13 @@ $(document).ready(function(){
       timeline: false,
       navigationHelpButton: false, //we might need to reposition this, or recreate it?
       navigationInstructionsInitiallyVisible: false, //default true 
-      imageryProvider: mapbox     
+      imageryProvider: mapbox, 
+      skyBox: false    
     }
   );
+  
+  // set the background color to white:
+  viewer.scene.backgroundColor = Cesium.Color.clone(Cesium.Color.GREY);
 
   // TODO we might want to order these in the order we want them to render?
   // 1409363 is the QM asset
@@ -78,9 +96,9 @@ $(document).ready(function(){
   })
 
   // how far away can we zoom out
-  viewer.scene.screenSpaceCameraController.maximumZoomDistance = 50000;
+  viewer.scene.screenSpaceCameraController.maximumZoomDistance = MAXIMUM_ZOOM_DISTANCE;
   // how close can we zoom in
-  viewer.scene.screenSpaceCameraController.minimumZoomDistance = 1000;
+  viewer.scene.screenSpaceCameraController.minimumZoomDistance = MINIMUM_ZOOM_DISTANCE;
 
   viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
 
@@ -96,45 +114,55 @@ $(document).ready(function(){
     locations = _locations
 
     locations.forEach((location, i) => {
+      //this might be handy to use as a key
+      location.location_index = i
       var entity = viewer.entities.add({
         name : location.name,
         properties: { locationIndex: i}, //this doesn't seem to like storing a proper object, e.g. when I tried storying an object with objects as properties, it didn't like it
-        position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200),
-        model: {
-          uri: "./3d/map_pointer/scene.gltf",
-          minimumPixelSize: 25,
-          scale: 50,
-          maximumScale: 2000,
-        }
-        // billboard : {
-        //   image : 'images/marker_ltgreen.svg',
-        //   sizeInMeters:true,
-        //   width : 200,
-        //   height : 200
+        
+        position : Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : DEFAULT_LOCATION_HEIGHT),
+        // model: {
+        //   uri: "./3d/map_pointer/scene.gltf",
+        //   minimumPixelSize: 25,
+        //   scale: 50,
+        //   maximumScale: 2000,
         // }
+        billboard : {
+          image : BILLBOARD_IMAGE,
+          sizeInMeters:true,
+          width : BILLBOARD_WIDTH,
+          height : BILLBOARD_HEIGHT
+        }
       });
+      // https://cesium.com/learn/cesiumjs/ref-doc/Billboard.html#scaleByDistance
+      // Set a billboard's scaleByDistance to scale by 1 when the
+      // camera is 5000 meters from the billboard and 2 as
+      // the camera distance approaches 20000 meters.
+      entity.billboard.scaleByDistance = new Cesium.NearFarScalar(5000, 1, 20000, 2);
+
       //store the marker entity in the location object
-      location.entity = entity
+      location.entity = entity;
       
       //also create pointers so we can navigate the array of locations (via previous/next pointers
-      location.previousLocation = previousLocation
+      location.previousLocation = previousLocation;
       if (previousLocation)
-        previousLocation.nextLocation = location
+        previousLocation.nextLocation = location;
     
       //remember this location for the next iteration
-      previousLocation = location
+      previousLocation = location;
     })
 
     d3.select("#side-panel-locations")
     .selectAll("li")
     .data(locations)
     .enter().append("li")
+      .attr("id", function(d) { return `side-panel-location-${d.location_index}`; })
+      .on("click", function(event, d) {
+        flyTo(d)
+        showFlyout(d)
+      })
       .append("a")
-        .on("click", function(event, d) {
-          flyTo(d)
-          showFlyout(d)
-        })
-        .text(function(d) { return d.name; })  
+        .text(function(d) { return d.name; }) 
     
     flyTo(locations[0])
 
@@ -205,15 +233,21 @@ function onToggleSidePanel(){
 
 function flyTo(location){
   if (location && (selectedLocation == null || selectedLocation.name != location.name)){ //only fly to a new location
+    if (selectedLocation){
+      document.getElementById("side-panel-location-" + selectedLocation.location_index).classList.remove("selected");
+    }
+    document.getElementById("side-panel-location-" + location.location_index).classList.add("selected");
+
     selectedLocation = location
+
     viewer.flyTo(
       location.entity,
       {
         duration: 3.0, //Take 3 seconds to fly to the location
         offset: new Cesium.HeadingPitchRange(
-          Cesium.Math.toRadians(29), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
-          Cesium.Math.toRadians(-30), //Pitch
-          2500 //Range in metres
+          Cesium.Math.toRadians(FLYTO_OFFSET_HEADING), //Heading, we offset to 29 degrees to the NE, which is the orientation of manhattan, but we might want to change this.
+          Cesium.Math.toRadians(FLYTO_OFFSET_PITCH), //Pitch
+          FLYTO_OFFSET_RANGE //Range in metres
         )
       }
     ).then(
@@ -221,11 +255,15 @@ function flyTo(location){
         /* code if successful */ 
         console.log("flyTo successful")
         // Lock the camera so it looks at the location
-        var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : 200);
+        var center = Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, location.height ? location.height : DEFAULT_LOCATION_HEIGHT);
         var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
         viewer.scene.camera.lookAtTransform(
           transform, 
-          new Cesium.HeadingPitchRange(Cesium.Math.toRadians(29), Cesium.Math.toRadians(-30), 2500)
+          new Cesium.HeadingPitchRange(
+            Cesium.Math.toRadians(FLYTO_OFFSET_HEADING), 
+            Cesium.Math.toRadians(FLYTO_OFFSET_PITCH), 
+            FLYTO_OFFSET_RANGE //Range in metres
+          )
         );
       },
       function(error) {
