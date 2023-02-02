@@ -38,9 +38,9 @@
             <div id="geocoder" class="geocoder"></div>
             <div id="your-story-and-submit"><!-- Hidden until the user searches for and selects a location -->
               <textarea id="your-story" name="your-story" cols="40" rows="5" placeholder="Share your story here"></textarea>
-              <input type="checkbox" id="publish-name" name="publish-name" checked />
+              <input type="checkbox" id="publish-your-name" name="publish-your-name" checked />
               <label for="publish-name">Ok to publish name?</label>
-              <input type="text" id="name" name="name" required placeholder="Name (optional)" autocorrect="off" autocomplete="off"/>
+              <input type="text" id="your-name" name="your-name" required placeholder="Name (optional)" autocorrect="off" autocomplete="off"/>
               <div id="submit-container">
                 <input type="button" value="Submit" onclick="submitStory()"/>
                 <!-- Free icon from https://loading.io/ -->
@@ -65,10 +65,7 @@
             <p id="see-other-stories">See other stories; click on the markers</p>
           </div><!-- add-story -->
           <div id="selected-location">
-            <div id="selected-location-location">
-            </div>
-            <div id="selected-location-story">
-            </div>
+
           </div> <!-- selected-location -->
         </div><!-- map -->
       </div><!-- content-block -->
