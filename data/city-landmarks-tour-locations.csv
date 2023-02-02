@@ -1,7 +1,7 @@
 name,address,latitude,longitude,height,image_caption,image_url
 Queens Museum ,"Queens Museum, Queens, NY ",40.745914,-73.8467247,150,Queens Museum Caption,images/city-landmarks-tour/queens-museum.jpg
 "Manhattan, grid system","1478 Times Sq, NY NY ",40.7560363,-73.9862313,1000,"Manhattan, grid system Caption",images/city-landmarks-tour/manhattan-grid-system.jpg
-Empire State Building,"20 W 34th St., New York, NY 10001",40.7477005,-73.9857948,900,Empire State Building Caption,images/city-landmarks-tour/empire-state-building.jpg
+Empire State Building,"20 W 34th St., New York, NY 10001",40.7477205,-73.9857748,900,Empire State Building Caption,images/city-landmarks-tour/empire-state-building.jpg
 Chrysler Building,"405 Lexington Ave, New York, NY 10174",40.7517105,-73.9755995,700,Chrysler Building Caption,images/city-landmarks-tour/chrysler-building.jpg
 Twin Towers,"World Trade Center, New York, NY 10006",40.7115242,-74.0121523,1000,Twin Towers Caption,images/city-landmarks-tour/twin-towers.jpg
 George Washington Bridge,"George Washington Bridge, Fort Lee, NJ 07024",40.8516964,-73.9527159,,George Washington Bridge Caption,images/city-landmarks-tour/george-washington-bridge.png
@@ -11,7 +11,7 @@ Central Park,"Central Park, NY NY 10024",40.7825547,-73.9677721,,Central Park Ca
 Battery Park,"The Battery, New York, NY 10004",40.7029312,-74.0153603,,Battery Park Caption,images/city-landmarks-tour/battery-park.jpg
 Statue of Liberty,"40.689254, -74.045189",40.6895453,-74.0449292,,Statue of Liberty Caption,images/city-landmarks-tour/statue-of-liberty.png
 Verrazzano-Narrows Bridge,"40.606509, -74.044930",40.6066162,-74.0446602,,Verrazzano-Narrows Bridge Caption,images/city-landmarks-tour/verrazano-narrows-bridge.jpg
-Brooklyn Bridge,"Brooklyn Bridge Blvd, New York, NY 10038",40.7073228,-73.9982331,,Brooklyn Bridge Caption,images/city-landmarks-tour/brooklyn-bridge.png
+Brooklyn Bridge,"Brooklyn Bridge Blvd, New York, NY 10038",40.7073228,-73.9950331,100,Brooklyn Bridge Caption,images/city-landmarks-tour/brooklyn-bridge.png
 Coney Island,"40.574069, -73.970208",40.5745112,-73.9700961,,Coney Island Caption,images/city-landmarks-tour/coney-island.jpg
 The Rockaways,"40.577797, -73.834006",40.578713,-73.83407,,The Rockaways Caption,
 John F. Kennedy Airport,"40.649760, -73.788782",40.6485349,-73.7903723,,John F. Kennedy Airport Caption,images/city-landmarks-tour/john-f-kennedy-airport.jpg
@@ -19,7 +19,7 @@ Unisphere,"40.7464003,-73.8451935",40.7463889,-73.8450676,,Unisphere Caption,ima
 Citi Field,"40.7570052,-73.8461327",40.7570877,-73.8458213,,Citi Field Caption,images/city-landmarks-tour/citi-field.jpg
 LaGuardia,"40.7754458,-73.8711164,",40.7754458,-73.8711164,,LaGuardia Caption,images/city-landmarks-tour/laguardia-airport.png
 Whitestone Bridge,"Whitestone Bridge, NY ",40.8014128,-73.8292726,,Whitestone Bridge Caption,images/city-landmarks-tour/whitestone-bridge.png
-Throgs Neck Bridge,"Throgs Neck Bridge, New York ",40.8050804,-73.7937797,,Throgs Neck Bridge Caption,images/city-landmarks-tour/throgs-neck-bridge.jpg
+Throgs Neck Bridge,"Throgs Neck Bridge, New York ",40.7950004,-73.7937797,,Throgs Neck Bridge Caption,images/city-landmarks-tour/throgs-neck-bridge.jpg
 Pelham Bay Park,"Pelham Bay Park, The Bronx, NY ",40.8667516,-73.8101103,,Pelham Bay Park Caption,
 Van Cortlandt Park,"Van Cortlandt Park, Queens, NY ",40.8972233,-73.8860668,,Van Cortlandt Park Caption,
 Bronx Zoo,"Bronx Zoo, The Bronx, NY ",40.8505949,-73.8769982,,Bronx Zoo Caption,images/city-landmarks-tour/bronx-zoo.png
