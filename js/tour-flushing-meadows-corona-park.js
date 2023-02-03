@@ -31,10 +31,10 @@ function handleResize() {
     const stepHeight = Math.floor(window.innerHeight * 1);
     d3.selectAll(".step.browser-height").style("margin-top", stepHeight + "px");
 
-    const justAboveTheFoldTop = d3.select(scrollingStoryViewport).node().getBoundingClientRect().height - 250;
+    const justAboveTheFoldTop = d3.select(scrollingStoryViewport).node().getBoundingClientRect().height - d3.select(".step.just-above-the-fold h2").node().getBoundingClientRect().height - 27;
     d3.selectAll(".step.just-above-the-fold").style("margin-top", justAboveTheFoldTop + "px");
     //let's make it visible now so that we can't see the shift
-    scrollingStory.classList.remove("hidden")
+    //scrollingStory.classList.remove("hidden")
 
 }
 
@@ -138,7 +138,7 @@ var scroller = scrollama();
 
 scroller
     .setup({
-        step: "#scrolling-story .step",
+        step: ".step",
         root: scrollingStoryViewport,
         offset: 1,
         debug: false
