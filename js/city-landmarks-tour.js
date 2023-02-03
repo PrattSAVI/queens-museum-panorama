@@ -10,7 +10,7 @@ const MINIMUM_ZOOM_DISTANCE = 1000;
 
 const FLYTO_OFFSET_HEADING = 29; // 29 degrees to the east of north, to line up with Manhattan's grid
 const FLYTO_OFFSET_PITCH = -30; // 30 degrees down
-const FLYTO_OFFSET_RANGE = 2500; // metres
+const FLYTO_OFFSET_RANGE = 5000; // metres
 
 let viewer = null;
 let selectedLocation = null;
