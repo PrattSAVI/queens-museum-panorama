@@ -1,0 +1,315 @@
+html,
+body {
+    color: black;
+    font-family: forma-djr-text, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+body.section-home { 
+  background-color: black; 
+}
+
+.dark-background {
+  background-color: black;
+}
+
+/* section-1: The New York World’s Fair */
+body.section-1 {
+  background-color: #F5CCE0; 
+}
+
+/* section-2: The Panorama at the 1964 –1965 New York World’s Fair */
+body.section-2 {
+  background-color: #35C775; 
+}
+
+/* section-3: The New York City Building, Then and Now */
+body.section-3 {
+  background-color: #FA8CA3; 
+}
+
+/* section-4: Explore the Panorama */
+body.section-4, body.section-4 #add-story {
+  background-color: #B9FA05;   
+}
+
+/* White font if we have a dar background */
+.dark-background, .dark-background a, .dark-background a:visited, .dark-background a:active {
+  color: white;
+}
+
+h1 {
+  /* font-size: 3em; */
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 32px; /* added margin to put space between title and copy -- there may be better ways to control spacing but where margin and padding was added, the intent is to fine tune the spacing between conduit, text, captions, photos, etc */
+}
+
+h1, h2, h3 {
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+p {
+  line-height: 1.7rem;
+  font-size: 1.3em;
+  margin-top: 48px;
+  margin-bottom: 18px;  /* changed this to 18 px from 12*/
+}
+.conduit h1, .conduit h2 {
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  margin-block-start: 18px;
+  margin-block-end: 18px;
+}
+
+.image-container.h1-logo {
+  text-align: center;
+  margin: 48px auto;
+}
+
+.image-container.h1-logo img {
+  height: auto;
+  width: auto;
+}
+
+body, a, a:visited, a:active {
+  color: black;
+  text-decoration: none;
+}
+
+.content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0;
+  background-color: inherit;
+  position: relative;
+}
+
+/* Use the conduit or content block to contain content, it gives the content consistent margins */
+.conduit, .content-block {
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.conduit {
+  position: relative;
+  border-top: 2px solid black;
+  padding: 18px; /* changed this to 18 px from 12*/
+  background-color: inherit;
+  /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
+}
+
+.conduit.end-below {
+  border-bottom: 2px solid black;
+}
+
+.dark-background .conduit{
+  border-top: 2px solid white;
+}
+
+.conduit.around-the-right {
+  border-top-right-radius: 25px;
+  border-right: 2px solid black;
+}
+
+.dark-background .conduit.around-the-right {
+  border-right: 2px solid white;
+}
+
+.conduit.around-the-right.connect-below {
+  border-bottom-right-radius: 25px;
+}
+
+.conduit.connect-above {
+  position: relative;
+} 
+
+.conduit.around-the-left {
+  border-top-left-radius: 25px;
+  border-left: 2px solid black;
+}
+
+.conduit.around-the-left.end-below {
+  border-bottom-left-radius: 25px;
+  border-bottom: 2px solid black;
+  margin-bottom: 25px;
+}
+
+.dark-background .conduit.around-the-left {
+  border-left: 2px solid white;
+}
+
+.conduit.around-the-right.connect-below::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  height: 26px;
+  width: 26px;
+  z-index: 1;
+  /* this should inherit the section's color and cover the botched rounded corner of the table */
+  background-color: inherit;
+  /* per https://nikitahl.com/using-svg-background-image-with-css-code-only */
+  /* and this tool: https://www.bayustudio.com/app/svg-encoder/ */
+  /*
+    <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+      <rect x="-25" y="-25" rx="25" ry="25" width="50" height="50" fill="none" stroke="black" stroke-width="2"/>
+    </svg>
+  */
+  background-image: url("data:image/svg+xml,%3csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='-25' y='-25' rx='25' ry='25' width='50' height='50' fill='none' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
+} 
+
+.dark-background .conduit.around-the-right.connect-below::after {
+  background-image: url("data:image/svg+xml,%3csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='-25' y='-25' rx='25' ry='25' width='50' height='50' fill='none' stroke='white' stroke-width='2'/%3e%3c/svg%3e");
+}
+.conduit.around-the-left.connect-below::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  height: 26px;
+  width: 26px;
+  z-index: 1;
+  /* this should inherit the section's color and cover the botched rounded corner of the table */
+  background-color: inherit;
+  /* per https://nikitahl.com/using-svg-background-image-with-css-code-only */
+  /* and this tool: https://www.bayustudio.com/app/svg-encoder/ */
+  /*
+    <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="-25" rx="25" ry="25" width="50" height="50" fill="none" stroke="black" stroke-width="2"/>
+    </svg>
+  */
+  background-image: url("data:image/svg+xml,%3csvg width='52' height='52' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='-27' rx='25' ry='25' width='52' height='52' fill='none' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
+} 
+
+.dark-background .conduit.around-the-left.connect-below::after {
+  background-image: url("data:image/svg+xml,%3csvg width='52' height='52' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='-27' rx='25' ry='25' width='52' height='52' fill='none' stroke='white' stroke-width='2'/%3e%3c/svg%3e");
+}
+
+.conduit.end-with-arrow {
+  margin-bottom: 50px;
+}
+
+.conduit.around-the-right.end-with-arrow::after {
+  content: '';
+  position: absolute;
+  right: -22px;
+  bottom: -20px;
+  height: 20px;
+  width: 40px;
+  /* per https://nikitahl.com/using-svg-background-image-with-css-code-only */
+  /* and this tool: https://www.bayustudio.com/app/svg-encoder/ */
+  /*
+    <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <line stroke-width="2" y2="39" x2="19" y1="0" x1="19" stroke="#000000" fill="none"/>
+        <line stroke-width="2" y2="0" x2="39" y1="19" x1="19" stroke="#000000" fill="none"/>
+        <line stroke-width="2" y2="19" x2="19" y1="0" x1="0" stroke="#000000" fill="none"/>
+      </g>
+    </svg>
+  */
+  background-image: url("data:image/svg+xml,%3csvg width='40' height='20' xmlns='http://www.w3.org/2000/svg'%3e%3cg%3e%3cline stroke-width='2' y2='39' x2='19' y1='0' x1='19' stroke='black' fill='none'/%3e%3cline stroke-width='2' y2='0' x2='39' y1='19' x1='19' stroke='black' fill='none'/%3e%3cline stroke-width='2' y2='19' x2='19' y1='0' x1='0' stroke='black' fill='none'/%3e%3c/g%3e%3c/svg%3e");
+}
+
+.nav div {
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.header {
+  display: flex;
+}
+
+.header panorama-nav {
+  margin-left: auto;
+}
+
+.header h1 {
+  font-size: 24px; 
+}
+
+.image-container {
+  padding-bottom: 0px;
+}
+
+.image-container.space-above {
+  padding-top:48px;
+}
+
+.image-container img{
+  width:100%;
+  height:auto;
+}
+
+.image-container .caption {
+  text-align: left;
+  margin-top: 18px;
+  font-size: .85em;
+}
+
+.video-container video {
+  width: 100%    !important;
+  height: auto   !important;  
+  padding-bottom: 32px;
+}
+
+/* Explore section styles */
+
+.explore-links {
+  display: flex;
+}
+
+.explore-links .image-container {
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+.explore-links .image-container.h1-logo {
+  margin-bottom: -20px;
+}
+
+.explore-links ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.explore-links li a {
+  font-size: 18px;
+  display: block;
+  margin: 6px 12px;
+  padding: 12px;
+  padding-top:18px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.explore-links li a:hover {
+  background-color: black;
+  color: white;
+}
+
+
+/* Section for styling various text elements */
+
+.text-italics {
+  font-style: italic;
+}
+
+
+
+
