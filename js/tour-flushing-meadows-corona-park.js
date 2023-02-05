@@ -34,7 +34,7 @@ function handleResize() {
     const justAboveTheFoldTop = d3.select(scrollingStoryViewport).node().getBoundingClientRect().height - d3.select(".step.just-above-the-fold h2").node().getBoundingClientRect().height - 27;
     d3.selectAll(".step.just-above-the-fold").style("margin-top", justAboveTheFoldTop + "px");
     //let's make it visible now so that we can't see the shift
-    //scrollingStory.classList.remove("hidden")
+    scrollingStory.classList.remove("hidden")
 
 }
 
@@ -138,9 +138,11 @@ var scroller = scrollama();
 
 scroller
     .setup({
-        step: ".step",
-        root: scrollingStoryViewport,
-        offset: 1,
+        step: "#scrolling-story .step",
+        //root: scrollingStoryViewport, // root works if scrollingStoryViewport is at the bottom of the browser window, but once we have a bottom margin or bottom = x, only container works
+        container: scrollingStoryViewport,
+        // offset: 1, // likewise if scrollingStoryViewport is not flush at the bottom of the browser, we can't use 1 otherwise the onStepEnters won't fire, so we have to use something < 1
+        offset: 0.95, 
         debug: false
     })
     .onStepEnter(onStepEnter);
