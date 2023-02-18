@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The manifest allows the web application to run full screen when a home page shortcut is added to the iPad
+     ..."display": "standalone", 
+-->
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="https://use.typekit.net/oul8zgw.css">
   <link rel="stylesheet" type="text/css" href="css/panorama.css">
 </head>
@@ -17,13 +21,13 @@
       </panorama-nav>
     </div>
     <div class="conduit around-the-left connect-below">
-      <h1><span class="text-italics">The Panorama</span> of the<br/>City of New York</h1>
+      <h1><span class="text-italics">The Panorama of the<br/>City of New York</span></h1>
     </div><!-- conduit -->
     <div class = "conduit around-the-right connect-above end-below">
       <h2>Explore the Digital Twin</h2>
     </div><!-- conduit -->
     <div class="content-block">
-      <h3><img alt="QUEENS MUSEUM" src="images/queens-museum-logo.png" width="200px"/></h3>
+      <h3><img alt="QUEENS MUSEUM" src="images/queens-museum-logo.png" width="400px"/></h3>
     </div><!-- content-block -->
   </div><!-- content-->
   <script type="module" src="./components/panorama-components.js"></script>

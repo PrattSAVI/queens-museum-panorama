@@ -1,0 +1,12 @@
+{ 
+  "name": "Queens Museum Panorama", 
+  "short_name": "Panorama", 
+  "_comment_start_url": "https://DomainName",
+  "display": "standalone", 
+  "_comment_icons": [{ 
+    "src": "images/logo.png", 
+    "sizes": "512x512", 
+    "type": "image/png" 
+  }] 
+
+}
