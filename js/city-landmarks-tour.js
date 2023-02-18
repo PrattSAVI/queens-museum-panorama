@@ -74,8 +74,8 @@ $(document).ready(function(){
       timeline: false,
       navigationHelpButton: false, //we might need to reposition this, or recreate it?
       navigationInstructionsInitiallyVisible: false, //default true 
-      imageryProvider: mapbox, 
-      skyBox: false    
+      // imageryProvider: mapbox, 
+      skyBox: false
     }
   );
   
@@ -85,16 +85,31 @@ $(document).ready(function(){
   // TODO we might want to order these in the order we want them to render?
   // 1409363 is the QM asset
   tileAssets = [ 1409363, 1410856, 1409427,1409426,1409424,1409420,1409417,1409405,1409402,1409397,1409393,1409386,1409380,1409375,1409369,1409359,1409353,1409338,1409337,1409329,1409327,1409322,1409317,1409313,1409300,1409252,1409251,1409209,1409206,1409170,1409165,1409137,1409123,1409122,1409102,1409101,1409087,1408942,1408936,1408935,1408930,1408929,1408927 ];
-  //const numberOfTilesetsToLoad = null; //Give us the ability to test loading a smaller number of tilesets
-  const numberOfTilesetsToLoad = 10; //Let us test loading a smaller number of tilesets
+  const numberOfTilesetsToLoad = null; //Give us the ability to test loading a smaller number of tilesets
+  // const numberOfTilesetsToLoad = 10; //Let us test loading a smaller number of tilesets
 
   tileAssets.forEach((tileAsset, i) => {
     if ((!numberOfTilesetsToLoad) || (i < numberOfTilesetsToLoad)){
       viewer.scene.primitives.add(
         new Cesium.Cesium3DTileset({
+            // https://cesium.com/learn/cesiumjs/ref-doc/Cesium3DTileset.html
             url: Cesium.IonResource.fromAssetId(tileAsset),
-            maximumScreenSpaceError: 16,
-            maximumMemoryUsage: 512
+            maximumScreenSpaceError: 64,
+            maximumMemoryUsage: 10,
+            skipLevelOfDetail: true, // Determines if level of detail skipping should be applied during the traversal.
+            debugShowMemoryUsage: false,
+            maximumScreenSpaceError: 200, // Default: 16. The maximum screen space error used to drive level of detail refinement.
+            // foveatedTimeDelay: 2 // Used when Cesium3DTileset#foveatedScreenSpaceError is true to control how long in seconds to wait after the camera stops moving before deferred tiles start loading in. This time delay prevents requesting tiles around the edges of the screen when the camera is moving. Setting this to 0.0 will immediately request all tiles in any given view.
+            // dynamicScreenSpaceError : true,
+            // dynamicScreenSpaceErrorDensity : 0.00278,
+            // dynamicScreenSpaceErrorFactor : 4.0,
+            // dynamicScreenSpaceErrorHeightFalloff : 0.25
+            baseScreenSpaceError : 1024,
+            skipScreenSpaceErrorFactor : 16,
+            skipLevels : 1,
+            immediatelyLoadDesiredLevelOfDetail : false,
+            loadSiblings : false,
+            cullWithChildrenBounds : true
         })
       );
     };
