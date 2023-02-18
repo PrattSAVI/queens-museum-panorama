@@ -4,7 +4,6 @@ bump
 
 Use the following links to view the prototype
 - [Main section](https://murraycox.github.io/queens-museum-panorama/), working on styling
-- [Participatory Map](https://murraycox.github.io/queens-museum-panorama/participatory-map), basis proof of concept
 
 ## Running on your local machine
 
@@ -68,3 +67,19 @@ For when you've made changes locally and want to upload them to https://github.c
 Make sure you've added and committed all of your changes into your local repository
 
 TODO
+
+## Design
+
+The design of the Queens Museum Panorama project has been optimized to be displayed landscape on the Apple iPad A2602 models which are currently used for exhibitions.
+
+9th Generation iPad, A2602
+Design Specs:
+10.2" diagonal
+* Retina display
+* 2160-by-1620-pixel resolution at 264 pixels per inch (ppi)
+* (Screen Size: 1080-by-810, device independent pixels ‘points’ for CSS)
+* The web application running full screen is 1080-by-790 (20 pixels for the iPad status bar at the top)
+
+[Other Tech specs](https://support.apple.com/kb/SP849?locale=en_US)
+
+
