@@ -48,7 +48,7 @@ body.section-credits {
 
 h1 {
   /* font-size: 3em; */
-  font-size: 48px;
+  font-size: 80px;
 }
 
 h2 {
@@ -78,11 +78,12 @@ h1, h2, h3 {
 }
 
 .section-home h1 {
-  margin-bottom: 150px;
+  margin-top: 30px;
+  margin-bottom: 200px;
 }
 
 .section-home h2 {
-  font-size: 36px;
+  font-size: 56px;
 }
 
 .section-home h3 {

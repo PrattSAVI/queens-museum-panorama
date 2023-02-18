@@ -95,7 +95,7 @@ ul.dashed > li:before {
 
 #toggle-side-panel{
   position: absolute;
-  left: 20px;
+  left: -32px;
   bottom: 20px;
 }
 
