@@ -58,8 +58,8 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 10px;
-  right: 10px;
+  left: 0;
+  right: 0;
   overflow-x: hidden; /* Hide horizontal scrollbar */
   overflow-y: scroll; /* Add vertical scrollbar */
   z-index: 3;
@@ -70,10 +70,11 @@
 #side-panel-locations {
   position: relative;
   width: 160px;
+
 }
 
 ul {
-  margin: 10px 0;
+  margin: 12px 12px;
   padding-inline-start: 15px;
 }
 
