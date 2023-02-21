@@ -11,11 +11,92 @@ const tour = {
             -0.2227992369431553
         ]
     },
-    stops: [
-        {
-
+    stops: {
+        "scene-2": {
+            cameraPosition: [
+                4.8127636935173115,
+                0.6855157632821853,
+                2.3813691577377445
+            ],
+            targetLocation: [
+                4.785263562323396,
+                0.6476057335162367,
+                -0.17772033105607
+            ]
+        },
+        "scene-3": {
+            cameraPosition: [
+                4.151882071706647,
+                0.6811372498971952,
+                -0.02787594569011345
+            ],
+            targetLocation: [
+                4.837988964850769,
+                0.7982169126259439,
+                -0.10682129772351641
+            ]
+        },
+        "scene-4": {
+            cameraPosition: [
+                5.234873032669884,
+                0.6783852795753871,
+                -0.11722169181213456
+            ],
+            targetLocation: [
+                4.9048423994836625,
+                0.8958428437560108,
+                -0.1571824438428475
+            ]
+        },
+        "scene-5": {
+            cameraPosition: [
+                5.598123335156016,
+                1.2167965156173548,
+                -0.03016527139268138
+            ],
+            targetLocation: [
+                4.9406551302023605,
+                0.8706317103949578,
+                -0.2081056675592846
+            ]
+        },
+        "scene-6": {
+            cameraPosition: [
+                5.683661893244516,
+                -0.5543508194888556,
+                0.037976669286635054
+            ],
+            targetLocation: [
+                5.489376248015667,
+                -0.25928847070816746,
+                -0.08657968499175124
+            ]
+        },
+        "scene-7": {
+            cameraPosition: [
+                3.860030330939561,
+                1.273784349634381,
+                0.031081535467549153
+            ],
+            targetLocation: [
+                4.213965303607448,
+                1.123142340694579,
+                -0.029758089335884717
+            ]
+        },
+        "scene-8": {
+            cameraPosition: [
+                6.827751956587205,
+                1.3808174348211353,
+                0.5649929131399765
+            ],
+            targetLocation: [
+                4.627626847133825,
+                0.4750373379760289,
+                -0.36984843960475583
+            ]
         }
-    ]
+    }
 }
 //URL ID for the Pratt SAVI Sketchfab Model of the Queens Museum Panorama
 //TODO: Change this to a model in a Queens Museum SketchFab account?
@@ -72,61 +153,15 @@ function onStepEnter(response) {
 
     //TODO document how to get these coordinates
     switch(response.element.id) {
-        case "scene-2":
-            var position = [
-                4.8127636935173115,
-                0.6855157632821853,
-                2.3813691577377445
-            ]
-            var target = [
-                4.785263562323396,
-                0.6476057335162367,
-                -0.17772033105607
-            ]
+        case "introduction":
+            var position = tour.initial.cameraPosition;
+            var target = tour.initial.targetLocation;
             updateCamera(position, target); 
-            break
-        case "scene-3":
-            var position = [
-                4.151882071706647,
-                0.6811372498971952,
-                -0.02787594569011345
-            ]
-            var target = [
-                4.837988964850769,
-                0.7982169126259439,
-                -0.10682129772351641
-            ]
-            updateCamera(position, target); 
-            break
-        case "scene-4":
-            var position = [
-                5.234873032669884,
-                0.6783852795753871,
-                -0.11722169181213456
-            ]
-
-            var target = [
-                4.9048423994836625,
-                0.8958428437560108,
-                -0.1571824438428475
-            ]
-            updateCamera(position, target); 
-            break
-        case "scene-5":
-            var position = [
-                5.598123335156016,
-                1.2167965156173548,
-                -0.03016527139268138
-            ]
-
-            var target = [
-                4.9406551302023605,
-                0.8706317103949578,
-                -0.2081056675592846
-            ]
-            updateCamera(position, target); 
-            break
+            break            
         default:
+            var position = tour.stops[response.element.id].cameraPosition;
+            var target = tour.stops[response.element.id].targetLocation;
+            updateCamera(position, target); 
     }
 
 }

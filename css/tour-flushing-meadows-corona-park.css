@@ -19,6 +19,7 @@
 
 #scrolling-story-viewport {
   overflow: scroll;
+  visibility: visible;
 }
 
 #scrolling-story{
