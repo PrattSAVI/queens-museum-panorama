@@ -78,7 +78,7 @@ $(document).ready(function(){
       timeline: false,
       navigationHelpButton: false, //we might need to reposition this, or recreate it?
       navigationInstructionsInitiallyVisible: false, //default true 
-      // imageryProvider: mapbox, 
+      imageryProvider: mapbox, 
       skyBox: false
     }
   );
