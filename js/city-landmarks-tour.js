@@ -5,8 +5,12 @@ const BILLBOARD_IMAGE = 'images/marker_pink.svg';
 const BILLBOARD_HEIGHT = 200;
 const BILLBOARD_WIDTH = 200;
 
-const MAXIMUM_ZOOM_DISTANCE = 50000;
-const MINIMUM_ZOOM_DISTANCE = 1000;
+const ENABLE_ZOOM = false;
+const MAXIMUM_ZOOM_DISTANCE = 5000;
+const MINIMUM_ZOOM_DISTANCE = 5000;
+
+const ENABLE_TILT = false;
+const ENABLE_TRANSLATE = false;
 
 const FLYTO_OFFSET_HEADING = 29; // 29 degrees to the east of north, to line up with Manhattan's grid
 const FLYTO_OFFSET_PITCH = -30; // 30 degrees down
@@ -115,10 +119,18 @@ $(document).ready(function(){
     };
   })
 
-  // how far away can we zoom out
-  viewer.scene.screenSpaceCameraController.maximumZoomDistance = MAXIMUM_ZOOM_DISTANCE;
-  // how close can we zoom in
-  viewer.scene.screenSpaceCameraController.minimumZoomDistance = MINIMUM_ZOOM_DISTANCE;
+
+  viewer.scene.screenSpaceCameraController.enableZoom = ENABLE_ZOOM;
+
+  if (ENABLE_ZOOM) {
+    // how far away can we zoom out
+    viewer.scene.screenSpaceCameraController.maximumZoomDistance = MAXIMUM_ZOOM_DISTANCE;
+    // how close can we zoom in
+    viewer.scene.screenSpaceCameraController.minimumZoomDistance = MINIMUM_ZOOM_DISTANCE;
+  }
+
+  viewer.scene.screenSpaceCameraController.enableTilt = ENABLE_TILT;
+  viewer.scene.screenSpaceCameraController.enableTranslate = ENABLE_TRANSLATE;
 
   viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
 
@@ -246,9 +258,9 @@ function onToggleSidePanel(){
   sidePanel.classList.toggle("collapsed")
   // TODO use an icon, not text
   if (sidePanel.classList.contains("collapsed"))
-    document.getElementById("toggle-side-panel-label").textContent = "Open"
+    document.getElementById("toggle-side-panel-image").src="images/icons/open_sidebar_tab_left_arrow.svg";
   else
-    document.getElementById("toggle-side-panel-label").textContent = "Close"
+    document.getElementById("toggle-side-panel-image").src="images/icons/open_sidebar_tab_right_arrow.svg";
 }
 
 function flyTo(location){

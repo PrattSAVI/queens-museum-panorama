@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.full-page-below-header, .full-page-below-header .cesium-viewer {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
 .full-page-height {
   position: relative;
   height: 100%;
@@ -25,7 +31,7 @@
   right: 0;
   width: 160px;
   padding: 10px 15px;
-  transition: width 1s;
+  transition: width 0.5;
 }
 
 #side-panel, #side-panel a, #side-panel a:visited, #side-panel a:active {
@@ -40,24 +46,34 @@
   left: 0;
   right: 0;
   width: auto;  
-  background-color: black;
-  opacity: 45%; 
   z-index: 2;
+  background-color: black;
+}
+
+.side-panel-transparent {
+  opacity: 75%;
+}
+
+#side-panel-locations-viewport {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: scroll; /* Add vertical scrollbar */
+  z-index: 3;
+  height: auto;
+  padding: 0;
 }
 
 #side-panel-locations {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  width: auto;
-  top: 12px;
-  bottom: 12px;
-  height: auto;
-  z-index: 3;
+  position: relative;
+  width: 160px;
 }
 
 ul {
-  margin: 0;
+  margin: 10px 0;
   padding-inline-start: 15px;
 }
 
@@ -86,11 +102,12 @@ ul.dashed > li:before {
 }
 
 #side-panel.collapsed {
-  width: 40px;
+  width: 10px;
+  padding: 0;
 }
 
 #side-panel.collapsed ul {
-  display: none;
+  /* display: none; */
 }
 
 #toggle-side-panel{

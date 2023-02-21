@@ -32,13 +32,15 @@
         </div><!-- header -->
         <div id="cesium-container" class="full-page-below-header">
           <div id="side-panel">
-            <div id="side-panel-background">
+            <div id="side-panel-background" class="side-panel-transparent">
             </div>
-            <ul id="side-panel-locations" class="dashed">
-            </ul>
-            <div id="toggle-side-panel">
-              <a onclick="onToggleSidePanel()" href="#" id="toggle-side-panel-label">
-                <img width="32" height="24" src="images/open_sidebar_tab_left_arrow.svg" />
+            <div id="side-panel-locations-viewport">
+              <ul id="side-panel-locations" class="dashed">
+              </ul>
+            </div>
+            <div id="toggle-side-panel" class="side-panel-transparent">
+              <a onclick="onToggleSidePanel()" href="#" id="toggle-side-panel-link">
+                <img width="32" height="24" src="images/icons/open_sidebar_tab_right_arrow.svg" id="toggle-side-panel-image" />
               </a>
             </div>
           </div><!-- side-panel -->
@@ -56,7 +58,9 @@
                   <path id="forward-path" data-name="forward" d="M345.2,26.165l8.77,8.048L345,41.987" transform="translate(-335.902 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
                 </svg>
               </div>
-              <div id="fly-out-control-close" class="fly-out-control justify-right enabled">Close</div>
+              <div id="fly-out-control-close" class="fly-out-control justify-right enabled">
+                <img src="images/icons/close_x_white.svg" width="12" height="12" />
+              </div>
             </div>
             <h2 id="fly-out-title">Flyout!</h2>
             <div id="fly-out-image-container">
