@@ -63,6 +63,8 @@ h1, h2, h3 {
   margin-bottom: 32px;
 }
 
+
+
 .conduit p {
   line-height: 1.7rem;
   font-size: 1.3em;
@@ -263,7 +265,7 @@ body, a, a:visited, a:active {
 }
 
 .header h1 {
-  font-size: 24px; 
+  font-size: 22px; 
 }
 
 .image-container {
@@ -341,3 +343,40 @@ body, a, a:visited, a:active {
 
 
 
+
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 60px;
+  }
+
+  .section-home h1 {
+    margin-top: 30px;
+    margin-bottom: 100px;
+  }
+  
+  .section-home h2 {
+    font-size: 46px;
+  }
+  
+  .section-home h3 {
+    font-size: 28px;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  
+  .header h1 {
+    font-size: 18px; 
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+  
+  .header h1 {
+    font-size: 14px; 
+  }
+
+}
