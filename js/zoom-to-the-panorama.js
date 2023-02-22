@@ -28,35 +28,49 @@
         timeline: false,
         navigationHelpButton: true, 
         navigationInstructionsInitiallyVisible: true, //default
-        imageryProvider: mapbox   
+        imageryProvider: mapbox,
+        skyBox: false  
       }
     );
 
-    let tileset = null
-    //TODO we might want to order these in the order we want them to render?
+    
+    // set the background color to white:
+    viewer.scene.backgroundColor = Cesium.Color.clone(Cesium.Color.GREY);
+
+    // TODO we might want to order these in the order we want them to render?
     // 1409363 is the QM asset
-    tileAssets = [ 1409363,1410856,1409427,1409426,1409424,1409420,1409417,1409405,1409402,1409397,1409393,1409386,1409380,1409375,1409369,1409359,1409353,1409338,1409337,1409329,1409327,1409322,1409317,1409313,1409300,1409252,1409251,1409209,1409206,1409170,1409165,1409137,1409123,1409122,1409102,1409101,1409087,1408942,1408936,1408935,1408930,1408929,1408927 ];
+    tileAssets = [ 1409363, 1410856, 1409427,1409426,1409424,1409420,1409417,1409405,1409402,1409397,1409393,1409386,1409380,1409375,1409369,1409359,1409353,1409338,1409337,1409329,1409327,1409322,1409317,1409313,1409300,1409252,1409251,1409209,1409206,1409170,1409165,1409137,1409123,1409122,1409102,1409101,1409087,1408942,1408936,1408935,1408930,1408929,1408927 ];
+    const numberOfTilesetsToLoad = null; //Give us the ability to test loading a smaller number of tilesets
+    // const numberOfTilesetsToLoad = 10; //Let us test loading a smaller number of tilesets
+
     tileAssets.forEach((tileAsset, i) => {
-      tileset = viewer.scene.primitives.add(
-        new Cesium.Cesium3DTileset({
-            url: Cesium.IonResource.fromAssetId(tileAsset),
-            maximumScreenSpaceError: 16,
-            maximumMemoryUsage: 512
-        })
-      )
+      if ((!numberOfTilesetsToLoad) || (i < numberOfTilesetsToLoad)){
+        tileset = viewer.scene.primitives.add(
+          new Cesium.Cesium3DTileset({
+              url: Cesium.IonResource.fromAssetId(tileAsset),
+              maximumScreenSpaceError: 64,
+              maximumMemoryUsage: 10,
+              skipLevelOfDetail: true, // Determines if level of detail skipping should be applied during the traversal.
+              debugShowMemoryUsage: false,
+              maximumScreenSpaceError: 200, // Default: 16. The maximum screen space error used to drive level of detail refinement.
+              baseScreenSpaceError : 1024,
+              skipScreenSpaceErrorFactor : 16,
+              skipLevels : 1,
+              immediatelyLoadDesiredLevelOfDetail : false,
+              loadSiblings : false,
+              cullWithChildrenBounds : true
+          })
+        )
+        }
     })
 
-    //const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());   
-    // Fly the camera to the Queens Museum at the given longitude, latitude, and height.
-    // viewer.camera.flyTo({
-    //   destination : Cesium.Cartesian3.fromDegrees(-73.846707, 40.7458395, 2900),   
-    //   orientation : {
-    //     heading : Cesium.Math.toRadians(0.0),
-    //     pitch : Cesium.Math.toRadians(-45.0),
-    //   }
-    // });
+    viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
+
 
     viewer.camera.lookAt(
       Cesium.Cartesian3.fromDegrees(-73.846707, 40.7458395, 200),  //center
-      new Cesium.HeadingPitchRange(Cesium.Math.toRadians(0), Cesium.Math.toRadians(-45), 2900) 
+      new Cesium.HeadingPitchRange(
+        Cesium.Math.toRadians(29), 
+        Cesium.Math.toRadians(-30), 
+        5000) 
     );
