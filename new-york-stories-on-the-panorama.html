@@ -34,12 +34,12 @@
         </div><!-- header -->
         <div id="map" class="full-page-below-header">
           <div id="add-story">
-            <h2>Add your favorite New York City memory to the Digital Twin</h2>
+            <h2>What's your favorite memory of New York City? Share it on the Digital Twin!</h2>
             <div id="geocoder" class="geocoder"></div>
             <div id="your-story-and-submit"><!-- Hidden until the user searches for and selects a location -->
               <textarea id="your-story" name="your-story" cols="40" rows="5" placeholder="Share your story here"></textarea>
               <input type="checkbox" id="publish-your-name" name="publish-your-name" checked />
-              <label for="publish-name">Ok to publish name?</label>
+              <label for="publish-name">Check this box if you would like your name to be published.</label>
               <input type="text" id="your-name" name="your-name" required placeholder="Name (optional)" autocorrect="off" autocomplete="off"/>
               <div id="submit-container">
                 <input type="button" value="Submit" onclick="submitStory()"/>
@@ -60,9 +60,9 @@
                   <span id="submit-error-message"></span>
                 </div>
               </div>
-              <p>Once submitted, your story will be reviewed by our team and posted within one week (subject to community + privacy guidelines).</p>
+              <p>Subject to community and privacy guidelines.</p>
             </div><!-- your-story-and-submit -->
-            <p id="see-other-stories">See other stories; click on the markers</p>
+            <p id="see-other-stories">Click the markers on the map to discover other New York City memories.</p>
           </div><!-- add-story -->
           <div id="selected-location">
 
