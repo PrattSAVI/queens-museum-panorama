@@ -30,7 +30,7 @@ Viewer.prototype = {
             Object.assign({}, params, {
                 success: function onSuccess(api) {
                     this.api = api;
-                    api.start();
+                    api.start();                  
                     api.addEventListener('viewerready', this.onViewerReady.bind(this));
                 }.bind(this),
                 error: function onError() {
@@ -42,6 +42,13 @@ Viewer.prototype = {
 
     onViewerReady: function() {
         this.isReady = true;
+        
+        // Sets a color background
+        this.api.setBackground({
+            color: [255, 0, 0]
+          }, function () {
+            console.log('updated');
+          });
 
         this.api.getCameraLookAt(
             function(err, camera) {
