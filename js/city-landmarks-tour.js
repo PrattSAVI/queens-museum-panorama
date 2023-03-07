@@ -309,16 +309,21 @@ function showFlyout(location) {
   document.getElementById("fly-out").classList.add("visible");
   document.getElementById("fly-out-title").innerHTML = location.name;
   document.getElementById("fly-out-image").src = location.image_url;
-  document.getElementById("fly-out-image-caption").innerHTML = location.image_caption;
   
-  if (location.previousLocation == null)
-    document.getElementById("fly-out-control-previous").classList.remove("enabled")
+  document.getElementById("fly-out-image-caption").innerHTML = location.image_caption;
+  if (location.image_caption == "")
+    document.getElementById("fly-out-image-caption").classList.add("empty");
   else
-    document.getElementById("fly-out-control-previous").classList.add("enabled")
+    document.getElementById("fly-out-image-caption").classList.remove("empty");
+
+  if (location.previousLocation == null)
+    document.getElementById("fly-out-control-previous").classList.remove("enabled");
+  else
+    document.getElementById("fly-out-control-previous").classList.add("enabled");
 
   if (location.nextLocation == null)
-    document.getElementById("fly-out-control-next").classList.remove("enabled")
+    document.getElementById("fly-out-control-next").classList.remove("enabled");
   else
-    document.getElementById("fly-out-control-next").classList.add("enabled")
+    document.getElementById("fly-out-control-next").classList.add("enabled");
 
 };

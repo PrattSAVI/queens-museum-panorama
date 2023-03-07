@@ -113,8 +113,10 @@ ul.dashed > li:before {
 
 #toggle-side-panel{
   position: absolute;
-  left: -32px;
+  left: -20px; /* width of tab image is 32px*/
   bottom: 20px;
+  overflow:hidden;
+  width: 20px; /* crop the image so it's only showing 20px of the left */
 }
 
 #fly-out {
@@ -176,4 +178,8 @@ ul.dashed > li:before {
 
 #fly-out-controls .fly-out-control.enabled svg:hover rect{
   fill: #B9FA05; /* section-4: Explore the Panorama */
+}
+
+#fly-out-image-caption.empty {
+  display:none;
 }
