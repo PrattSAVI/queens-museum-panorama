@@ -22,12 +22,6 @@
     gap: 1em;
 }
 
-@media (min-width: 500px) {
-    #credit-logos {
-        grid-auto-flow: column;
-        grid-auto-columns: 1fr;
-    }
-}
 #credit-logos .credit-logo {
     padding: 1em;
     background: #eee;
@@ -36,4 +30,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (min-width: 500px) {
+    #credit-logos {
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
 }
