@@ -43,12 +43,12 @@ Viewer.prototype = {
     onViewerReady: function() {
         this.isReady = true;
         
-        // Sets a color background
-        this.api.setBackground({
-            color: [255, 0, 0]
-          }, function () {
-            console.log('updated');
-          });
+        // Sets a color background. Doesn't appear to work with the free Sketchfab account, see this link: TODO
+        // this.api.setBackground({
+        //     color: [255, 0, 0]
+        //   }, function () {
+        //     console.log('updated');
+        //   });
 
         this.api.getCameraLookAt(
             function(err, camera) {

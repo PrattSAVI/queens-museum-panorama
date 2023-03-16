@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Queens Museum Panorama - Zoom into The Panorama</title>
+  <link rel="stylesheet" href="https://use.typekit.net/oul8zgw.css">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./css/panorama.css">
+  <link rel="stylesheet" type="text/css" href="./css/explore.css">
+  <link rel="stylesheet" type="text/css" href="./css/zoom-to-the-panorama.css">
+</head>
+<body class="section-4">
+  <div class="full-page">
+    <div class="content full-page-height">
+      <div class="content-block full-page-height">
+        <div class="header">
+          <h1>Zoom into <span class="text-italics">The Panorama</span></h1>
+          <panorama-nav
+            back-url="city-landmarks-tour.html"
+            forward-url="pin-your-story-on-the-panorama.html"
+            explore-button
+          >
+          </panorama-nav>
+        </div><!-- header -->
+        <div id="cesium-container" class="full-page-below-header">
+        </div><!-- cesium-container -->
+        <div id="loading-overlay">
+          <h1>Loading...</h1>
+        </div>
+      </div><!-- content-block -->
+    </div><!-- content -->
+  </div><!-- full-page-height-container -->
+  <script type="module" src="./components/panorama-components.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="./js/zoom-to-the-panorama.js"></script>
+</body>
+</html>

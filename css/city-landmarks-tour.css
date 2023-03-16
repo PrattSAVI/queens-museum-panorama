@@ -129,7 +129,7 @@ ul.dashed > li:before {
   z-index: 1;
   background-color: black;
   opacity: .9;
-  padding: 12px;
+  padding: 10px 12px;
   color: white;
 }
 
@@ -138,8 +138,8 @@ ul.dashed > li:before {
 }
 
 #fly-out h2 {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 9px;
+  margin-bottom: 6px;
   font-size: 18px;
 }
 

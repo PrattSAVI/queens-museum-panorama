@@ -1,0 +1,119 @@
+#add-story {
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  left: 25px;
+  width: 27.5%;
+  opacity: .9; 
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+#add-story p {
+  font-size: 12px;
+
+}
+
+#add-story p#see-other-stories {
+  margin-bottom: 0;
+}
+
+#add-story h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 18px;
+}
+
+#add-story h3 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+
+}
+
+.mapboxgl-ctrl-geocoder {
+  min-width: 100% !important;
+}
+
+#your-story {
+  width: 100%;
+}
+
+#your-story-and-submit{
+  display: none;
+  border-bottom: black 1px dashed;
+}
+
+#selected-location {
+  background-color:#35C775;   
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  width: 25%;
+  z-index: 1;
+  opacity: .9; 
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  display: none;
+}
+
+/* #selected-location div {
+  padding-bottom: 5px;
+} */
+
+.selected-location-story {
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+  margin-bottom: 5px;
+  padding: 3px 0;
+}
+
+.selected-location-story-location {
+  font-weight: bold;
+}
+
+#your-story-and-submit input[type=text], #your-story-and-submit textarea{
+  font: inherit;
+  width: 100%;
+  margin: 5px 0;
+  color: #404040;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+  box-sizing: border-box;
+}
+
+#your-story-and-submit textarea{
+  resize: vertical;
+} 
+
+#submit-container, #submit-error-container, #submit-success-container {
+  display: flex;
+  align-items: center;
+}
+
+#submit-success-container svg, #submit-success-container span, #submit-error-container svg, #submit-error-container span {
+  margin: 0 2px;
+}
+
+
+#submit-progress.hidden, #submit-success-container.hidden , #submit-error-container.hidden {
+  display: none;
+}
+
+#submit-error-icon svg {
+  fill: red;
+}
+
+#submit-close.float-right{
+  float: right;
+  margin: 2px 2px;
+  cursor: pointer;
+}

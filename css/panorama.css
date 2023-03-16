@@ -9,7 +9,11 @@ body {
     padding: 0;
 }
 
-body.section-home { 
+body.section-home, body.section-credits { 
+  background-color: #A499D9; 
+}
+
+body.section-video { 
   background-color: black; 
 }
 
@@ -35,10 +39,6 @@ body.section-3 {
 /* section-4: Explore the Panorama */
 body.section-4, body.section-4 #add-story {
   background-color: #B9FA05;   
-}
-
-body.section-credits { 
-  background-color: #A499D9; 
 }
 
 /* White font if we have a dar background */

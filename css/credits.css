@@ -17,6 +17,7 @@
 }
 
 #credit-logos {
+    margin: 25px 0;
     display: grid;
     gap: 1em;
 }
@@ -30,6 +31,6 @@
 #credit-logos .credit-logo {
     padding: .5em;
     background: #eee;
-    height: 100px;
+    height: 175px;
     align-items:center;
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Queens Museum Panorama - Credits</title>
   <link rel="stylesheet" href="https://use.typekit.net/oul8zgw.css">
   <link rel="stylesheet" type="text/css" href="css/panorama.css">
   <link rel="stylesheet" type="text/css" href="css/credits.css">
@@ -11,33 +12,37 @@
   <div class="content">
     <div class="content-block">
       <panorama-nav 
-        back-url="new-york-stories-on-the-panorama.html"
+        back-url="pin-your-story-on-the-panorama.html"
         explore-button
       >
       </panorama-nav>
     </div>
     <div class="conduit around-the-left connect-below">
       <h1>Credits</h1>
-      <div class="qr-code">
-        <img src="images/credits/panorama-qr.png" width="55%"/>
-        <p>Scan the QR code to learn more about <span class="text-italics">The Panorama</span> of the City of New York</p>
+      <p>Design and development by the <a href="https://www.pratt.edu/research/spatial-analysis-visualization-initiative/about-savi/" target="_blank">Spatial Analysis and Visualization Initiative</a> at Pratt Institute. 3D scanning and processing by Cyark</p>
+      <p>This project was developed with the support of Bloomberg Philanthropies' Digital Accelerator for Arts and Culture.</p>
+      <div id="credit-logos">
+        <div class="credit-logo">
+          <a href="https://www.pratt.edu/research/spatial-analysis-visualization-initiative/about-savi/" target="_blank">
+            <img src="images/credits/pratt-institute-logo.svg" width="100%" alt="Pratt Institute Logo"/>
+          </a>        
+        </div>
+        <div class="credit-logo">
+          <img src="images/credits/cyark-logo.png" width="100%" />
+        </div>
+        <div class="credit-logo">
+          <a href="https://www.bloomberg.org/about/" target="_blank">
+            <img src="images/credits/bloomberg-philanthropics-logo.svg" width="100%" alt="Bloomberg Philanthropies Logo" />
+          </a>
+        </div>
       </div>
     </div><!-- conduit-->
     <div class="conduit around-the-right connect-above end-below">
-        <p>Pratt credit line</p>
-        <p>3D scanning and processing by Cyark</p>
-        <p>This project was developed with the support of Bloomberg Philanthropies' Digital Accelerator for Arts and Culture.</p>
-        <div id="credit-logos">
-          <div class="credit-logo">
-            Pratt
-          </div>
-          <div class="credit-logo">
-            <img src="images/credits/cyark-logo.png" width="100%" />
-          </div>
-          <div class="credit-logo">
-            Bloomberg
-          </div>
-        </div>
+      <h2>Learn More</h2>
+      <div class="qr-code">
+        <p>Scan the QR code to learn more about <span class="text-italics">The Panorama</span> of the City of New York</p>
+        <img src="images/credits/panorama-qr.png" width="250px"/>
+      </div>
     </div><!-- conduit -->
   </div><!-- content-->
   <script type="module" src="./components/panorama-components.js"></script>
