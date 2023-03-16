@@ -1,3 +1,8 @@
+.conduit p {
+    margin-top: 24px;
+    margin-bottom: 9px;
+}
+
 .credit-image, .credit-image img {
     width: 125px;
     margin-bottom: 25px;
@@ -23,8 +28,8 @@
 }
 
 #credit-logos .credit-logo {
-    padding: 1em;
-    background: #eee;
+    padding: 10px 30px;
+    /* background: #eee; */
     height: 175px;
     text-align: center;
     display: flex;
@@ -32,9 +37,20 @@
     align-items: center;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
+
     #credit-logos {
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
     }
+
+}
+
+@media (max-width: 700px) {
+
+    #credit-logos .credit-logo {
+        padding: 10px 75px;
+        height: 150px;
+    }
+
 }
