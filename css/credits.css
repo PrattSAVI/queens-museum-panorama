@@ -22,15 +22,18 @@
     gap: 1em;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 500px) {
     #credit-logos {
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
     }
 }
 #credit-logos .credit-logo {
-    padding: .5em;
+    padding: 1em;
     background: #eee;
     height: 175px;
-    align-items:center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
