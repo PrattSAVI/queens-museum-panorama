@@ -26,62 +26,100 @@ const tour = {
         },
         "scene-3": {
             cameraPosition: [
-                4.151882071706647,
-                0.6811372498971952,
-                -0.02787594569011345
+                4.138264102297727,
+                0.7632731658460976,
+                -0.024417063715493903
             ],
             targetLocation: [
-                4.837988964850769,
-                0.7982169126259439,
-                -0.10682129772351641
+                4.82437099544185,
+                0.880352828574846,
+                -0.10336241574889667
             ]
         },
         "scene-4": {
             cameraPosition: [
-                5.234873032669884,
-                0.6783852795753871,
-                -0.11722169181213456
+                4.959267525550021,
+                0.8188588102415298,
+                -0.10000119800489597
             ],
             targetLocation: [
-                4.9048423994836625,
-                0.8958428437560108,
-                -0.1571824438428475
+                4.879312434631584,
+                0.8726927465770248,
+                -0.1298668848378096
+            ]
+        },
+        "scene-4-queens-theater": {
+            cameraPosition: 
+            [
+                4.88644535910335,
+                0.8719915599183169,
+                -0.1493609002998632
+            ],
+            targetLocation: [
+                4.886375092946965,
+                0.8720586601119494,
+                -0.1493845695052008
+            ]
+        },
+        "scene-4-queens-museum": {
+            cameraPosition: 
+            [
+                5.030914887246318,
+                1.0230986389915713,
+                -0.15429113991903726
+            ],
+            targetLocation: [
+                5.052915052687819,
+                0.8278641251131429,
+                -0.17447377079987544
             ]
         },
         "scene-5": {
             cameraPosition: [
-                5.598123335156016,
-                1.2167965156173548,
-                -0.03016527139268138
+                5.611899650065933,
+                0.9864411154698757,
+                -0.11816701443209343
             ],
             targetLocation: [
-                4.9406551302023605,
-                0.8706317103949578,
-                -0.2081056675592846
+                4.94727919473584,
+                0.848766565102315,
+                -0.22156967969098512
+            ]
+        },
+        "scene-5-heliport-queens-zoo": {
+            cameraPosition: [
+                4.950690493366548,
+                1.0354958410698263,
+                -0.12910186620579905
+            ],
+            targetLocation: [
+                4.991788073205243,
+                1.0606729428473205,
+                -0.14902302342785706
             ]
         },
         "scene-6": {
             cameraPosition: [
-                5.683661893244516,
-                -0.5543508194888556,
-                0.037976669286635054
+                5.7668082762690025,
+                -0.4806790039312755,
+                0.07762550590881402
             ],
             targetLocation: [
-                5.489376248015667,
-                -0.25928847070816746,
-                -0.08657968499175124
+                5.609495937728617,
+                -0.17341931521748113,
+                -0.06786435227913111
             ]
         },
         "scene-7": {
             cameraPosition: [
-                3.860030330939561,
-                1.273784349634381,
-                0.031081535467549153
+                4.531741555318921,
+                1.0450381822009316,
+                -0.06453826212837364
             ],
             targetLocation: [
-                4.213965303607448,
-                1.123142340694579,
-                -0.029758089335884717
+                4.457965972603452,
+                1.117524559904139,
+                -0.11400517389624781
             ]
         },
         "scene-8": {
@@ -101,6 +139,7 @@ const tour = {
 //URL ID for the Pratt SAVI Sketchfab Model of the Queens Museum Panorama
 //TODO: Change this to a model in a Queens Museum SketchFab account?
 const urlid = '4bf5a7686e5847efb2b38f69621875ac'
+const CAMERA_LOOK_AT_DURATION = 3 // is the duration of the move from the current camera to the new camera (a number, in seconds;
 
 const scrollingStoryViewport = document.getElementById('scrolling-story-viewport');
 const scrollingStory = document.getElementById('scrolling-story');
@@ -122,7 +161,7 @@ function handleResize() {
 //Camera Animation
 function updateCamera(cameraPosition, targetLocation) {
     if (viewer.api && viewer.camera && cameraPosition, targetLocation) {
-        viewer.api.setCameraLookAt(cameraPosition, targetLocation, 2);
+        viewer.api.setCameraLookAt(cameraPosition, targetLocation, CAMERA_LOOK_AT_DURATION);
     }
     //requestAnimationFrame(updateCamera);
 }

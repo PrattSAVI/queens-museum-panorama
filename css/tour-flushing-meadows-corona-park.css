@@ -72,3 +72,14 @@
   background: #555;
 }
 */
+
+
+@media only screen and (max-width: 768px) {
+
+  .step-content {
+    width: 275px;
+    padding: 27px;
+    border-radius: 15px;
+  }
+
+}
