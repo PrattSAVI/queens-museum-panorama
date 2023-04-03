@@ -20,7 +20,7 @@
         animation: false,
         baseLayerPicker: false,
         fullscreenButton: false,
-        geocoder: true,
+        geocoder: false,
         homeButton: false,
         infoBox: false,
         sceneModePicker: false,

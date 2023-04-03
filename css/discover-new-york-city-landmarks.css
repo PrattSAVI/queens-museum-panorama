@@ -29,7 +29,7 @@
   bottom: 0;
   left: auto;
   right: 0;
-  width: 160px;
+  width: 175px;
   padding: 10px 15px;
   transition: width 0.5;
 }
@@ -69,12 +69,12 @@
 
 #side-panel-locations {
   position: relative;
-  width: 160px;
+  width: 175px;
 
 }
 
 ul {
-  margin: 12px 12px;
+  margin: 12px 15px;
   padding-inline-start: 15px;
 }
 
@@ -131,6 +131,7 @@ ul.dashed > li:before {
   opacity: .9;
   padding: 10px 12px;
   color: white;
+  border-radius: 15px;
 }
 
 #fly-out.visible {
