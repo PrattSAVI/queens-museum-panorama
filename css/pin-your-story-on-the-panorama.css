@@ -130,3 +130,23 @@
   margin: 2px 2px;
   cursor: pointer;
 }
+
+
+#fly-out-controls {
+  margin: 0;
+  display:flex;
+  justify-content:flex-start;
+}
+
+#fly-out-controls .fly-out-control{
+  display: inline;
+  margin: 2px 2px;
+}
+
+#fly-out-controls .fly-out-control.justify-right {
+  margin-left: auto;
+}
+
+#fly-out-control-close {
+  cursor: pointer;
+}

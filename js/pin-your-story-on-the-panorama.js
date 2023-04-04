@@ -27,6 +27,10 @@ let lastMarkerAdded = null;
 let shareYourStoryVisible = false;
 
 
+function closeSelectedLocation(){
+  document.getElementById("selected-location").style.display = "none";
+};
+
 function shareYourStoryToggle(){
 
   //Clear variables either way
@@ -192,7 +196,7 @@ map.on('load', () => {
   map.addSource('2d-scan', {
     'type': 'raster',
     'url': 'mapbox://prattsavi.queens-museum-panorama-2d-v2',
-    'attribution': 'TODO Attribution' 
+    'attribution': '3D scan by CyArk, Built by Pratt SAVI' 
   });
   
   map.addLayer({
