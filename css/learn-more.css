@@ -1,3 +1,7 @@
+a, a:visited, a:active {
+    text-decoration: underline;
+  }
+
 .conduit p {
     margin: 24px 25px 9px;
 }
