@@ -1,6 +1,5 @@
 .conduit p {
-    margin-top: 24px;
-    margin-bottom: 9px;
+    margin: 24px 25px 9px;
 }
 
 .credit-image, .credit-image img {
@@ -28,16 +27,16 @@
 }
 
 #credit-logos .credit-logo {
-    padding: 10px 30px;
+    padding: 10px 20px;
     /* background: #eee; */
-    height: 175px;
+    height: 100px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
 
     #credit-logos {
         grid-auto-flow: column;
@@ -46,11 +45,11 @@
 
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     #credit-logos .credit-logo {
         padding: 10px 75px;
-        height: 150px;
+        height: 100px;
     }
 
 }
