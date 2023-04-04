@@ -33,7 +33,8 @@
       }
     );
 
-    
+    viewer.scene.frameState.creditDisplay.addDefaultCredit(new Cesium.Credit("3D scan by CyArk, Built by Pratt SAVI"));
+
     // set the background color to white:
     viewer.scene.backgroundColor = Cesium.Color.clone(Cesium.Color.GREY);
 
