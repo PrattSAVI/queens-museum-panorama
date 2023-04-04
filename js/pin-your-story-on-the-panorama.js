@@ -23,9 +23,13 @@ var storyLocationDetail = null;
 let selectedLocationID = null;
 let submittingStory = false;
 
-var lastMarkerAdded = null;
+let lastMarkerAdded = null;
+let shareYourStoryVisible = false;
 
-function submitClose(){
+
+function shareYourStoryToggle(){
+
+  //Clear variables either way
   storyLatitude = null;
   storyLongitude = null;
   storyLocation = null;
@@ -33,13 +37,10 @@ function submitClose(){
   selectedLocationID = null;
   submittingStory = false;
 
-  document.getElementById("your-story-and-submit").style.display = "none";
-
   document.getElementById("your-story").value = "";
   document.getElementById("publish-your-name").checked =  true;
   document.getElementById("your-name").value = "";
   document.querySelector("#geocoder input.mapboxgl-ctrl-geocoder--input").value = "";
-
   document.getElementById("submit-progress").classList.add("hidden");
   document.getElementById("submit-error-container").classList.add("hidden");
   document.getElementById("submit-success-container").classList.add("hidden");
@@ -48,6 +49,17 @@ function submitClose(){
     lastMarkerAdded.remove();
     lastMarkerAdded = null;
   }
+
+  if (shareYourStoryVisible){
+    document.getElementById("your-story-and-submit").style.display = "none";
+    document.getElementById("share-your-story-toggle").src = "images/icons/down_arrow.svg";
+  }
+  else{
+    document.getElementById("your-story-and-submit").style.display = "block";
+    document.getElementById("share-your-story-toggle").src = "images/icons/up_arrow.svg";
+  }
+  shareYourStoryVisible = !shareYourStoryVisible;
+
 }
 
 function submitStory() {
@@ -372,7 +384,8 @@ map.on('load', () => {
           selectedLocationStories
             .append("div")
             .classed("selected-location-story-name", true)
-            .text(function(d) { return `(${d.published_name != "" ? d.published_name : "anonymous"})`; });
+            .classed("hidden", function(d) { return d.published_name != "" ? false : true ; })
+            .text(function(d) { return `- ${d.published_name != "" ? d.published_name : ""}`; });
 
           // const story = e.features[0].properties.story;
           // const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name

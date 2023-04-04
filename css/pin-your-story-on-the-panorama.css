@@ -3,7 +3,7 @@
   z-index: 1;
   top: 25px;
   left: 25px;
-  width: 27.5%;
+  width: 35%;
   opacity: .9; 
   padding: 12px;
   border: 1px solid black;
@@ -21,8 +21,14 @@
 
 #add-story h2 {
   margin-top: 0;
-  margin-bottom: 18px;
+  margin-bottom: 0;
   font-size: 18px;
+}
+
+#add-story h2.share-your-story {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px dashed black;
 }
 
 #add-story h3 {
@@ -42,7 +48,7 @@
 
 #your-story-and-submit{
   display: none;
-  border-bottom: black 1px dashed;
+  padding-top: 15px;
 }
 
 #selected-location {
@@ -64,17 +70,24 @@
 } */
 
 .selected-location-story {
-  border-top: 1px dashed black;
   border-bottom: 1px dashed black;
   margin-bottom: 5px;
   padding: 3px 0;
+}
+
+.selected-location-story:last-child {
+  border-bottom: 0;
 }
 
 .selected-location-story-location {
   font-weight: bold;
 }
 
-#your-story-and-submit input[type=text], #your-story-and-submit textarea{
+.selected-location-story-name.hidden {
+  display: none;
+}
+
+.restyle-mapboxgl-ctrl input[type=text], .restyle-mapboxgl-ctrl textarea{
   font: inherit;
   width: 100%;
   margin: 5px 0;
@@ -112,7 +125,7 @@
   fill: red;
 }
 
-#submit-close.float-right{
+#share-your-story-toggle.float-right, #share-your-story-toggle-bottom.float-right{
   float: right;
   margin: 2px 2px;
   cursor: pointer;
