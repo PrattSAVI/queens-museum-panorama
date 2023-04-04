@@ -1,5 +1,12 @@
 # Queens Museum Panorama 
-bump
+## About
+The Queens Museum Panorama
+
+## Dependencies
+* MapBox account (pay as you go)
+* Cesium account (free)
+* Sketchfab account
+
 ## Hosted on GitHub pages
 
 Use the following links to view the prototype

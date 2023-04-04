@@ -94,14 +94,6 @@ function submitStory() {
     formData.append('OK to publish name', publishYourName);
     formData.append('Name', yourName);
 
-
-    /* TODO Do we want to submit any other information about the geo referenced location, e.g. the full location
-        place_name : "Brooklyn Museum, 200 Eastern Pkwy, New York City, New York 11238, United States"
-        or just
-        text : "Brooklyn Museum"
-    */
-
-    // TODO show progress indicator and handle submitting twice
     fetch('https://script.google.com/macros/s/AKfycbwZ4tkU-9je_waA46r59Q2IkiiZ4WDr_ojnfqLQkegqd1tkdZUldP8lBI2MmL2xHVT1/exec', {
       method: 'post',
       body: formData
