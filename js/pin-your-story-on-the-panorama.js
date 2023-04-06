@@ -187,7 +187,7 @@ map.on('load', () => {
 
   map.addSource('2d-scan', {
     'type': 'raster',
-    'url': 'mapbox://prattsavi.queens-museum-panorama-2d-v2'
+    'url': 'mapbox://queensmuseum.panorama-2d'
   });
   
   map.addLayer({
