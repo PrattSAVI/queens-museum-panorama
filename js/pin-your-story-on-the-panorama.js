@@ -117,13 +117,13 @@ function submitStory() {
 }
 
 
-//Pratt SAVI/QM access token
-//TODO Change to QM access token
-mapboxgl.accessToken = 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9vam40MG40cXcifQ.YHBszyZW7pMQShx0GZISbw';
+//QM's Panorama public access token
+mapboxgl.accessToken = 'pk.eyJ1IjoicXVlZW5zbXVzZXVtIiwiYSI6ImNsZzVoaGdhdjAzZXIzZm84bDByZXhlbXIifQ.BacI-pfRVLum9_2NaGajeA';
 
 const map = new mapboxgl.Map({
   container: 'map', // Container ID
-  style: 'mapbox://styles/prattsavi/clbqt0kf2000d14pfxbpyxnnu', // Map style to use
+  style: 'mapbox://styles/queensmuseum/clg5h7wvm000d01o6wyjha5oq', // Map style to use
+  customAttribution: '3D scan by CyArk, Built by Pratt SAVI',
   center: NYC_CENTER, // Starting position [lng, lat]
   zoom: STARTING_ZOOM, // Starting zoom level
   maxZoom: MAX_ZOOM,
@@ -187,8 +187,7 @@ map.on('load', () => {
 
   map.addSource('2d-scan', {
     'type': 'raster',
-    'url': 'mapbox://prattsavi.queens-museum-panorama-2d-v2',
-    'attribution': '3D scan by CyArk, Built by Pratt SAVI' 
+    'url': 'mapbox://prattsavi.queens-museum-panorama-2d-v2'
   });
   
   map.addLayer({

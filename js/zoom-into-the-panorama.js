@@ -7,10 +7,9 @@
     // Mapbox style provider
     // https://cesium.com/learn/cesiumjs/ref-doc/MapboxStyleImageryProvider.html#.ConstructorOptions
     const mapbox = new Cesium.MapboxStyleImageryProvider({
-      //styleId: 'streets-v11',
-      username: 'prattsavi',
-      styleId: 'clbqn0k2t001g14rt5d4dqm6h',
-      accessToken: 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9vam40MG40cXcifQ.YHBszyZW7pMQShx0GZISbw' //Pratt SAVI token
+      username: 'queensmuseum',
+      styleId: 'clg5hyuhy009001qob7elqvbz',
+      accessToken: 'pk.eyJ1IjoicXVlZW5zbXVzZXVtIiwiYSI6ImNsZzVoaGdhdjAzZXIzZm84bDByZXhlbXIifQ.BacI-pfRVLum9_2NaGajeA' // QM Panorama public access token
     });
     
     viewer = new Cesium.Viewer(

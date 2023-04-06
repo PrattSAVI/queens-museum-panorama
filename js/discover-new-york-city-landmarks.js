@@ -56,10 +56,9 @@ $(document).ready(function(){
   // Mapbox style provider
   // https://cesium.com/learn/cesiumjs/ref-doc/MapboxStyleImageryProvider.html#.ConstructorOptions
   const mapbox = new Cesium.MapboxStyleImageryProvider({
-    //styleId: 'streets-v11',
-    username: 'prattsavi',
-    styleId: 'clbqn0k2t001g14rt5d4dqm6h',
-    accessToken: 'pk.eyJ1IjoicHJhdHRzYXZpIiwiYSI6ImNsOGVzYjZ3djAycGYzdm9vam40MG40cXcifQ.YHBszyZW7pMQShx0GZISbw' //Pratt SAVI token
+    username: 'queensmuseum',
+    styleId: 'clg5hyuhy009001qob7elqvbz',
+    accessToken: 'pk.eyJ1IjoicXVlZW5zbXVzZXVtIiwiYSI6ImNsZzVoaGdhdjAzZXIzZm84bDByZXhlbXIifQ.BacI-pfRVLum9_2NaGajeA' // QM Panorama public access token
   });
 
   // Initialize the Cesium Viewer in the HTML element with the `cesium-container` ID.
@@ -248,7 +247,7 @@ $(document).ready(function(){
 function onToggleSidePanel(){
   const sidePanel = document.getElementById("side-panel")
   sidePanel.classList.toggle("collapsed")
-  // TODO use an icon, not text
+
   if (sidePanel.classList.contains("collapsed"))
     document.getElementById("toggle-side-panel-label").textContent = "Open"
   else
@@ -258,7 +257,7 @@ function onToggleSidePanel(){
 function onToggleSidePanel(){
   const sidePanel = document.getElementById("side-panel")
   sidePanel.classList.toggle("collapsed")
-  // TODO use an icon, not text
+
   if (sidePanel.classList.contains("collapsed"))
     document.getElementById("toggle-side-panel-image").src="images/icons/open_sidebar_tab_left_arrow.svg";
   else
