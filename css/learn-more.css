@@ -26,34 +26,27 @@ a, a:visited, a:active {
 
 #credit-logos {
     margin: 25px 0;
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     gap: 1em;
 }
 
 #credit-logos .credit-logo {
     padding: 10px 20px;
-    /* background: #eee; */
     height: 100px;
     text-align: center;
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-@media (min-width: 800px) {
-
-    #credit-logos {
-        grid-auto-flow: column;
-        grid-auto-columns: 1fr;
-    }
-
+#fly-out-controls .fly-out-control.justify-right {
+    margin-left: auto;
 }
 
 @media (max-width: 800px) {
 
-    #credit-logos .credit-logo {
-        padding: 10px 75px;
-        height: 100px;
+    #credit-logos {
+        flex-direction: column;
     }
 
 }
