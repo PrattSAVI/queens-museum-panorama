@@ -12,6 +12,7 @@ The Queens Museum Panorama
 Use the following links to view the prototype
 - [Main section](https://murraycox.github.io/queens-museum-panorama/), working on styling
 
+
 ## Running on your local machine
 
 ### Fork the respository
