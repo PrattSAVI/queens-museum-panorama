@@ -29,6 +29,7 @@ let shareYourStoryVisible = false;
 
 function closeSelectedLocation(){
   document.getElementById("selected-location").style.display = "none";
+  document.getElementById("selected-location-close").style.display = "none";
 };
 
 function shareYourStoryToggle(){
@@ -340,14 +341,6 @@ map.on('load', () => {
             { selected: true }
           )
 
-
-          // <div id="selected-location-location">
-          // </div>
-          // <div id="selected-location-story">
-          // </div>
-          // <div id="selected-location-name">
-          // </div>
-
           // https://github.com/mapbox/mapbox-gl-js/issues/2434
           // per ^ this apparent bug in mapbox-gl, even though the geojson spec support s
           // objects in  properties, if we pass objects in, we get string-i-fied objects back in mapbox-gl
@@ -365,7 +358,6 @@ map.on('load', () => {
             .append("div")
             .classed("selected-location-story", true);
 
-            
           selectedLocationStories
             .append("div")
             .classed("selected-location-story-location", true)
@@ -382,18 +374,8 @@ map.on('load', () => {
             .classed("hidden", function(d) { return d.published_name != "" ? false : true ; })
             .text(function(d) { return `- ${d.published_name != "" ? d.published_name : ""}`; });
 
-          // const story = e.features[0].properties.story;
-          // const storyLocation = e.features[0].properties.location; //Note location refers to the location of the browser's URL, so we have to use a different variable name
-          // const name =  e.features[0].properties.published_name != "" ? e.features[0].properties.published_name : "anonymous";
-
-          // document.getElementById("selected-location-location").innerHTML = storyLocation;
-          // document.getElementById("selected-location-story").innerHTML = story;
-          // document.getElementById("selected-location-name").innerHTML = `(${name})`;
-
-
           document.getElementById("selected-location").style.display = "block";
-
-          //TODO Add a close button and make it work for stories at the same location
+          document.getElementById("selected-location-close").style.display = "block";
 
         }
       });

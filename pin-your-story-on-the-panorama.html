@@ -45,8 +45,12 @@
               <div id="geocoder" class="geocoder"></div>
               <div class="restyle-mapboxgl-ctrl">
                 <textarea id="your-story" name="your-story" cols="40" rows="5" placeholder="Share your story here"></textarea>
-                <input type="checkbox" id="publish-your-name" name="publish-your-name" checked />
-                <label for="publish-name">Check this box if you would like your name to be published.</label>
+                <label for="publish-your-name">
+                  <input type="checkbox" id="publish-your-name" name="publish-your-name" checked />
+                  Check this box if you would like your name to be published.
+                </label>
+                <!-- This label needs to be 1 line as it's not possible to format the line-height of a-->
+                
                 <input type="text" id="your-name" name="your-name" required placeholder="Name (optional)" autocorrect="off" autocomplete="off"/>
               </div>
               <div id="submit-container">
@@ -75,12 +79,10 @@
             </div><!-- your-story-and-submit -->
           </div><!-- add-story -->
           <div id="selected-location">
-            <div id="fly-out-controls">
-              <div id="fly-out-control-close" class="fly-out-control justify-right enabled">
-                <img src="images/icons/close_x_black.svg" width="12" height="12" onclick="closeSelectedLocation()"/>
-              </div>
-            </div>
           </div> <!-- selected-location -->
+          <div id="selected-location-close">
+            <img src="images/icons/close_x_black.svg" width="12" height="12" onclick="closeSelectedLocation()"/>
+          </div>
         </div><!-- map -->
       </div><!-- content-block -->
     </div><!-- content -->

@@ -10,9 +10,15 @@
   border-radius: 15px;
 }
 
-#add-story p {
+#add-story p, #add-story label, #selected-location {
   font-size: 12px;
+  line-height: 14px;
+}
 
+/* line-height doesn't work on label by default because it is (display:inline) 
+   https://stackoverflow.com/a/6246422  */
+#add-story label {
+  display: inline-block;
 }
 
 #add-story p#see-other-stories {
@@ -26,8 +32,8 @@
 }
 
 #add-story h2.share-your-story {
-  margin-top: 5px;
-  padding-top: 5px;
+  margin-top: 13px;
+  padding-top: 10px;
   border-top: 1px dashed black;
 }
 
@@ -63,20 +69,20 @@
   border: 1px solid black;
   border-radius: 15px;
   display: none;
+  max-height: 70%;
+  overflow: scroll;
 }
-
-/* #selected-location div {
-  padding-bottom: 5px;
-} */
 
 .selected-location-story {
   border-bottom: 1px dashed black;
   margin-bottom: 5px;
-  padding: 3px 0;
+  padding: 3px 0 7px;
 }
 
 .selected-location-story:last-child {
   border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .selected-location-story-location {
@@ -132,21 +138,12 @@
 }
 
 
-#fly-out-controls {
-  margin: 0;
-  display:flex;
-  justify-content:flex-start;
-}
 
-#fly-out-controls .fly-out-control{
-  display: inline;
-  margin: 2px 2px;
-}
-
-#fly-out-controls .fly-out-control.justify-right {
-  margin-left: auto;
-}
-
-#fly-out-control-close {
+#selected-location-close {
   cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 60px;
+  z-index: 2;
+  display: none;
 }
