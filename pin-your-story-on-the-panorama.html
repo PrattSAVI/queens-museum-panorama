@@ -37,9 +37,9 @@
           <div id="add-story">
             <h2>What's your favorite memory of New York City? Share it on the Digital Twin!</h2>
             <p id="see-other-stories">Click the markers on the map to discover other New York City memories.</p>
-            <h2 class="share-your-story">
-              Share your story
-              <img id="share-your-story-toggle" class="float-right" src="images/icons/down_arrow.svg" width="12" height="12" onclick="shareYourStoryToggle()" />
+            <h2 class="share-your-story" onclick="shareYourStoryToggle()">
+              Share Your Story
+              <img id="share-your-story-toggle" class="float-right" src="images/icons/down_arrow.svg" width="12" height="12" />
             </h2>
             <div id="your-story-and-submit"><!-- Hidden until the user searches for and selects a location -->
               <div id="geocoder" class="geocoder"></div>
@@ -55,6 +55,7 @@
               </div>
               <div id="submit-container">
                 <input type="button" value="Submit" onclick="submitStory()"/>
+                <input type="button" value="Clear" onclick="clearStory(clearProgress=true)"/>
                 <!-- Free icon from https://loading.io/ -->
                 <img id="submit-progress" class="hidden" src="images/dual-ring-0.7s-21px.gif"/>
                 <div id="submit-success-container" class="hidden">
@@ -73,7 +74,7 @@
                 </div>
               </div>
               <p>
-                Once submitted your story will be reviewed by our team and posted within one week (subject to community and privacy guidelines).
+                Once submitted your story will be reviewed by our team and posted within one week (subject to the Queens Museum's community and privacy guidelines).
                 <img id="share-your-story-toggle-bottom" class="float-right" src="images/icons/up_arrow.svg" width="12" height="12" onclick="shareYourStoryToggle()" />
               </p>
             </div><!-- your-story-and-submit -->
