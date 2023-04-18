@@ -63,6 +63,10 @@ h1, h2, h3 {
   margin-bottom: 32px;
 }
 
+h2.h2-standalone {
+  margin-bottom: 0;
+}
+
 
 
 .conduit p {
@@ -124,9 +128,8 @@ body, a, a:visited, a:active {
 .conduit {
   position: relative;
   border-top: 2px solid black;
-  padding: 18px; /* changed this to 18 px from 12*/
+  padding: 20px;
   background-color: inherit;
-  /*clip-path: polygon(626px 463px,765px 236px,687px 31px,271px 100px,70px 10px,49px 250px,133px 406px,374px 462px,529px 393px);*/
 }
 
 .conduit.end-below {
