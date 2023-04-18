@@ -34,6 +34,23 @@ function closeSelectedLocation(){
 
 function shareYourStoryToggle(){
 
+
+  clearStory();
+
+  if (shareYourStoryVisible){
+    document.getElementById("your-story-and-submit").style.display = "none";
+    document.getElementById("share-your-story-toggle").src = "images/icons/down_arrow.svg";
+  }
+  else{
+    document.getElementById("your-story-and-submit").style.display = "block";
+    document.getElementById("share-your-story-toggle").src = "images/icons/up_arrow.svg";
+  }
+  shareYourStoryVisible = !shareYourStoryVisible;
+
+}
+
+function clearStory(clearProgress=false){
+
   //Clear variables either way
   storyLatitude = null;
   storyLongitude = null;
@@ -46,24 +63,16 @@ function shareYourStoryToggle(){
   document.getElementById("publish-your-name").checked =  true;
   document.getElementById("your-name").value = "";
   document.querySelector("#geocoder input.mapboxgl-ctrl-geocoder--input").value = "";
-  document.getElementById("submit-progress").classList.add("hidden");
-  document.getElementById("submit-error-container").classList.add("hidden");
-  document.getElementById("submit-success-container").classList.add("hidden");
+  if (clearProgress){
+    document.getElementById("submit-progress").classList.add("hidden");
+    document.getElementById("submit-error-container").classList.add("hidden");
+    document.getElementById("submit-success-container").classList.add("hidden");
+  }
 
   if (lastMarkerAdded){
     lastMarkerAdded.remove();
     lastMarkerAdded = null;
   }
-
-  if (shareYourStoryVisible){
-    document.getElementById("your-story-and-submit").style.display = "none";
-    document.getElementById("share-your-story-toggle").src = "images/icons/down_arrow.svg";
-  }
-  else{
-    document.getElementById("your-story-and-submit").style.display = "block";
-    document.getElementById("share-your-story-toggle").src = "images/icons/up_arrow.svg";
-  }
-  shareYourStoryVisible = !shareYourStoryVisible;
 
 }
 
@@ -95,7 +104,7 @@ function submitStory() {
     formData.append('OK to publish name', publishYourName);
     formData.append('Name', yourName);
 
-    fetch('https://script.google.com/macros/s/AKfycbwZ4tkU-9je_waA46r59Q2IkiiZ4WDr_ojnfqLQkegqd1tkdZUldP8lBI2MmL2xHVT1/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyB50u5wLj9Gl3e13wE76P6OLdCeN_gUPVfjf-KDgsjOzNXybrh8xtG-85qFW3ADnzX/exec', {
       method: 'post',
       body: formData
     })
@@ -105,6 +114,7 @@ function submitStory() {
       document.getElementById("submit-progress").classList.add("hidden");
       document.getElementById("submit-success-container").classList.remove("hidden");
       document.getElementById("submit-success-message").innerHTML = "Submitted!";
+      clearStory()
       submittingStory = false;
     })
     .catch((error) => {
