@@ -14,11 +14,17 @@ Viewer.prototype = {
 
         var params = {
             ui_controls: 0,
+            ui_fullscreen: 0,
+            ui_general_controls: 0,
+            ui_help: 0,
+            ui_hint: 0,
             ui_infos: 0,
             ui_stop: 0,
             ui_watermark: 0,
             ui_inspector: 0,
             ui_color: 'ffffff',
+            ui_settings: 0,
+            ui_start: 0,
             preload: 1,
             camera: 0,
             scrollwheel: 0,
