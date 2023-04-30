@@ -78,17 +78,27 @@ TODO
 
 ## Design
 
-The design of the Queens Museum Panorama project has been optimized to be displayed landscape on the Apple iPad A2602 models which are currently used for exhibitions.
+
+The design of the Queens Museum Panorama project had been optimized to be displayed landscape on the Apple iPad A2602 models which were used for exhibitions.
 
 9th Generation iPad, A2602
 Design Specs:
-10.2" diagonal
 * Retina display
+* 10.2" (diagonal)
 * 2160-by-1620-pixel resolution at 264 pixels per inch (ppi)
 * (Screen Size: 1080-by-810, device independent pixels ‘points’ for CSS)
-* The web application running full screen is 1080-by-790 (20 pixels for the iPad status bar at the top)
+* The web application running full screen landscape is 1080-by-790 (20 pixels for the iPad status bar at the top)
 
 [Other Tech specs](https://support.apple.com/kb/SP849?locale=en_US)
 
+In preparation for installation, the Queens Museum upgraded to iPad Pro 12.9" to run in landscape with the following specifications:
 
+iPad Pro, 12.9-inch (5th generation)
+Design Specs:
+* Liquid Retina XDR display
+* 12.9-inch (diagonal)
+* 2732-by-2048-pixel resolution at 264 pixels per inch (ppi)
+* (Screen Size: 1366-by-1024, device independent pixels ‘points’ for CSS)
+* The web application running full screen landscape is 1366-by-1004 (20 pixels for the iPad status bar at the top)
 
+[Other Tech specs](https://support.apple.com/kb/SP844?locale=en_US)

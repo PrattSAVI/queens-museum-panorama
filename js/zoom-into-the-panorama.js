@@ -66,11 +66,10 @@
 
     viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
 
-
-    viewer.camera.lookAt(
-      Cesium.Cartesian3.fromDegrees(-73.846707, 40.7458395, 200),  //center
-      new Cesium.HeadingPitchRange(
-        Cesium.Math.toRadians(29), 
-        Cesium.Math.toRadians(-30), 
-        5000) 
-    );
+    viewer.camera.flyTo({
+      destination : Cesium.Cartesian3.fromDegrees(-73.846707, 40.737, 1200),   
+      orientation : {
+        heading : Cesium.Math.toRadians(29.0),
+        pitch : Cesium.Math.toRadians(-30.0),
+      }
+    });
