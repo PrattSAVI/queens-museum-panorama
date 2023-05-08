@@ -66,6 +66,16 @@
 
     viewer.scene.globe.tileCacheSize = 1000 // Default Value: 100
 
+    const MIN_HEIGHT = 900;
+
+    viewer.clock.onTick.addEventListener(function() {
+        var currentHeight = viewer.scene.globe.ellipsoid.cartesianToCartographic(viewer.camera.position).height;
+        if (currentHeight < MIN_HEIGHT) {
+            viewer.scene.camera.moveUp(MIN_HEIGHT - currentHeight);
+            return;
+        }
+    });
+
     viewer.camera.flyTo({
       destination : Cesium.Cartesian3.fromDegrees(-73.846707, 40.737, 1200),   
       orientation : {
