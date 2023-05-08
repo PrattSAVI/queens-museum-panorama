@@ -104,7 +104,7 @@ class PanoramaNav extends LitElement {
       html`
         <div class="button svg">
           <a href="${this.backURL}">
-            <svg id="back-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+            <svg id="back-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="black" stroke-width="1">
               <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
               <path id="back-path" data-name="back" d="M353.774,26.165,345,34.212l8.97,7.775" transform="translate(-339.076 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
             </svg>          
@@ -116,7 +116,7 @@ class PanoramaNav extends LitElement {
       html`
         <div class="button svg">
           <a href="${this.forwardURL}">
-            <svg id="forward-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+            <svg id="forward-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="black" stroke-width="1">
               <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
               <path id="forward-path" data-name="forward" d="M345.2,26.165l8.77,8.048L345,41.987" transform="translate(-335.902 -22.076)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
             </svg>
@@ -128,7 +128,7 @@ class PanoramaNav extends LitElement {
       html`
         <div class="button svg">
           <a href="./">
-            <svg id="home_white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="black" stroke-width="1">
+            <svg id="home_white" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke="black" stroke-width="1">
               <rect x="0.5" y="0.5" width="23" height="23" rx="5.5" fill="none"/>
               <g id="Group_682" data-name="Group 682" transform="translate(-577 -4156)">
                 <path id="Path_1238" data-name="Path 1238" d="M18.39,10.877,11.614,4.186,4.922,10.877" transform="translate(577.221 4156)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
@@ -143,7 +143,7 @@ class PanoramaNav extends LitElement {
       html`
         <div class="button svg">
           <a href="./explore-the-panorama.html">
-            <svg id="explore_white" width="24" height="24" version="1.1" id="home_white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            <svg id="explore_white" width="32" height="32" version="1.1" id="home_white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
               <path class="rect" fill="none" stroke="#000000" d="M6,0.5h12c3,0,5.5,2.5,5.5,5.5v12c0,3-2.5,5.5-5.5,5.5H6c-3,0-5.5-2.5-5.5-5.5V6
               C0.5,3,3,0.5,6,0.5z"/>
