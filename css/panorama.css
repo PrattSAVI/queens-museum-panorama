@@ -70,8 +70,8 @@ h2.h2-standalone {
 
 
 .conduit p {
-  line-height: 1.7rem;
-  font-size: 1.3em;
+  line-height: 1.8rem;
+  font-size: 1.4em;
   margin-top: 48px;
   margin-bottom: 18px;  /* changed this to 18 px from 12*/
 }
@@ -297,7 +297,7 @@ body, a, a:visited, a:active {
 .image-container .caption {
   text-align: left;
   margin-top: 18px;
-  font-size: .85em;
+  font-size: 0.9em;
 }
 
 .video-container {
