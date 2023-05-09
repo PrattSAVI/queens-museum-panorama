@@ -219,8 +219,8 @@ map.on('load', () => {
     Note, it appears that Google caches these URLs or doesn't do a great version of publishing the most recent data, so we're going to try to bust their cache by appending a timestamp at the end of the URL
   */
 
-  const PUBLISHED_STORIES_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoE3LqrHKuJI4MFBPYR5OnlJrRFCTrHAZhQuHJUxPI8O7j1tK1lUNoMjCnUMMBjIjdJdMXvFxRaZyC/pub?gid=1228347493&single=true&output=csv'
-  
+  const PUBLISHED_STORIES_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1VVwQ-GTHxqFqML8FyLCDJQcnDPVswKxlp7WXW5A6PTDZX3i1S_aAfuvX_NPGjJxwGQXOTCcHgq0K/pub?gid=1228347493&single=true&output=csv'
+
   d3.csv(PUBLISHED_STORIES_URL + '&cachebuster=' + Date.now()).then((stories) => {
     
     //group the stories by lat/long. This will be a an array of all of the stories, with the first and second elements the latitude and longitdue, followed by the complete data:
